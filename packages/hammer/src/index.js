@@ -1,0 +1,1 @@
+export { getHammerConfig } from "./tools";

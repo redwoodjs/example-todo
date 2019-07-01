@@ -1,3 +1,4 @@
+// TODO: Move to @hammerframework/hammer
 import path from "path";
 import requireDir from "require-dir";
 import { queryType, makeSchema } from "nexus";

@@ -13,6 +13,10 @@ import qs from "qs";
 import args from "args";
 import requireDir from "require-dir";
 
+const { getHammerConfig } = require("@hammerframework/hammer");
+
+const hammerConfig = getHammerConfig();
+
 /**
  * The hammer dev server emulates Netlify and AWS Lambda functions. Specify the path
  * to your functions, we'll import any `.js` files and map the filename to a route,
@@ -20,12 +24,15 @@ import requireDir from "require-dir";
  * The dev server will automatically reload when files are modified.`
  */
 args
-  .option("port", "", 8911)
-  .option("path", "The path to your lambda functions", "./src/functions");
+  .option("port", "", hammerConfig.api.port)
+  .option(
+    "path",
+    "The path to your lambda functions",
+    hammerConfig.api.functions_path
+  );
 const { port: PORT, path: PATH } = args.parse(process.argv);
 const HOSTNAME = `http://localhost:${PORT}`;
 
-// TODO: Make this "find" our default hammer directory.
 const lambdaFunctions = requireDir(path.join(process.cwd(), "../../", PATH), {
   recurse: false,
   extensions: [".js"]
