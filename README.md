@@ -49,7 +49,7 @@ yarn babel-node api/seed.js
 ### Fire it up
 
 ```terminal
-yarn start
+yarn dev
 ```
 
 Browse to `localhost:8910` to see the web app. Lambda functions run on
