@@ -1,6 +1,9 @@
 node_modules
 dist
 yarn-error.log
+.docz
+*/.env
+.DS_Store
 
 api/failed-*.md
 api/db/*.db
