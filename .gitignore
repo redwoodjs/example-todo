@@ -1,0 +1,11 @@
+node_modules
+dist
+yarn-error.log
+
+api/failed-*.md
+api/db/*.db
+api/migrations/dev
+api/generated/generated-types.d.ts
+
+web/generated
+
