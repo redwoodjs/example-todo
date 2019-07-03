@@ -13,7 +13,7 @@ import qs from "qs";
 import args from "args";
 import requireDir from "require-dir";
 
-const { getHammerConfig } = require("@hammerframework/hammer");
+import { getHammerConfig } from "@hammerframework/hammer";
 
 const hammerConfig = getHammerConfig();
 
@@ -28,12 +28,12 @@ args
   .option(
     "path",
     "The path to your lambda functions",
-    hammerConfig.api.functions_path
+    hammerConfig.api.paths.functions
   );
 const { port: PORT, path: PATH } = args.parse(process.argv);
 const HOSTNAME = `http://localhost:${PORT}`;
 
-const lambdaFunctions = requireDir(path.join(process.cwd(), "../../", PATH), {
+const lambdaFunctions = requireDir(path.join(hammerConfig.baseDir, PATH), {
   recurse: false,
   extensions: [".js"]
 });

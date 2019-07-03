@@ -1,10 +1,11 @@
 # Hammer - Build something.
 
 [web]
-port=8910
+  port=8910
 
 [api]
-port=8911
-serverless_provider = "netlify"
-functions_path = './api/src/functions/'
-graphql_path = './api/src/graphql/'
+  port=8911
+  
+  [api.paths]
+  functions = './api/src/functions/'
+  graphQL = './api/src/graphql/'
