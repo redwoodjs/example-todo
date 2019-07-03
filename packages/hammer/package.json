@@ -3,12 +3,16 @@
   "version": "0.0.0",
   "description": "Hammer - Build something.",
   "files": [
-    "src"
+    "dist"
   ],
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "license": "MIT",
   "dependencies": {
     "findup-sync": "^3.0.0",
     "toml": "^3.0.0"
+  },
+  "scripts": {
+    "build": "babel src -d dist",
+    "build:watch": "nodemon --ignore dist --exec 'yarn build'"
   }
 }
