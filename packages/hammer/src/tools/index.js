@@ -6,7 +6,6 @@ export const getHammerConfig = () => {
   const configPath = findUp("hammer.toml");
   if (!configPath) {
     console.error("Could not find your `hammer.toml` file");
-    // warning
     return undefined;
   }
 
