@@ -10,12 +10,17 @@ import requireDir from "require-dir";
 import { queryType, makeSchema } from "nexus";
 import { ApolloServer } from "apollo-server-lambda";
 
-import { getHammerBaseDir } from "src/core";
+import { getHammerConfig } from "src/core";
 
-const HAMMER_BASE_DIR = getHammerBaseDir();
-
-const GRAPHQL_DIR = path.join(HAMMER_BASE_DIR, "api/src/graphql");
-const OUTPUTS_DIR = path.join(HAMMER_BASE_DIR, "api/src/generated");
+const hammerConfig = getHammerConfig();
+const GRAPHQL_DIR = path.join(
+  hammerConfig.baseDir,
+  hammerConfig.api.paths.graphql
+);
+const OUTPUTS_DIR = path.join(
+  hammerConfig.baseDir,
+  hammerConfig.api.paths.generated
+);
 const GRAPHQL_HOWTO = "https://hammerframework.com/";
 
 const BaseQueryType = queryType({

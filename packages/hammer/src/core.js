@@ -15,6 +15,8 @@ export const getHammerBaseDir = () => {
   return path.dirname(configPath);
 };
 
+// TODO: Resolve paths.
+// TODO: Validate configuration.
 export const getHammerConfig = () => {
   const configPath = getHammerConfigPath();
   if (!configPath) {

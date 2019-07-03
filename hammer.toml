@@ -7,5 +7,6 @@
   port=8911
   
   [api.paths]
-  functions = './api/src/functions/'
-  graphQL = './api/src/graphql/'
+  functions = './api/src/functions'
+  graphql = './api/src/graphql'
+  generated = './api/generated'

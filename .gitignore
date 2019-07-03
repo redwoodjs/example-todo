@@ -8,7 +8,7 @@ yarn-error.log
 api/failed-*.md
 api/db/*.db
 api/migrations/dev
-api/generated/generated-types.d.ts
+api/generated/*
 
 web/generated
 
