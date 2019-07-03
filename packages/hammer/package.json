@@ -8,11 +8,17 @@
   "main": "dist/index.js",
   "license": "MIT",
   "dependencies": {
+    "@babel/register": "^7.4.4",
+    "apollo-server-lambda": "^2.6.7",
     "findup-sync": "^3.0.0",
+    "nexus": "^0.12.0-beta.6",
     "toml": "^3.0.0"
   },
   "scripts": {
     "build": "babel src -d dist",
     "build:watch": "nodemon --ignore dist --exec 'yarn build'"
+  },
+  "devDependencies": {
+    "babel-plugin-module-resolver": "^3.2.0"
   }
 }

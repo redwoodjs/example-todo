@@ -12,5 +12,15 @@
         "corejs": 3
       }
     ]
+  ],
+  "plugins": [
+    [
+      "babel-plugin-module-resolver",
+      {
+        "alias": {
+          "src": "./src"
+        }
+      }
+    ]
   ]
 }

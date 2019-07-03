@@ -1261,7 +1261,7 @@ apollo-server-errors@2.3.0:
   resolved "https://registry.yarnpkg.com/apollo-server-errors/-/apollo-server-errors-2.3.0.tgz#700622b66a16dffcad3b017e4796749814edc061"
   integrity sha512-rUvzwMo2ZQgzzPh2kcJyfbRSfVKRMhfIlhY7BzUfM4x6ZT0aijlgsf714Ll3Mbf5Fxii32kD0A/DmKsTecpccw==
 
-apollo-server-lambda@^2.6.2:
+apollo-server-lambda@^2.6.2, apollo-server-lambda@^2.6.7:
   version "2.6.7"
   resolved "https://registry.yarnpkg.com/apollo-server-lambda/-/apollo-server-lambda-2.6.7.tgz#edc869c688c3ccb38159b47c24f0f09e3743becb"
   integrity sha512-J1UFQer21PhrpOw5veA4aflotlMAijvVPP0T12NFKrGWmG86IpqemZiJkzy84nqrm+m5vdMiZWD475H9T/Wn2Q==
@@ -4207,6 +4207,13 @@ nexus@^0.11.7:
   version "0.11.7"
   resolved "https://registry.yarnpkg.com/nexus/-/nexus-0.11.7.tgz#db580f1d6feb5e590fe395d9cd218c969c46b9ed"
   integrity sha512-d5iD9jKn8n8tfFerisxYmKlrJmj5omPS49+s1xv2O2q5GiagDH4ySxajg0vsf0EMT2K+OvlCuSxT0xarS1gqKw==
+  dependencies:
+    tslib "^1.9.3"
+
+nexus@^0.12.0-beta.6:
+  version "0.12.0-beta.6"
+  resolved "https://registry.yarnpkg.com/nexus/-/nexus-0.12.0-beta.6.tgz#24829f4014365446972fdc066517893f36dd394e"
+  integrity sha512-6eqZslOSZFSMQ3RJSk5EAAkB6uOlg7aYK5AyLMLMVTYX5iY9Tm8GWTHso5+lhmwIqPZHw+kDOYux6rRcYi9heA==
   dependencies:
     tslib "^1.9.3"
 
