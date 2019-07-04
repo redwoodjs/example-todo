@@ -3,3 +3,87 @@
 *:after {
   box-sizing: border-box;
 }
+
+@import url("https://fonts.googleapis.com/css?family=Roboto+Slab:400,700");
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #fafbfb;
+  font-family: "Roboto Slab", serif;
+  color: #303030;
+}
+
+* {
+  font-size: 1.6rem;
+  line-height: 1.5;
+}
+
+input,
+textarea {
+  font-family: inherit;
+  font-size: 1.6rem;
+  background: transparent;
+  outline: none;
+  border: 0;
+  padding: 0;
+  resize: none;
+  box-sizing: border-box;
+  padding: 8px;
+  border: 1px solid transparent;
+}
+textarea {
+  height: 100%;
+}
+
+input:hover,
+textarea:hover {
+  background-color: #f8f5c6;
+}
+input:focus,
+textarea:focus {
+  background-color: #f9f3a7;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+table {
+  padding: 0;
+  margin: 0;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+table tr {
+  height: 48px;
+  outline: none;
+  vertical-align: middle;
+}
+
+tbody th,
+tbody td {
+  height: 48px;
+  border: 1px solid #d4d6d9;
+}
+
+th input,
+th textarea {
+  font-weight: 700;
+}
+
+table input,
+table textarea {
+  height: 100%;
+  min-height: 47px;
+}
