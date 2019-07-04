@@ -21,5 +21,8 @@
     "dev:api": "yarn workspace api dev",
     "dev:web": "yarn workspace web dev",
     "build:hammer": "yarn workspace @hammerframework/hammer-api build:watch & yarn workspace @hammerframework/hammer-web build:watch"
+  },
+  "dependencies": {
+    "@hammerframework/hammer-cli": "^0.0.0-alpha.4"
   }
 }
