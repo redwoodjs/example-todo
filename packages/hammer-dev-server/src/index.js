@@ -13,7 +13,7 @@ import qs from "qs";
 import args from "args";
 import requireDir from "require-dir";
 
-import { getHammerConfig } from "@hammerframework/hammer";
+import { getHammerConfig } from "@hammerframework/hammer-api";
 
 const hammerConfig = getHammerConfig();
 

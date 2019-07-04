@@ -1,3 +1,3 @@
-import { graphQLServerlessFunction } from "@hammerframework/hammer";
+import { graphQLServerlessFunction } from "@hammerframework/hammer-api";
 
 export const handler = graphQLServerlessFunction();
