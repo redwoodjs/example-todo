@@ -19,8 +19,8 @@ import Skeleton from "./subcomponents/Skeleton";
  * urql QueryProps: https://formidable.com/open-source/urql/docs/api/#props
  * urql RenderProps: https://formidable.com/open-source/urql/docs/api/#render-props
  */
-export default ({ children, component: { queryProps }, ...rest }) => {
-  const { skeleton, query } = queryProps;
+export default ({ children, component: Component, ...rest }) => {
+  const { query, skeleton, dataToProps } = Component.queryProps;
 
   return (
     <OriginalQuery query={query} {...rest}>
@@ -40,7 +40,18 @@ export default ({ children, component: { queryProps }, ...rest }) => {
           );
         }
 
-        return children({ data, refetch });
+        let cleanData = data;
+        if (typeof dataToProps === "function") {
+          cleanData = dataToProps(data);
+        }
+        // children takes precedence
+        if (children) {
+          return children({ data: cleanData, refetch });
+        }
+
+        // if the user does not supply a children function, then just render
+        // the component.
+        return <Component {...cleanData} refetch={refetch} />;
       }}
     </OriginalQuery>
   );

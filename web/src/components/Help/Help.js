@@ -1,7 +1,7 @@
 /**
  * This amazing component does...
  */
-const Help = ({ as: Element = "div", ...rest }) => {
+const Help = ({ as: Element = "div", refetch, ...rest }) => {
   return <Element {...rest} />;
 };
 
@@ -13,7 +13,13 @@ Help.queryProps = {
       help
     }
   `,
-  skeleton: undefined
+  skeleton: undefined,
+  // TODO: This needs a better name.
+  // parseData?
+  // cleanData?
+  dataToProps: data => {
+    return { children: data.help };
+  }
 };
 
 export default Help;
