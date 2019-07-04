@@ -16,13 +16,15 @@
     "@babel/preset-react": "^7.0.0",
     "core-js": "^3.1.3"
   },
-  "scripts": {
-    "dev": "yarn dev:api & yarn dev:web",
-    "dev:api": "yarn workspace api dev",
-    "dev:web": "yarn workspace web dev",
-    "build:hammer": "yarn workspace @hammerframework/hammer-api build:watch & yarn workspace @hammerframework/hammer-web build:watch"
-  },
   "dependencies": {
     "@hammerframework/hammer-cli": "^0.0.0-alpha.4"
+  },
+  "scripts": {
+    "dev": "yarn build:hammer && yarn dev:api & yarn dev:web",
+    "open": "open http://localhost:8910",
+    "dev:api": "yarn workspace api dev",
+    "dev:web": "yarn workspace web dev",
+    "build:hammer": "yarn workspace @hammerframework/hammer-api build & yarn workspace @hammerframework/hammer-web build",
+    "build:hammer:watch": "yarn workspace @hammerframework/hammer-api build:watch & yarn workspace @hammerframework/hammer-web build:watch"
   }
 }

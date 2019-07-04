@@ -17,72 +17,35 @@ this in the root directory:
 yarn install
 ```
 
-### ORM: Prisma Photon
-
-You can generate the JavaScript client with:
-
-```terminal
-yarn workspace api generate
-```
-
-The generated client will be placed in `api/node_modules/@generated/photon`
-
-### Initial DB setup
-
-Create and migrate a local SQLite database:
-
-```terminal
-cd api
-yarn prisma2 lift up
-cd ..
-```
-
-### Seeds
-
-Prisma will offer a solution in the future, but in the meantime I've created
-`api/seed.js` which creates some users and invoices.
-
-```terminal
-yarn babel-node api/seed.js
-```
-
 ### Fire it up
 
 ```terminal
 yarn dev
 ```
 
-Browse to `localhost:8910` to see the web app. Lambda functions run on
+This command will eventually move into the `hammer-cli`.
+
+Run `yarn open` to open your browser on `http://localhost:8910`.
+
+Browse to `http://localhost:8910` to see the web app. Lambda functions run on
 `localhost:8911` but are proxied to `localhost:8910/.netlify/functions/*`.
 
 ## Development
 
-Running prisma dev will watch for changes to your datamodel and will
-automatically apply migrations to your database and update the generated Photon
-(ORM) client.
+### Generate a component
 
-```terminal
-cd api
-yarn prisma2 dev
-```
+`yarn hammer generate component MyShinyComponent` will create a component
+and place it under `web/src/components/MyShinyComponent`
 
-## Migrations: Prisma Lift
+### Transpiling packages
 
-The data model is defined in: `api/datamodel.prisma`. When you modify the data
-model you generate a migaration with:
+There are a bunch of packages in this repository that will eventually be published
+under `@hammerframework`:
 
-```terminal
-cd api
-yarn prisma2 lift save
-cd ..
-```
+- `@hammerframework/hammer-api`
+- `@hammerframework/hammer-web`
+- `@hammerframework/hammer-dev-server`
 
-To apply the migration run:
-
-```terminal
-cd api
-yarn prisma2 lift up
-cd ..
-```
-
-This will create (or modify) a SQLite database in `api/db/dev.db`
+Keeping them in this repository facilitates rapid development. The packages are
+transpiled, so if you've changed something you need to run `yarn build:hammer:watch`
+in a seperate terminal.
