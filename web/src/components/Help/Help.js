@@ -1,6 +1,3 @@
-import React from "react";
-import PropTypes from "prop-types";
-
 /**
  * This amazing component does...
  */

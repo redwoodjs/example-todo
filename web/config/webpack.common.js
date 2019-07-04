@@ -13,6 +13,8 @@ module.exports = {
       template: "./src/template.html"
     }),
     new webpack.ProvidePlugin({
+      React: "react",
+      PropTypes: "prop-types",
       gql: ["@hammerframework/hammer-web", "gql"]
     })
   ],
