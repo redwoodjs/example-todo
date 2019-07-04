@@ -1,5 +1,5 @@
 {
-  "name": "@hammerframework/hammer",
+  "name": "@hammerframework/hammer-api",
   "version": "0.0.0",
   "description": "Hammer - Build something.",
   "files": [
@@ -15,8 +15,9 @@
     "toml": "^3.0.0"
   },
   "scripts": {
-    "build": "babel src -d dist",
-    "build:watch": "nodemon --ignore dist --exec 'yarn build'"
+    "build": "yarn clean && babel src -d dist",
+    "build:watch": "nodemon --ignore dist --exec 'yarn build'",
+    "clean": "rm -rf dist"
   },
   "devDependencies": {
     "babel-plugin-module-resolver": "^3.2.0"
