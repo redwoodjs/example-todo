@@ -1,15 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import { GraphQLProvider } from "@hammerframework/hammer-web";
+import { GraphQLProvider, Query } from "@hammerframework/hammer-web";
 
 import "./global.css";
 
-const App = () => "Hello, world!";
+import Help from "src/components/Help";
 
 ReactDOM.render(
   <GraphQLProvider>
-    <App />
+    <Query {...Help.queryProps()}>
+      {({ data }) => {
+        return <Help>{data.help}</Help>;
+      }}
+    </Query>
   </GraphQLProvider>,
   document.getElementById("hammer-app")
 );
