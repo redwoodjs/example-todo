@@ -2,6 +2,8 @@ import React from "react";
 import { Provider, createClient } from "urql";
 export { useMutation, useQuery } from "urql";
 
+export gql from "graphql-tag";
+
 export { default as Query } from "./graphql/Query";
 
 export const client = createClient({
