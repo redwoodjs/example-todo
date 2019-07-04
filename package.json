@@ -19,6 +19,7 @@
   "scripts": {
     "dev": "yarn dev:api & yarn dev:web",
     "dev:api": "yarn workspace api dev",
-    "dev:web": "yarn workspace web dev"
+    "dev:web": "yarn workspace web dev",
+    "build:hammer": "yarn workspace @hammerframework/hammer build:watch & yarn workspace @hammerframework/hammer-web build:watch"
   }
 }

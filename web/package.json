@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@hammerframework/hammer-web": "0.0.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
-    "react-content-loader": "^4.2.1",
     "react-dom": "^16.8.6",
     "styled-components": "^4.3.2"
   },
