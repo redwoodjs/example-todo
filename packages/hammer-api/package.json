@@ -18,9 +18,13 @@
   "scripts": {
     "build": "yarn clean && babel src -d dist",
     "build:watch": "nodemon --ignore dist --exec 'yarn build'",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "type-check": "tsc"
   },
   "devDependencies": {
+    "@types/aws-lambda": "^8.10.27",
+    "@types/findup-sync": "^2.0.2",
+    "@types/graphql": "^14.2.2",
     "babel-plugin-module-resolver": "^3.2.0"
   }
 }

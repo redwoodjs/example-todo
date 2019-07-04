@@ -25,7 +25,7 @@ export const getHammerConfig = () => {
   }
 
   try {
-    const config = toml.parse(fs.readFileSync(configPath));
+    const config = toml.parse(fs.readFileSync(configPath, "utf8"));
     return { baseDir: getHammerBaseDir(), ...config };
   } catch (e) {
     console.error(`Could not parse "${configPath}", ${e}`);

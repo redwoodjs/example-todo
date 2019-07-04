@@ -1,6 +1,7 @@
 module.exports = {
   presets: [
     "@babel/preset-react",
+    "@babel/typescript"
     [
       "@babel/preset-env",
       // It is important to note that @babel/preset-env does not support stage-x plugins
