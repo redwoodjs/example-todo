@@ -19,11 +19,11 @@ import Skeleton from "./subcomponents/Skeleton";
  * urql QueryProps: https://formidable.com/open-source/urql/docs/api/#props
  * urql RenderProps: https://formidable.com/open-source/urql/docs/api/#render-props
  */
-export default ({ children, ...queryProps }) => {
-  const { skeleton } = queryProps;
+export default ({ children, component: { queryProps }, ...rest }) => {
+  const { skeleton, query } = queryProps;
 
   return (
-    <OriginalQuery {...queryProps}>
+    <OriginalQuery query={query} {...rest}>
       {({ fetching: loading, error, data, executeQuery: refetch }) => {
         if (loading) {
           if (typeof skeleton !== "undefined") {

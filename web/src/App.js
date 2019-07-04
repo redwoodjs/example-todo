@@ -9,9 +9,9 @@ import Help from "src/components/Help";
 
 ReactDOM.render(
   <GraphQLProvider>
-    <Query {...Help.queryProps()}>
-      {({ data }) => {
-        return <Help>{data.help}</Help>;
+    <Query component={Help}>
+      {({ data: { help } }) => {
+        return <Help>{help}</Help>;
       }}
     </Query>
   </GraphQLProvider>,

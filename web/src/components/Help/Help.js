@@ -10,14 +10,13 @@ const Help = ({ as: Element = "div", ...rest }) => {
 
 Help.propTypes = {};
 
-Help.queryProps = (args = {}) => ({
+Help.queryProps = {
   query: gql`
     query HelpView {
       help
     }
   `,
-  skeleton: undefined,
-  ...args
-});
+  skeleton: undefined
+};
 
 export default Help;
