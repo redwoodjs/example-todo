@@ -1,7 +1,8 @@
+import React from "react";
 import { Provider, createClient } from "urql";
 export { useMutation, useQuery } from "urql";
 
-export { default as Query } from "./Query/Query";
+export { default as Query } from "./graphql/Query";
 
 export const client = createClient({
   url: "/.netlify/functions/graphql"
