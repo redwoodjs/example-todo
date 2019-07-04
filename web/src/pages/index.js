@@ -1,8 +1,7 @@
-import React, { useState } from "react";
-import { ThemeProvider } from "styled-components";
-
-import theme from "src/lib/theme";
+import { useState } from "react";
+import { Query } from "@hammerframework/hammer-web";
 import { Box, Flex } from "src/lib/primitives";
+
 import {
   AppBar,
   TextInput,
@@ -10,6 +9,7 @@ import {
   LineItems,
   Summary
 } from "src/components";
+import Help from "src/components/Help";
 
 const MARGIN_BOTTOM = 5;
 
@@ -44,101 +44,106 @@ const Page = () => {
   const [notesB, setNotesB] = useState("Invoice by Billable.me");
 
   return (
-    <ThemeProvider theme={theme}>
-      <>
-        <AppBar />
-        <Box
-          mx="auto"
-          css={`
-            max-width: 800px;
-          `}
-        >
-          <TextInput
-            value={title}
-            onChange={setTitle}
-            width={1}
-            my={MARGIN_BOTTOM}
-            textAlign="center"
-            css={`
-              border: 1px #d4d6d9 solid;
-              border-width: 1px 0;
-              height: 48px;
-              line-height: 48px;
-            `}
-          />
-
-          <Flex mb={MARGIN_BOTTOM}>
-            <TextInput
-              multiline
-              value={companyName}
-              onChange={setCompanyName}
-              width={1 / 2}
-              css={`
-                textarea {
-                  font-size: 40px;
-                }
-              `}
-            />
-            <TextInput
-              multiline
-              value={companyInfo}
-              onChange={setCompanyInfo}
-              width={1 / 2}
-              textAlign="right"
-            />
-          </Flex>
-
-          <Flex mb={MARGIN_BOTTOM}>
-            <TextInput
-              multiline
-              value={recipient}
-              onChange={setRecipient}
-              width={1 / 2}
-            />
-            <InvoiceInfo
-              value={invoiceInfo}
-              onChange={setInvoiceInfo}
-              width={1 / 2}
-              ml="auto"
-            />
-          </Flex>
-
-          <LineItems
-            value={lineItems}
-            onChange={setLineItems}
-            width={1}
-            mb={2}
-            css={`
-              width: calc(100% + 48px);
-            `}
-          />
-
-          <Summary
-            ml="auto"
-            mb={MARGIN_BOTTOM}
-            value={summary}
-            onChange={setSummary}
-            lineItems={lineItems}
-          />
-
-          <Flex mb={MARGIN_BOTTOM}>
-            <TextInput
-              multiline
-              value={notesA}
-              onChange={setNotesA}
-              width={1 / 2}
-            />
-            <TextInput
-              multiline
-              value={notesB}
-              onChange={setNotesB}
-              width={1 / 2}
-              textAlign="right"
-            />
-          </Flex>
+    <>
+      <AppBar />
+      <Box
+        mx="auto"
+        css={`
+          max-width: 800px;
+        `}
+      >
+        <Box p={2} textAlign="center">
+          <b>Example Query Component</b>
+          <br />
+          <Query component={Help} />
+          <br />
+          <pre />
         </Box>
-      </>
-    </ThemeProvider>
+        <TextInput
+          value={title}
+          onChange={setTitle}
+          width={1}
+          my={MARGIN_BOTTOM}
+          textAlign="center"
+          css={`
+            border: 1px #d4d6d9 solid;
+            border-width: 1px 0;
+            height: 48px;
+            line-height: 48px;
+          `}
+        />
+
+        <Flex mb={MARGIN_BOTTOM}>
+          <TextInput
+            multiline
+            value={companyName}
+            onChange={setCompanyName}
+            width={1 / 2}
+            css={`
+              textarea {
+                font-size: 40px;
+              }
+            `}
+          />
+          <TextInput
+            multiline
+            value={companyInfo}
+            onChange={setCompanyInfo}
+            width={1 / 2}
+            textAlign="right"
+          />
+        </Flex>
+
+        <Flex mb={MARGIN_BOTTOM}>
+          <TextInput
+            multiline
+            value={recipient}
+            onChange={setRecipient}
+            width={1 / 2}
+          />
+          <InvoiceInfo
+            value={invoiceInfo}
+            onChange={setInvoiceInfo}
+            width={1 / 2}
+            ml="auto"
+          />
+        </Flex>
+
+        <LineItems
+          value={lineItems}
+          onChange={setLineItems}
+          width={1}
+          mb={2}
+          css={`
+            width: calc(100% + 48px);
+          `}
+        />
+
+        <Summary
+          ml="auto"
+          mb={MARGIN_BOTTOM}
+          value={summary}
+          onChange={setSummary}
+          lineItems={lineItems}
+        />
+
+        <Flex mb={MARGIN_BOTTOM}>
+          <TextInput
+            multiline
+            value={notesA}
+            onChange={setNotesA}
+            width={1 / 2}
+          />
+          <TextInput
+            multiline
+            value={notesB}
+            onChange={setNotesB}
+            width={1 / 2}
+            textAlign="right"
+          />
+        </Flex>
+      </Box>
+    </>
   );
 };
 

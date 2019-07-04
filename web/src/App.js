@@ -1,14 +1,17 @@
 import ReactDOM from "react-dom";
-import { GraphQLProvider, Query } from "@hammerframework/hammer-web";
+import { GraphQLProvider } from "@hammerframework/hammer-web";
+import { ThemeProvider } from "styled-components";
 
 import "./global.css";
-import Help from "src/components/Help";
+import theme from "src/lib/theme";
 import InvoicePage from "src/pages";
 
 // TODO: Add Router
 ReactDOM.render(
   <GraphQLProvider>
-    <InvoicePage />
+    <ThemeProvider theme={theme}>
+      <InvoicePage />
+    </ThemeProvider>
   </GraphQLProvider>,
   document.getElementById("hammer-app")
 );
