@@ -21,7 +21,7 @@ export const getHammerBaseDir = (
   return path.dirname(configPath);
 };
 
-interface HammerConfig {
+export interface HammerConfig {
   baseDir: string;
   web: {
     port: number;

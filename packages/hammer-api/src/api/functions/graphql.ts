@@ -13,20 +13,20 @@ import { ApolloServer } from "apollo-server-lambda";
 import { getHammerConfig } from "src/core";
 
 const hammerConfig = getHammerConfig();
-const GRAPHQL_HOWTO = "https://hammerframework.com/";
 
 const BaseQueryType = queryType({
   definition(t) {
     t.string("help", {
       resolve() {
-        return `Start adding your Nexus schema definitions in ${GRAPHQL_DIR}, read more over here: ${GRAPHQL_HOWTO}`;
+        return `Start adding your Nexus schema definitions in ${
+          hammerConfig.api.paths.graphql
+        }, read more over here: "https://hammerframework.com/"`;
       }
     });
   }
 });
 const moreGraphQLTypes = requireDir(hammerConfig.api.paths.graphql, {
-  recurse: false,
-  extensions: [".js"]
+  recurse: false
 });
 const schema = makeSchema({
   types: [BaseQueryType, ...Object.values(moreGraphQLTypes)],
@@ -36,7 +36,7 @@ const schema = makeSchema({
   }
 });
 
-export default ({ context } = {}) => {
+export default ({ context = {} } = {}) => {
   const server = new ApolloServer({
     schema,
     context

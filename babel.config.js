@@ -1,7 +1,6 @@
 module.exports = {
   presets: [
     "@babel/preset-react",
-    "@babel/typescript"
     [
       "@babel/preset-env",
       // It is important to note that @babel/preset-env does not support stage-x plugins
@@ -12,7 +11,8 @@ module.exports = {
         useBuiltIns: "usage",
         corejs: 3
       }
-    ]
+    ],
+    "@babel/typescript"
   ],
   plugins: [
     ["@babel/plugin-proposal-decorators", { legacy: true }],
