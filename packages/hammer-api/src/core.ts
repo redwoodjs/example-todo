@@ -5,19 +5,24 @@ import toml from "toml";
 
 const HAMMER_CONFIG_FILE = "hammer.toml";
 
-export const getHammerConfigPath = (): string | null =>
-  findUp(HAMMER_CONFIG_FILE);
+export const getHammerConfigPath = (): string => {
+  const configPath = findUp(HAMMER_CONFIG_FILE);
+  if (!configPath) {
+    throw new Error(
+      `Could not find a "${HAMMER_CONFIG_FILE}" file, are you in a hammer project?`
+    );
+  }
+  return configPath;
+};
 
 export const getHammerBaseDir = (
-  configPath: string | null = getHammerConfigPath()
-): string | null => {
-  if (!configPath) {
-    return null;
-  }
+  configPath: string = getHammerConfigPath()
+): string => {
   return path.dirname(configPath);
 };
 
 interface HammerConfig {
+  baseDir: string;
   web: {
     port: number;
   };
@@ -31,21 +36,27 @@ interface HammerConfig {
   };
 }
 
-// TODO: Resolve paths.
-// TODO: Validate configuration.
-export const getHammerConfig = (): HammerConfig | undefined => {
+export const getHammerConfig = (): HammerConfig => {
   const configPath = getHammerConfigPath();
-  if (!configPath) {
-    console.error(`Could not find your ${HAMMER_CONFIG_FILE} file`);
-    return undefined;
-  }
-
+  const baseDir = getHammerBaseDir(configPath);
   try {
-    const baseDir = getHammerBaseDir(configPath);
-    const config = toml.parse(fs.readFileSync(configPath, "utf8"));
-    return { baseDir, ...config };
+    const config = toml.parse(
+      fs.readFileSync(configPath, "utf8")
+    ) as HammerConfig;
+
+    return {
+      ...config,
+      baseDir,
+      api: {
+        ...config.api,
+        paths: {
+          functions: path.join(baseDir, config.api.paths.functions),
+          graphql: path.join(baseDir, config.api.paths.functions),
+          generated: path.join(baseDir, config.api.paths.functions)
+        }
+      }
+    };
   } catch (e) {
-    console.error(`Could not parse "${configPath}", ${e}`);
-    return undefined;
+    throw new Error(`Could not parse "${configPath}": ${e}`);
   }
 };

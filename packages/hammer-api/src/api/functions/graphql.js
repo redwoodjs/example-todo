@@ -13,14 +13,6 @@ import { ApolloServer } from "apollo-server-lambda";
 import { getHammerConfig } from "src/core";
 
 const hammerConfig = getHammerConfig();
-const GRAPHQL_DIR = path.join(
-  hammerConfig.baseDir,
-  hammerConfig.api.paths.graphql
-);
-const OUTPUTS_DIR = path.join(
-  hammerConfig.baseDir,
-  hammerConfig.api.paths.generated
-);
 const GRAPHQL_HOWTO = "https://hammerframework.com/";
 
 const BaseQueryType = queryType({
@@ -32,15 +24,15 @@ const BaseQueryType = queryType({
     });
   }
 });
-const moreGraphQLTypes = requireDir(GRAPHQL_DIR, {
+const moreGraphQLTypes = requireDir(hammerConfig.api.paths.graphql, {
   recurse: false,
   extensions: [".js"]
 });
 const schema = makeSchema({
   types: [BaseQueryType, ...Object.values(moreGraphQLTypes)],
   outputs: {
-    schema: path.join(OUTPUTS_DIR, "api-schema.graphql"),
-    typegen: path.join(OUTPUTS_DIR, "generated-types.d.ts")
+    schema: path.join(hammerConfig.api.paths.generated, "api-schema.graphql"),
+    typegen: path.join(hammerConfig.api.paths.generated, "generated-types.d.ts")
   }
 });
 
