@@ -6,11 +6,11 @@ const DirectoryNamedWebpackPlugin = require("directory-named-webpack-plugin");
 
 module.exports = {
   entry: {
-    app: path.resolve(__dirname, "../src/App.js")
+    app: path.resolve(__dirname, "../src/index.js")
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/template.html"
+      template: "./src/index.html"
     }),
     new webpack.ProvidePlugin({
       React: "react",
