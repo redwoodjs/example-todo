@@ -9,7 +9,6 @@ import {
   LineItems,
   Summary
 } from "src/components";
-import Help from "src/components/Help";
 
 const MARGIN_BOTTOM = 5;
 
@@ -52,13 +51,6 @@ const Page = () => {
           max-width: 800px;
         `}
       >
-        <Box p={2} textAlign="center">
-          <b>Example Query Component</b>
-          <br />
-          <Query component={Help} />
-          <br />
-          <pre />
-        </Box>
         <TextInput
           value={title}
           onChange={setTitle}
