@@ -16,7 +16,8 @@ ReactDOM.render(
         config={{
           domain: "p4p8.eu.auth0.com",
           client_id: "b7vN4sVz6yjGrq82ctXJW9NRTvlWzkFU",
-          audience: "BILLABLE_API"
+          audience: "BILLABLE_API",
+          redirect_uri: window.location.origin
         }}
       >
         <Routes />

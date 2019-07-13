@@ -34,11 +34,7 @@ export default () => {
           {!isAuthenticated && (
             <>
               <Button onClick={() => loginWithRedirect({})}>Log in</Button>
-              <Button
-                onClick={() => loginWithRedirect({ login_hint: "signup" })}
-              >
-                Sign up
-              </Button>
+              <Button onClick={() => loginWithRedirect({})}>Sign up</Button>
             </>
           )}
           {isAuthenticated && (
