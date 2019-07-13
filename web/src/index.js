@@ -14,9 +14,9 @@ ReactDOM.render(
     <ThemeProvider theme={theme}>
       <Auth0Provider
         config={{
-          domain: "p4p8.eu.auth0.com",
-          client_id: "b7vN4sVz6yjGrq82ctXJW9NRTvlWzkFU",
-          audience: "BILLABLE_API",
+          domain: process.env.AUTH0_DOMAIN,
+          client_id: process.env.AUTH0_CLIENT_ID,
+          audience: process.env.AUDIENCE,
           redirect_uri: window.location.origin
         }}
       >
