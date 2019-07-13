@@ -4,6 +4,7 @@ import { SecureRoute } from "src/lib/auth0";
 
 import InvoicePage from "./InvoicePage";
 import Profile from "./Profile";
+import Test from "./Test";
 
 const Router = () => {
   return (
@@ -11,6 +12,7 @@ const Router = () => {
       <Switch>
         <Route path="/" exact component={InvoicePage} />
         <SecureRoute path="/profile" component={Profile} />
+        <SecureRoute path="/test" component={Test} />
       </Switch>
     </BrowserRouter>
   );
