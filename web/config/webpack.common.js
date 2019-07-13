@@ -3,19 +3,26 @@ const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const DirectoryNamedWebpackPlugin = require("directory-named-webpack-plugin");
+const Dotenv = require("dotenv-webpack");
+
+console.log(path.resolve(__dirname, "../../.env"));
 
 module.exports = {
   entry: {
-    app: path.resolve(__dirname, "../src/App.js")
+    app: path.resolve(__dirname, "../src/index.js")
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/template.html"
+      template: "./src/index.html"
     }),
     new webpack.ProvidePlugin({
       React: "react",
       PropTypes: "prop-types",
       gql: ["@hammerframework/hammer-web", "gql"]
+    }),
+    new Dotenv({
+      // billable base-directory
+      path: path.resolve(__dirname, "../../.env")
     })
   ],
   module: {

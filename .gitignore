@@ -3,6 +3,7 @@ dist
 yarn-error.log
 .docz
 */.env
+.env
 .DS_Store
 
 api/failed-*.md
