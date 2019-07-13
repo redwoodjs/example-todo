@@ -4,10 +4,15 @@
 import jwt from "express-jwt";
 import jwksRsa from "jwks-rsa";
 
+import dotenv from "dotenv";
+
+// hammer base dir.
+dotenv.config("../../.env");
+
 // Set up Auth0 configuration
 const authConfig = {
-  domain: "p4p8.eu.auth0.com",
-  audience: "BILLABLE_API"
+  domain: process.env.AUTH0_DOMAIN,
+  audience: process.env.AUTH0_AUDIENCE
 };
 
 // Define middleware that validates incoming bearer tokens

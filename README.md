@@ -37,6 +37,17 @@ Browse to `http://localhost:8910` to see the web app. Lambda functions run on
 `yarn hammer generate component MyShinyComponent` will create a component
 and place it under `web/src/components/MyShinyComponent`
 
+### .ENV
+
+Auth0 requires a few environmental variables, none of those are private,
+so just go ahead and use these:
+
+```
+AUTH0_DOMAIN=p4p8.eu.auth0.com
+AUTH0_CLIENT_ID=b7vN4sVz6yjGrq82ctXJW9NRTvlWzkFU
+AUTH0_AUDIENCE=BILLABLE_API
+```
+
 ### Transpiling packages
 
 There are a bunch of packages in this repository that will eventually be published
