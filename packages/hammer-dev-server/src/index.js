@@ -73,7 +73,7 @@ app.all("/", (req, res) => {
   `);
 });
 
-app.all("/:routeName", (req, res) => {
+app.all("/:routeName", (req, res, next) => {
   const { routeName } = req.params;
 
   const lambdaFunction = lambdaFunctions[routeName];
@@ -82,44 +82,52 @@ app.all("/:routeName", (req, res) => {
     return res.sendStatus(404);
   }
 
-  const { handler } = lambdaFunction;
+  // We _really_ only want to support express js type functions, but until then
+  // we have to deal with figuring out who you're trying to target.
+
+  const { handler, SERVERLESS_FUNCTION_TYPE = "aws" } = lambdaFunction;
+
   if (typeof handler !== "function") {
     console.warn(`"${routeName}" does not export a function named "handler"`);
     return res.sendStatus(500);
   }
 
-  const event = {
-    httpMethod: req.method,
-    headers: req.headers,
-    path: req.path,
-    queryStringParameters: qs.parse(req.url.split(/\?(.+)/)[1]),
-    ...parseBody(req.body) // adds `body` and `isBase64Encoded`
-  };
+  if (SERVERLESS_FUNCTION_TYPE === "aws") {
+    const event = {
+      httpMethod: req.method,
+      headers: req.headers,
+      path: req.path,
+      queryStringParameters: qs.parse(req.url.split(/\?(.+)/)[1]),
+      ...parseBody(req.body) // adds `body` and `isBase64Encoded`
+    };
 
-  const handlerCallback = response => (
-    error,
-    { statusCode, body, headers = {} }
-  ) => {
-    // TODO: Deal with errors
-    if (error) {
-      console.log("----------");
-      console.log(error);
-      console.log("----------");
-    }
+    const handlerCallback = response => (
+      error,
+      { statusCode, body, headers = {} }
+    ) => {
+      // TODO: Deal with errors
+      if (error) {
+        console.log("----------");
+        console.log(error);
+        console.log("----------");
+      }
 
-    Object.keys(headers).forEach(header => {
-      response.setHeader(header, headers[header]);
-    });
-    response.statusCode = statusCode;
-    return response.end(body);
-  };
+      Object.keys(headers).forEach(header => {
+        response.setHeader(header, headers[header]);
+      });
+      response.statusCode = statusCode;
+      return response.end(body);
+    };
 
-  // TODO: Add support for promises.
-  handler(
-    event,
-    {}, // TODO: Support context
-    handlerCallback(res)
-  );
+    // TODO: Add support for promises.
+    handler(
+      event,
+      {}, // TODO: Support context
+      handlerCallback(res)
+    );
+  } else if (SERVERLESS_FUNCTION_TYPE === "express") {
+    handler(req, res, next);
+  }
 });
 
 app.listen(PORT, () =>
