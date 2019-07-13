@@ -1,10 +1,14 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Route } from "react-router-dom";
 
 import { useAuth0 } from "./";
 
-const SecureRoute = ({ path, ...rest }) => {
-  const { isAuthenticated, loginWithRedirect } = useAuth0();
+const SecureRoute = ({ component: Component, path, ...rest }) => {
+  const {
+    loading: authLoading,
+    isAuthenticated,
+    loginWithRedirect
+  } = useAuth0();
 
   useEffect(() => {
     const fn = async () => {
@@ -14,10 +18,15 @@ const SecureRoute = ({ path, ...rest }) => {
         });
       }
     };
-    fn();
-  }, [isAuthenticated, loginWithRedirect, path]);
+    // wait for loading to complete loading before redirecting
+    // the user.
+    !authLoading && fn();
+  }, [authLoading, isAuthenticated, loginWithRedirect, path]);
 
-  return <Route path={path} {...rest} />;
+  const render = props =>
+    isAuthenticated === true ? <Component {...props} /> : null;
+
+  return <Route path={path} render={render} {...rest} />;
 };
 
 export default SecureRoute;
