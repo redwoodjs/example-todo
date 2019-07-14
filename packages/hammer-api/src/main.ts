@@ -1,5 +1,9 @@
-export {
-  default as graphQLServerlessFunction
-} from "src/api/functions/graphql";
+import { graphQLServerlessFunction } from "src/api/functions/graphql";
+import { getHammerConfigPath, getHammerBaseDir, getHammerConfig } from "./core";
 
-export { getHammerConfigPath, getHammerBaseDir, getHammerConfig } from "./core";
+export {
+  graphQLServerlessFunction,
+  getHammerBaseDir,
+  getHammerConfigPath,
+  getHammerConfig
+};

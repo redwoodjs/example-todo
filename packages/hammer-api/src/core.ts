@@ -51,8 +51,8 @@ export const getHammerConfig = (): HammerConfig => {
         ...config.api,
         paths: {
           functions: path.join(baseDir, config.api.paths.functions),
-          graphql: path.join(baseDir, config.api.paths.functions),
-          generated: path.join(baseDir, config.api.paths.functions)
+          graphql: path.join(baseDir, config.api.paths.graphql),
+          generated: path.join(baseDir, config.api.paths.generated)
         }
       }
     };
