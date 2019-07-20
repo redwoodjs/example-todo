@@ -1,41 +1,59 @@
-// // https://www.netlify.com/blog/2018/09/13/how-to-run-express.js-apps-with-netlify-functions/
-// // https://github.com/dougmoscrop/serverless-http
-
-import jwt from "express-jwt";
-import jwksRsa from "jwks-rsa";
-
+import jwt from "jsonwebtoken";
+import jwksClient from "jwks-rsa";
 import dotenv from "dotenv";
 
 // hammer base dir.
-dotenv.config("../../.env");
+dotenv.config({ path: "../../.env" });
 
-// Set up Auth0 configuration
-const authConfig = {
-  domain: process.env.AUTH0_DOMAIN,
-  audience: process.env.AUTH0_AUDIENCE
+const getUserFromRequest = req => {
+  return new Promise((resolve, reject) => {
+    const { AUTH0_DOMAIN, AUTH0_AUDIENCE, AUTH0_KID } = process.env;
+    if (!AUTH0_DOMAIN || !AUTH0_KID || !AUTH0_AUDIENCE) {
+      throw new Error(
+        "`AUTH0_DOMAIN`, `AUTH0_KID` and `AUTH0_AUDIENCE` env vars are not set"
+      );
+    }
+
+    const token = req.get("authorization").split(" ")[1];
+    const client = jwksClient({
+      cache: true,
+      rateLimit: true,
+      jwksUri: `https://${process.env.AUTH0_DOMAIN}/.well-known/jwks.json`
+    });
+
+    client.getSigningKey(process.env.AUTH0_KID, (keyError, { publicKey }) => {
+      if (keyError) {
+        return reject(keyError);
+      }
+
+      jwt.verify(
+        token,
+        publicKey,
+        {
+          algorithms: ["RS256"],
+          audience: AUTH0_AUDIENCE,
+          issuer: `https://${process.env.AUTH0_DOMAIN}/`
+        },
+        (verifyError, decoded) => {
+          if (verifyError) {
+            return reject(verifyError);
+          }
+          resolve(decoded);
+        }
+      );
+    });
+  });
 };
-
-// Define middleware that validates incoming bearer tokens
-// using JWKS from p4p8.eu.auth0.com
-const checkJwt = jwt({
-  secret: jwksRsa.expressJwtSecret({
-    cache: true,
-    rateLimit: true,
-    jwksRequestsPerMinute: 5,
-    jwksUri: `https://${authConfig.domain}/.well-known/jwks.json`
-  }),
-
-  audience: authConfig.audience,
-  issuer: `https://${authConfig.domain}/`,
-  algorithm: ["RS256"]
-});
 
 export const SERVERLESS_FUNCTION_TYPE = "express";
 
-export const handler = (req, res, next) => {
-  checkJwt(req, res, next);
-
-  res.send({
-    msg: "Your Access Token was successfully validated!"
-  });
+export const handler = async (req, res, next) => {
+  try {
+    const user = await getUserFromRequest(req);
+    console.log(user);
+    res.send(JSON.stringify(user));
+  } catch (e) {
+    console.log(e, "-------");
+    res.send(e);
+  }
 };

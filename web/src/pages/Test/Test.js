@@ -8,9 +8,11 @@ const ExternalApi = () => {
 
   const callApi = async () => {
     try {
-      const token = await getTokenSilently();
+      const token = await getTokenSilently({
+        audience: process.env.AUTH0_AUDIENCE
+      });
 
-      console.log(token);
+      console.log("token", token);
 
       const response = await fetch("/.netlify/functions/test", {
         headers: {
