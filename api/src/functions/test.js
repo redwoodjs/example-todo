@@ -3,7 +3,7 @@ import jwksClient from "jwks-rsa";
 import dotenv from "dotenv";
 import fetch from "node-fetch";
 
-import { user } from "../services";
+import { user } from "src/services";
 
 // hammer base dir.
 dotenv.config({ path: "../../.env" });

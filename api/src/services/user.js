@@ -1,4 +1,4 @@
-import { getPhoton } from "../lib/photon";
+import { getPhoton } from "src/lib/photon";
 
 export const findOrCreate = async ({ email }) => {
   const photon = await getPhoton();
