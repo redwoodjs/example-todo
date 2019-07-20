@@ -14,5 +14,8 @@
   "scripts": {
     "generate": "yarn prisma2 generate",
     "dev": "yarn generate && yarn workspace @hammerframework/hammer-dev-server dev"
+  },
+  "devDependencies": {
+    "babel-plugin-module-resolver": "^3.2.0"
   }
 }

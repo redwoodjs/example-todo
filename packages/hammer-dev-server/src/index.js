@@ -1,10 +1,3 @@
-require("@babel/register")({
-  // Find babel.config.js up the folder structure.
-  rootMode: "upward",
-  // Since babel ignores all files outside the cwd, it does not compile sibling packages
-  // So rewrite the ignore list to only include node_modules
-  ignore: ["node_modules"]
-});
 import path from "path";
 import express from "express";
 import expressLogging from "express-logging";
@@ -16,6 +9,12 @@ import requireDir from "require-dir";
 import { getHammerConfig } from "@hammerframework/hammer-api";
 
 const hammerConfig = getHammerConfig();
+
+require("@babel/register")({
+  extends: path.join(hammerConfig.baseDir, "api/.babelrc.js"),
+  only: [path.join(hammerConfig.baseDir, "api")],
+  ignore: ["node_modules"]
+});
 
 /**
  * The hammer dev server emulates Netlify and AWS Lambda functions. Specify the path
