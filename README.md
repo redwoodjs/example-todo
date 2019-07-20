@@ -46,6 +46,7 @@ so just go ahead and use these:
 AUTH0_DOMAIN=p4p8.eu.auth0.com
 AUTH0_CLIENT_ID=b7vN4sVz6yjGrq82ctXJW9NRTvlWzkFU
 AUTH0_AUDIENCE=BILLABLE_API
+AUTH0_KID=MkE1RkVENTc3RjcxRUVGNUE0MTY3NDk2RTBCN0Y2RTA5NDBCQ0UzRg
 ```
 
 ### Transpiling packages
