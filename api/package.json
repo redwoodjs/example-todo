@@ -12,6 +12,7 @@
     "prisma2": "^2.0.0-preview-2"
   },
   "scripts": {
-    "dev": "yarn workspace @hammerframework/hammer-dev-server dev"
+    "generate": "yarn prisma2 generate",
+    "dev": "yarn generate && yarn workspace @hammerframework/hammer-dev-server dev"
   }
 }
