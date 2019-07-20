@@ -1,0 +1,22 @@
+datasource sqlite {
+  url      = "file:dev.db"
+  provider = "sqlite"
+}
+
+generator photonjs {
+  provider = "photonjs"
+}
+
+model User {
+  id                Int               @id
+  email             String            @unique
+  invoices          Invoice[]
+}
+
+model Invoice {
+  id                Int               @id
+  User              User
+  body              String
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+}
