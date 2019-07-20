@@ -2,10 +2,11 @@
   "name": "@hammerframework/hammer-api",
   "version": "0.0.0",
   "description": "Hammer - Build something.",
+  "main": "dist/main.js",
   "files": [
     "dist"
   ],
-  "main": "dist/index.js",
+  "types": "./dist/main.d.ts",
   "license": "MIT",
   "dependencies": {
     "@babel/register": "^7.4.4",
@@ -15,12 +16,18 @@
     "nexus": "^0.12.0-beta.6",
     "toml": "^3.0.0"
   },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.27",
+    "@types/findup-sync": "^2.0.2",
+    "@types/graphql": "^14.2.2",
+    "@types/require-dir": "^1.0.0",
+    "babel-plugin-module-resolver": "^3.2.0"
+  },
   "scripts": {
-    "build": "yarn clean && babel src -d dist",
+    "build": "yarn clean && yarn build:js && yarn build:types",
+    "build:js": "babel src --out-dir dist --extensions \".ts,.tsx\" --source-maps inline",
+    "build:types": "tsc --declaration --emitDeclarationOnly",
     "build:watch": "nodemon --ignore dist --exec 'yarn build'",
     "clean": "rm -rf dist"
-  },
-  "devDependencies": {
-    "babel-plugin-module-resolver": "^3.2.0"
   }
 }

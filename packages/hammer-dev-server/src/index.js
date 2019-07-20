@@ -33,7 +33,7 @@ args
 const { port: PORT, path: PATH } = args.parse(process.argv);
 const HOSTNAME = `http://localhost:${PORT}`;
 
-const lambdaFunctions = requireDir(path.join(hammerConfig.baseDir, PATH), {
+const lambdaFunctions = requireDir(PATH, {
   recurse: false,
   extensions: [".js"]
 });

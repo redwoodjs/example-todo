@@ -11,7 +11,8 @@ module.exports = {
         useBuiltIns: "usage",
         corejs: 3
       }
-    ]
+    ],
+    "@babel/typescript"
   ],
   plugins: [
     ["@babel/plugin-proposal-class-properties", { loose: true }],
