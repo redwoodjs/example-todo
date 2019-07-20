@@ -7,7 +7,7 @@ export const getPhoton = async () => {
     return PHOTON_INSTANCE;
   }
 
-  PHOTON_INSTANCE = new Photon();
+  const photon = new Photon();
   await photon.connect();
   PHOTON_INSTANCE = photon;
   return PHOTON_INSTANCE;
