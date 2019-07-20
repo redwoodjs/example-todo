@@ -2,13 +2,10 @@ node_modules
 dist
 yarn-error.log
 .docz
-*/.env
 .env
 .DS_Store
 
-api/failed-*.md
-api/db/*.db
-api/migrations/dev
+api/prisma/dev.sqlite
 api/generated/*
 
 web/generated

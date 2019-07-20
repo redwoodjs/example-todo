@@ -1,5 +1,5 @@
 datasource sqlite {
-  url      = "file:dev.db"
+  url      = "file:dev.sqlite"
   provider = "sqlite"
 }
 
