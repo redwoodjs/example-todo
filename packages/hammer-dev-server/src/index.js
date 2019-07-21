@@ -1,3 +1,13 @@
+// https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/aws-lambda/index.d.ts
+
+/**
+ * The hammer-dev-server is a CLI that does 3 things:
+ * 1. Reads the hammer config file and sets the default path for finding the
+ * lambda functions and the port
+ * 2. Maps the lambda functions to a path and serves them via http
+ * 3. Emulates a "AWS Lambda Function Handler"
+ *  (https://docs.aws.amazon.com/lambda/latest/dg/nodejs-prog-model-handler.html)
+ */
 import path from "path";
 import express from "express";
 import expressLogging from "express-logging";
@@ -5,23 +15,19 @@ import bodyParser from "body-parser";
 import qs from "qs";
 import args from "args";
 import requireDir from "require-dir";
-
 import { getHammerConfig } from "@hammerframework/hammer-api";
 
 const hammerConfig = getHammerConfig();
 
+// We automatically transpile the serverless functions that are imported
+// TODO: Conver the babel config to a configurable argument.
 require("@babel/register")({
   extends: path.join(hammerConfig.baseDir, "api/.babelrc.js"),
   only: [path.join(hammerConfig.baseDir, "api")],
   ignore: ["node_modules"]
 });
 
-/**
- * The hammer dev server emulates Netlify and AWS Lambda functions. Specify the path
- * to your functions, we'll import any `.js` files and map the filename to a route,
- * e.g.: `graphql.js` -> `/graphql/`, `hello-world.js` -> `/hello-world/`.
- * The dev server will automatically reload when files are modified.`
- */
+// TODO: Convert to yargs.
 args
   .option("port", "", hammerConfig.api.port)
   .option(
@@ -32,6 +38,7 @@ args
 const { port: PORT, path: PATH } = args.parse(process.argv);
 const HOSTNAME = `http://localhost:${PORT}`;
 
+// Grab all the lambda functions that should be served
 const lambdaFunctions = requireDir(PATH, {
   recurse: false,
   extensions: [".js"]
@@ -53,6 +60,7 @@ app.use(
 );
 app.use(bodyParser.raw({ type: "*/*" }));
 app.use(expressLogging(console));
+
 const parseBody = rawBody => {
   if (typeof rawBody === "string") {
     return { body: rawBody, isBase64Encoded: false };
@@ -72,60 +80,79 @@ app.all("/", (req, res) => {
   `);
 });
 
-app.all("/:routeName", (req, res, next) => {
+// APIGatewayProxyResult
+// https://github.com/DefinitelyTyped/DefinitelyTyped/blob/0bb210867d16170c4a08d9ce5d132817651a0f80/types/aws-lambda/index.d.ts#L496-L506
+const expressResponseForLambdaResult = (expressResFn, lambdaResult) => {
+  // The response object must be compatible with JSON.stringify
+  const { statusCode = 200, headers = [], body = "" } = lambdaResult;
+  Object.keys(headers).forEach(header => {
+    expressResFn.setHeader(header, headers[header]);
+  });
+  expressResFn.statusCode = statusCode;
+  return expressResFn.end(
+    typeof body === "string" ? body : JSON.stringify(body)
+  );
+};
+
+const expressResponseForLambdaError = (expressResFn, error) => {
+  console.error(error);
+  expressResFn.status(500).send(error);
+};
+
+app.all("/:routeName", async (req, res) => {
   const { routeName } = req.params;
 
   const lambdaFunction = lambdaFunctions[routeName];
   if (!lambdaFunction) {
-    console.warn(`route ${routeName} not found`);
-    return res.sendStatus(404);
+    const errorMessage = `route "${routeName}" not found`;
+    console.error(errorMessage);
+    return res.status(404).send(errorMessage);
   }
 
-  // We _really_ only want to support express js type functions, but until then
-  // we have to deal with figuring out who you're trying to target.
-
-  const { handler, SERVERLESS_FUNCTION_TYPE = "aws" } = lambdaFunction;
+  const { handler } = lambdaFunction;
 
   if (typeof handler !== "function") {
-    console.warn(`"${routeName}" does not export a function named "handler"`);
-    return res.sendStatus(500);
+    const errorMessage = `"${routeName}" does not export a function named "handler"`;
+    console.error(errorMessage);
+    return res.status(500).send(errorMessage);
   }
 
-  if (SERVERLESS_FUNCTION_TYPE === "aws") {
-    const event = {
-      httpMethod: req.method,
-      headers: req.headers,
-      path: req.path,
-      queryStringParameters: qs.parse(req.url.split(/\?(.+)/)[1]),
-      ...parseBody(req.body) // adds `body` and `isBase64Encoded`
-    };
+  // We take the express request object and convert it into a lambda function event.
+  // TODO: Convert this to TypeScript and use this type.
+  // https://github.com/DefinitelyTyped/DefinitelyTyped/blob/0bb210867d16170c4a08d9ce5d132817651a0f80/types/aws-lambda/index.d.ts#L74-L87
+  const event = {
+    httpMethod: req.method,
+    headers: req.headers,
+    path: req.path,
+    queryStringParameters: qs.parse(req.url.split(/\?(.+)/)[1]),
+    ...parseBody(req.body) // adds `body` and `isBase64Encoded`
+  };
 
-    const handlerCallback = response => (
-      error,
-      { statusCode, body, headers = {} }
-    ) => {
-      // TODO: Deal with errors
-      if (error) {
-        console.log("----------");
-        console.log(error);
-        console.log("----------");
-      }
+  // TODO: Convert this to TypeScript
+  // https://github.com/DefinitelyTyped/DefinitelyTyped/blob/0bb210867d16170c4a08d9ce5d132817651a0f80/types/aws-lambda/index.d.ts#L496-L506
+  const handlerCallback = expressResFn => (error, lambdaResult) => {
+    if (error) {
+      return expressResponseForLambdaError(expressResFn, error);
+    }
+    return expressResponseForLambdaResult(expressResFn, lambdaResult);
+  };
 
-      Object.keys(headers).forEach(header => {
-        response.setHeader(header, headers[header]);
-      });
-      response.statusCode = statusCode;
-      return response.end(body);
-    };
+  // https://docs.aws.amazon.com/lambda/latest/dg/nodejs-prog-model-handler.html
+  // Execute the lambda function.
+  const handlerPromise = handler(
+    event,
+    {}, // TODO: Add support for context: https://github.com/DefinitelyTyped/DefinitelyTyped/blob/0bb210867d16170c4a08d9ce5d132817651a0f80/types/aws-lambda/index.d.ts#L443-L467
+    handlerCallback(res)
+  );
 
-    // TODO: Add support for promises.
-    handler(
-      event,
-      {}, // TODO: Support context
-      handlerCallback(res)
-    );
-  } else if (SERVERLESS_FUNCTION_TYPE === "express") {
-    handler(req, res, next);
+  // In this case the handlerCallback should not be called.
+  if (handlerPromise && typeof handlerPromise.then === "function") {
+    try {
+      const lambaResponse = await handlerPromise;
+      return expressResponseForLambdaResult(res, lambaResponse);
+    } catch (error) {
+      return expressResponseForLambdaError(res, error);
+    }
   }
 });
 
