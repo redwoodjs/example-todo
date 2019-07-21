@@ -2,10 +2,6 @@
   "name": "@hammerframework/hammer-dev-server",
   "version": "0.0.0",
   "main": "dist/main.js",
-  "files": [
-    "dist"
-  ],
-  "types": "./dist/main.d.ts",
   "license": "MIT",
   "dependencies": {
     "@babel/register": "^7.4.4",
@@ -28,11 +24,6 @@
     "babel-plugin-module-resolver": "^3.2.0"
   },
   "scripts": {
-    "dev": "nodemon --watch ../../api/src/ --exec babel-node ./src/index.js",
-    "build": "yarn clean && yarn build:js && yarn build:types",
-    "build:js": "babel src --out-dir dist --extensions \".ts,.tsx\" --source-maps inline",
-    "build:types": "tsc --declaration --emitDeclarationOnly",
-    "build:watch": "nodemon --ignore dist --exec 'yarn build'",
-    "clean": "rm -rf dist"
+    "dev": "nodemon --watch ../../api/src/ --exec babel-node --extensions \".ts,.tsx\" ./src/main.ts"
   }
 }

@@ -1,15 +1,20 @@
-// https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/aws-lambda/index.d.ts
+// types
+import { Response, Request } from "express";
+import { APIGatewayProxyResult, APIGatewayProxyEvent } from "aws-lambda";
 
 /**
- * The hammer-dev-server is a CLI that does 3 things:
+ * The hammer-dev-server is a command line argument that does 3 things:
+ *
  * 1. Reads the hammer config file and sets the default path for finding the
  * lambda functions and the port
  * 2. Maps the lambda functions to a path and serves them via http
- * 3. Emulates a "AWS Lambda Function Handler"
- *  (https://docs.aws.amazon.com/lambda/latest/dg/nodejs-prog-model-handler.html)
+ * 3. Emulates a "AWS Lambda Function Handler":
+ *  https://docs.aws.amazon.com/lambda/latest/dg/nodejs-prog-model-handler.html
  */
+
 import path from "path";
 import express from "express";
+// @ts-ignore
 import expressLogging from "express-logging";
 import bodyParser from "body-parser";
 import qs from "qs";
@@ -38,12 +43,8 @@ args
 const { port: PORT, path: PATH } = args.parse(process.argv);
 const HOSTNAME = `http://localhost:${PORT}`;
 
-// Grab all the lambda functions that should be served
-const lambdaFunctions = requireDir(PATH, {
-  recurse: false,
-  extensions: [".js"]
-});
-
+// Find all the lambda functions that we should serve
+const lambdaFunctions = requireDir(PATH, { recurse: false });
 console.log("\n\nThe following functions are available:");
 console.log(
   Object.keys(lambdaFunctions)
@@ -61,7 +62,16 @@ app.use(
 app.use(bodyParser.raw({ type: "*/*" }));
 app.use(expressLogging(console));
 
-const parseBody = rawBody => {
+app.all("/", (_, res) => {
+  return res.send(`
+    <p>The following functions are available:</p>
+    ${Object.keys(lambdaFunctions)
+      .map(routeName => `- <a href="/${routeName}">/${routeName}</a>`)
+      .join("<br />")}
+  `);
+});
+
+const parseBody = (rawBody: string | Buffer) => {
   if (typeof rawBody === "string") {
     return { body: rawBody, isBase64Encoded: false };
   }
@@ -71,30 +81,42 @@ const parseBody = rawBody => {
   return { body: "", isBase64Encoded: false };
 };
 
-app.all("/", (req, res) => {
-  return res.send(`
-    <p>The following functions are available:</p>
-    ${Object.keys(lambdaFunctions)
-      .map(routeName => `- <a href="/${routeName}">/${routeName}</a>`)
-      .join("<br />")}
-  `);
-});
+const lambdaEventForExpressRequest = (
+  request: Request
+): APIGatewayProxyEvent => {
+  return {
+    httpMethod: request.method,
+    headers: request.headers,
+    path: request.path,
+    queryStringParameters: qs.parse(request.url.split(/\?(.+)/)[1]),
+    ...parseBody(request.body) // adds `body` and `isBase64Encoded`
+  } as APIGatewayProxyEvent;
+};
 
-// APIGatewayProxyResult
-// https://github.com/DefinitelyTyped/DefinitelyTyped/blob/0bb210867d16170c4a08d9ce5d132817651a0f80/types/aws-lambda/index.d.ts#L496-L506
-const expressResponseForLambdaResult = (expressResFn, lambdaResult) => {
-  // The response object must be compatible with JSON.stringify
-  const { statusCode = 200, headers = [], body = "" } = lambdaResult;
-  Object.keys(headers).forEach(header => {
-    expressResFn.setHeader(header, headers[header]);
-  });
+const expressResponseForLambdaResult = (
+  expressResFn: Response,
+  lambdaResult: APIGatewayProxyResult
+) => {
+  // The response object must be compatible with JSON.stringify according
+  // to the aws lambda docs, but the type definition specifies that it has
+  // to be a string. Let's double check this.
+  const { statusCode = 200, headers, body = "" } = lambdaResult;
+  if (headers) {
+    Object.keys(headers).forEach(headerName => {
+      const headerValue: any = headers[headerName];
+      expressResFn.setHeader(headerName, headerValue);
+    });
+  }
   expressResFn.statusCode = statusCode;
   return expressResFn.end(
     typeof body === "string" ? body : JSON.stringify(body)
   );
 };
 
-const expressResponseForLambdaError = (expressResFn, error) => {
+const expressResponseForLambdaError = (
+  expressResFn: Response,
+  error: Error
+) => {
   console.error(error);
   expressResFn.status(500).send(error);
 };
@@ -118,19 +140,13 @@ app.all("/:routeName", async (req, res) => {
   }
 
   // We take the express request object and convert it into a lambda function event.
-  // TODO: Convert this to TypeScript and use this type.
-  // https://github.com/DefinitelyTyped/DefinitelyTyped/blob/0bb210867d16170c4a08d9ce5d132817651a0f80/types/aws-lambda/index.d.ts#L74-L87
-  const event = {
-    httpMethod: req.method,
-    headers: req.headers,
-    path: req.path,
-    queryStringParameters: qs.parse(req.url.split(/\?(.+)/)[1]),
-    ...parseBody(req.body) // adds `body` and `isBase64Encoded`
-  };
 
-  // TODO: Convert this to TypeScript
-  // https://github.com/DefinitelyTyped/DefinitelyTyped/blob/0bb210867d16170c4a08d9ce5d132817651a0f80/types/aws-lambda/index.d.ts#L496-L506
-  const handlerCallback = expressResFn => (error, lambdaResult) => {
+  const event = lambdaEventForExpressRequest(req);
+
+  const handlerCallback = (expressResFn: Response) => (
+    error: Error,
+    lambdaResult: APIGatewayProxyResult
+  ) => {
     if (error) {
       return expressResponseForLambdaError(expressResFn, error);
     }
