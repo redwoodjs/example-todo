@@ -9,7 +9,12 @@ import { user } from "src/services";
 dotenv.config({ path: "../../.env" });
 
 // TODO: Move these into specialized auth0 package.
-const tokenFromRequest = req => req.get("authorization").split(" ")[1];
+const tokenFromEvent = event => {
+  if (!event.headers.authorization && !event.headers.authorization.length) {
+    return undefined;
+  }
+  return event.headers.authorization.split(" ")[1];
+};
 
 const userProfileForToken = async token => {
   const response = await fetch(`https://${process.env.AUTH0_DOMAIN}/userinfo`, {
@@ -67,24 +72,14 @@ const decodeVerifiedToken = token => {
   });
 };
 
-export const SERVERLESS_FUNCTION_TYPE = "express";
-
-export const handler = async (req, res, next) => {
-  try {
-    const token = tokenFromRequest(req);
-
-    const userProfile = await userProfileForToken(token);
-
-    // here we can get the email, and generate an account,
-    // or retrieve an account.
-
-    const { email } = userProfile;
-
-    await user.findOrCreate({ email });
-
-    res.send(JSON.stringify(userProfile));
-  } catch (e) {
-    console.log(e, "-------");
-    res.send(e);
-  }
+export const handler = async event => {
+  const token = tokenFromEvent(event);
+  const userProfile = await userProfileForToken(token);
+  // here we can get the email, and generate an account,
+  // or retrieve an account.
+  const { email } = userProfile;
+  await user.findOrCreate({ email });
+  return {
+    body: userProfile
+  };
 };
