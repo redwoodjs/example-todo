@@ -17,6 +17,23 @@ this in the root directory:
 yarn install
 ```
 
+Auth0 requires a bit of configuration, go ahead and add these to a `.env` file in the root.
+
+```env
+AUTH0_DOMAIN=p4p8.eu.auth0.com
+AUTH0_CLIENT_ID=b7vN4sVz6yjGrq82ctXJW9NRTvlWzkFU
+AUTH0_AUDIENCE=BILLABLE_API
+AUTH0_KID=MkE1RkVENTc3RjcxRUVGNUE0MTY3NDk2RTBCN0Y2RTA5NDBCQ0UzRg
+```
+
+Generate a database:
+
+```terminal
+cd api
+yarn prisma2 lift up
+cd ..
+```
+
 ### Fire it up
 
 ```terminal
@@ -50,18 +67,6 @@ generate a sqlite database in `api/prisma/dev.sqlite`
 
 `yarn hammer generate component MyShinyComponent` will create a component
 and place it under `web/src/components/MyShinyComponent`
-
-### .ENV
-
-Auth0 requires a few environmental variables, none of those are private,
-so just go ahead and use these:
-
-```
-AUTH0_DOMAIN=p4p8.eu.auth0.com
-AUTH0_CLIENT_ID=b7vN4sVz6yjGrq82ctXJW9NRTvlWzkFU
-AUTH0_AUDIENCE=BILLABLE_API
-AUTH0_KID=MkE1RkVENTc3RjcxRUVGNUE0MTY3NDk2RTBCN0Y2RTA5NDBCQ0UzRg
-```
 
 ### Transpiling packages
 
