@@ -4,12 +4,18 @@
     "moduleResolution": "node",
     "strict": true,
     "esModuleInterop": true,
-    "baseUrl": "./",
+    "baseUrl": ".",
     "paths": {
-      "src/*": ["./src/*"]
+      "src/*": ["src/*"]
     },
     "declaration": true,
-    "declarationDir": "./dist"
+    "declarationDir": "./dist",
+    "plugins": [
+      {
+        "transform": "@zerollup/ts-transform-paths",
+        "exclude": ["*"]
+      }
+    ]
   },
   "include": ["src"]
 }

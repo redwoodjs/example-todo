@@ -21,12 +21,14 @@
     "@types/findup-sync": "^2.0.2",
     "@types/graphql": "^14.2.2",
     "@types/require-dir": "^1.0.0",
-    "babel-plugin-module-resolver": "^3.2.0"
+    "@zerollup/ts-transform-paths": "^1.7.3",
+    "babel-plugin-module-resolver": "^3.2.0",
+    "ttypescript": "^1.5.7"
   },
   "scripts": {
     "build": "yarn clean && yarn build:js && yarn build:types",
     "build:js": "babel src --out-dir dist --extensions \".ts,.tsx\" --source-maps inline",
-    "build:types": "tsc --declaration --emitDeclarationOnly",
+    "build:types": "ttsc --declaration --emitDeclarationOnly",
     "build:watch": "nodemon --ignore dist --exec 'yarn build'",
     "clean": "rm -rf dist"
   }
