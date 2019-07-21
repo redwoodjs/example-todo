@@ -1,11 +1,34 @@
 import jwt from "jsonwebtoken";
 import jwksClient from "jwks-rsa";
 import dotenv from "dotenv";
+import fetch from "node-fetch";
+
+import { user } from "src/services";
 
 // hammer base dir.
 dotenv.config({ path: "../../.env" });
 
-const getUserFromRequest = req => {
+// TODO: Move these into specialized auth0 package.
+const tokenFromRequest = req => req.get("authorization").split(" ")[1];
+
+const userProfileForToken = async token => {
+  const response = await fetch(`https://${process.env.AUTH0_DOMAIN}/userinfo`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+
+  if (!response.ok) {
+    throw new Error(
+      `Could not get user profile: ${response.status} ${response.body}`
+    );
+  }
+
+  const userProfile = await response.json();
+  return userProfile;
+};
+
+const decodeVerifiedToken = token => {
   return new Promise((resolve, reject) => {
     const { AUTH0_DOMAIN, AUTH0_AUDIENCE, AUTH0_KID } = process.env;
     if (!AUTH0_DOMAIN || !AUTH0_KID || !AUTH0_AUDIENCE) {
@@ -14,7 +37,6 @@ const getUserFromRequest = req => {
       );
     }
 
-    const token = req.get("authorization").split(" ")[1];
     const client = jwksClient({
       cache: true,
       rateLimit: true,
@@ -49,9 +71,18 @@ export const SERVERLESS_FUNCTION_TYPE = "express";
 
 export const handler = async (req, res, next) => {
   try {
-    const user = await getUserFromRequest(req);
-    console.log(user);
-    res.send(JSON.stringify(user));
+    const token = tokenFromRequest(req);
+
+    const userProfile = await userProfileForToken(token);
+
+    // here we can get the email, and generate an account,
+    // or retrieve an account.
+
+    const { email } = userProfile;
+
+    await user.findOrCreate({ email });
+
+    res.send(JSON.stringify(userProfile));
   } catch (e) {
     console.log(e, "-------");
     res.send(e);

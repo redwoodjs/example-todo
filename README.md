@@ -32,6 +32,20 @@ Browse to `http://localhost:8910` to see the web app. Lambda functions run on
 
 ## Development
 
+### Database
+
+We use Prisma's Lift (Migrations) and PhotonJS (ORM).
+
+To create a development database:
+
+```terminal
+cd api
+yarn prisma2 lift up
+```
+
+Will read the schema definition in `api/prisma/schema.prisma` and
+generate a sqlite database in `api/prisma/dev.sqlite`
+
 ### Generate a component
 
 `yarn hammer generate component MyShinyComponent` will create a component
