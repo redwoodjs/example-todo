@@ -10,7 +10,7 @@ require("@babel/register")({
   ignore: ["node_modules"]
 });
 
-export const graphQLServerlessFunction = ({ context = {} } = {}) => {
+export const graphQLServerlessFunction = (context = undefined) => {
   const hammerConfig = getHammerConfig();
 
   const BaseQueryType = queryType({
@@ -19,7 +19,7 @@ export const graphQLServerlessFunction = ({ context = {} } = {}) => {
         resolve() {
           return `Start adding your Nexus schema definitions in ${
             hammerConfig.api.paths.graphql
-          }, read more over here: "https://hammerframework.com/"`;
+          }`;
         }
       });
     }
@@ -40,10 +40,8 @@ export const graphQLServerlessFunction = ({ context = {} } = {}) => {
     }
   });
 
-  const server = new ApolloServer({
+  return new ApolloServer({
     schema,
     context
   });
-
-  return server.createHandler();
 };
