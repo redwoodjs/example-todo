@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from "react";
+import PropTypes from "prop-types";
 import createAuth0Client from "@auth0/auth0-spa-js";
 
 export const Auth0Context = React.createContext();
@@ -63,4 +64,12 @@ export const Auth0Provider = ({ children, config }) => {
       {children}
     </Auth0Context.Provider>
   );
+};
+
+Auth0Provider.propTypes = {
+  config: PropTypes.shape({
+    domain: PropTypes.string.isRequired,
+    client_id: PropTypes.string.isRequired,
+    redirect_uri: PropTypes.string.isRequired
+  })
 };

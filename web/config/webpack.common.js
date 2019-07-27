@@ -4,8 +4,9 @@ const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const DirectoryNamedWebpackPlugin = require("directory-named-webpack-plugin");
 const Dotenv = require("dotenv-webpack");
+const { getHammerConfig } = require("@hammerframework/hammer-api");
 
-console.log(path.resolve(__dirname, "../../.env"));
+const hammerConfig = getHammerConfig();
 
 module.exports = {
   entry: {
@@ -20,9 +21,8 @@ module.exports = {
       PropTypes: "prop-types",
       gql: ["@hammerframework/hammer-web", "gql"]
     }),
-    new Dotenv({
-      // billable base-directory
-      path: path.resolve(__dirname, "../../.env")
+    new webpack.DefinePlugin({
+      "__HAMMER__.apiProxyPath": JSON.stringify(hammerConfig.web.apiProxyPath)
     })
   ],
   module: {
