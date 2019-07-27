@@ -1,6 +1,7 @@
-import { Flex, Box, Button } from "src/lib/primitives";
-import { useAuth0 } from "src/lib/auth0";
 import { Link } from "react-router-dom";
+import { useAuth0 } from "@hammerframework/hammer-auth-auth0";
+
+import { Flex, Box, Button } from "src/lib/primitives";
 
 export default () => {
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();

@@ -1,4 +1,4 @@
-import { useAuth0 } from "src/lib/auth0";
+import { useAuth0 } from "@hammerframework/hammer-auth-auth0";
 
 const Profile = () => {
   const { loading, user } = useAuth0();

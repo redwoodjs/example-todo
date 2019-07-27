@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-
-import { SecureRoute } from "src/lib/auth0";
+import { SecureRoute } from "@hammerframework/hammer-auth-auth0";
 
 import InvoicePage from "./InvoicePage";
 import Profile from "./Profile";

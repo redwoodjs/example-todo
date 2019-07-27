@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useAuth0 } from "src/lib/auth0";
+import { useAuth0 } from "@hammerframework/hammer-auth-auth0";
 
 const ExternalApi = () => {
   const [showResult, setShowResult] = useState(false);

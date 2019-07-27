@@ -1,7 +1,10 @@
 import ReactDOM from "react-dom";
 import { ThemeProvider } from "styled-components";
+import {
+  Auth0Provider,
+  Auth0GraphQLProvider
+} from "@hammerframework/hammer-auth-auth0";
 
-import { Auth0Provider, Auth0GraphQLProvider } from "src/lib/auth0";
 import theme from "src/lib/theme";
 import Routes from "src/pages/Routes";
 
