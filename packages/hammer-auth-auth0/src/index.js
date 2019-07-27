@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import {
-  createGraphQLCLient,
+  createGraphQLClient,
   GraphQLProvider as RealGraphQlProvider
 } from "@hammerframework/hammer-web";
 
 import { Auth0Provider, useAuth0 } from "./Auth0Provider";
-import { default as SecureRoute } from "./SecureRoute";
 
 export const GraphQLProvider = props => {
   const [client, setClient] = useState();
@@ -15,7 +14,7 @@ export const GraphQLProvider = props => {
     const fn = async () => {
       const token = await getTokenSilently();
       setClient(
-        createGraphQLCLient({
+        createGraphQLClient({
           fetchOptions: {
             headers: {
               Authorization: `Bearer ${token}`
@@ -29,11 +28,10 @@ export const GraphQLProvider = props => {
   return <RealGraphQlProvider client={client} {...props} />;
 };
 
-export { Auth0Provider, useAuth0, SecureRoute };
-
 export const initAuth = config => {
   return {
-    Provider: props => <Auth0Provider config={config} {...props} />,
+    AuthProvider: props => <Auth0Provider config={config} {...props} />,
+    useAuth: useAuth0,
     GraphQLProvider
   };
 };
