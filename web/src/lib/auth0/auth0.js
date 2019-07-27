@@ -1,22 +1,30 @@
-import { GraphQLProvider, createClient } from "@hammerframework/hammer-web";
+import { useEffect, useState } from "react";
 
-export { Auth0Provider, useAuth0 } from "./Auth0Provider";
-export { default as SecureRoute } from "./SecureRoute";
+import { createClient, GraphQLProvider } from "@hammerframework/hammer-web";
 
-export const GraphQLWithAuth0Provider = ({ audience, ...rest }) => {
-  return (
-    <GraphQLProvider
-      client={createClient({
-        fetchOptions: async () => {
-          const token = await useAuth0().getTokenSilently({ audience });
-          return {
+import { Auth0Provider, useAuth0 } from "./Auth0Provider";
+import { default as SecureRoute } from "./SecureRoute";
+
+export { Auth0Provider, useAuth0, SecureRoute };
+
+export const Auth0GraphQLProvider = props => {
+  const [client, setClient] = useState();
+  const { isAuthenticated, getTokenSilently } = useAuth0();
+
+  useEffect(() => {
+    const fn = async () => {
+      const token = await getTokenSilently();
+      setClient(
+        createClient({
+          fetchOptions: {
             headers: {
               Authorization: `Bearer ${token}`
             }
-          };
-        }
-      })}
-      {...rest}
-    />
-  );
+          }
+        })
+      );
+    };
+    isAuthenticated && fn();
+  }, [isAuthenticated]);
+  return <GraphQLProvider client={client} {...props} />;
 };
