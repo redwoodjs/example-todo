@@ -22,6 +22,7 @@ Auth0 requires a bit of configuration, go ahead and add these to a `.env` file i
 ```env
 AUTH0_DOMAIN=billable.auth0.com
 AUTH0_CLIENT_ID=UZBvyAL2iduyaJQj3hoSvQITYN1QASSv
+AUTH0_AUDIENCE=https://billable.me/api
 ```
 
 Generate a database:
