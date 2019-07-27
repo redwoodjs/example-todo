@@ -1,5 +1,5 @@
 import React from "react";
-import { Query as OriginalQuery } from "urql";
+import { Query } from "urql";
 
 import Skeleton from "./subcomponents/Skeleton";
 
@@ -20,10 +20,11 @@ import Skeleton from "./subcomponents/Skeleton";
  * urql RenderProps: https://formidable.com/open-source/urql/docs/api/#render-props
  */
 export default ({ children, component: Component, ...rest }) => {
-  const { query, skeleton, dataToProps } = Component.queryProps;
+  const { query, skeleton, dataToProps } =
+    (Component && Component.queryProps) || rest;
 
   return (
-    <OriginalQuery query={query} {...rest}>
+    <Query query={query} {...rest}>
       {({ fetching: loading, error, data, executeQuery: refetch }) => {
         if (loading) {
           if (typeof skeleton !== "undefined") {
@@ -53,6 +54,6 @@ export default ({ children, component: Component, ...rest }) => {
         // the component.
         return <Component {...cleanData} refetch={refetch} />;
       }}
-    </OriginalQuery>
+    </Query>
   );
 };

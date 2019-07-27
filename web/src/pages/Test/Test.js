@@ -13,8 +13,7 @@ const ExternalApi = () => {
       });
 
       console.log("token", token);
-
-      const response = await fetch("/.netlify/functions/test", {
+      const response = await fetch(`${__HAMMER__.apiProxyPath}/test`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
