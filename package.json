@@ -21,11 +21,11 @@
     "@hammerframework/hammer-cli": "^0.0.0-alpha.5"
   },
   "scripts": {
-    "dev": "yarn build:hammer && yarn dev:api & yarn dev:web",
+    "dev": "yarn build:hammer && (yarn dev:api & yarn dev:web)",
     "open": "open http://localhost:8910",
     "dev:api": "yarn workspace api dev",
     "dev:web": "yarn workspace web dev",
-    "build:hammer": "yarn workspace @hammerframework/hammer-api build & yarn workspace @hammerframework/hammer-web build",
-    "build:hammer:watch": "yarn workspace @hammerframework/hammer-api build:watch & yarn workspace @hammerframework/hammer-web build:watch"
+    "build:hammer": "yarn workspace @hammerframework/hammer-api build && yarn workspace @hammerframework/hammer-web build",
+    "build:hammer:watch": "yarn workspace @hammerframework/hammer-api build:watch && yarn workspace @hammerframework/hammer-web build:watch"
   }
 }
