@@ -25,6 +25,7 @@ export interface HammerConfig {
   baseDir: string;
   web: {
     port: number;
+    apiProxyPath: string;
   };
   api: {
     port: number;

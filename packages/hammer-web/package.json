@@ -11,7 +11,7 @@
     "proptypes": "^1.1.0",
     "react-content-loader": "^4.2.1",
     "graphql": "^14.4.2",
-    "urql": "^1.1.3"
+    "urql": "^1.2.0"
   },
   "scripts": {
     "build": "yarn clean && babel src -d dist",

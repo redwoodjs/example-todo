@@ -1,20 +1,21 @@
 import React from "react";
-import { Provider } from "urql";
-import { createClient } from "urql";
 import gql from "graphql-tag";
+import {
+  Provider as RealProvider,
+  createClient as realCreateClient
+} from "urql";
 
 export { useMutation, useQuery } from "urql";
 export { default as Query } from "./graphql/Query";
 export { gql };
 
 const DEFAULT_CLIENT_CONFIG = {
-  url: "/.netlify/functions/graphql"
+  url: `${__HAMMER__.apiProxyPath}/graphql`
 };
 
-const newCreateClient = config =>
-  createClient({ ...DEFAULT_CLIENT_CONFIG, ...config });
-export { newCreateClient as createClient };
+export const createClient = config =>
+  realCreateClient({ ...DEFAULT_CLIENT_CONFIG, ...config });
 
-export const GraphQLProvider = ({ client = newCreateClient(), ...rest }) => (
-  <Provider client={client} {...rest} />
-);
+export const GraphQLProvider = ({ client = createClient(), ...rest }) => {
+  return <RealProvider value={client} {...rest} />;
+};
