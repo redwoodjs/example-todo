@@ -20,9 +20,8 @@ yarn install
 Auth0 requires a bit of configuration, go ahead and add these to a `.env` file in the root.
 
 ```env
-AUTH0_DOMAIN=p4p8.eu.auth0.com
-AUTH0_CLIENT_ID=b7vN4sVz6yjGrq82ctXJW9NRTvlWzkFU
-AUTH0_KID=MkE1RkVENTc3RjcxRUVGNUE0MTY3NDk2RTBCN0Y2RTA5NDBCQ0UzRg
+AUTH0_DOMAIN=billable.auth0.com
+AUTH0_CLIENT_ID=UZBvyAL2iduyaJQj3hoSvQITYN1QASSv
 ```
 
 Generate a database:

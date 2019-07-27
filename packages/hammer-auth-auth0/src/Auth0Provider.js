@@ -5,7 +5,7 @@ import createAuth0Client from "@auth0/auth0-spa-js";
 export const Auth0Context = React.createContext();
 export const useAuth0 = () => useContext(Auth0Context);
 
-export const Auth0Provider = ({ children, config }) => {
+export const Auth0Provider = ({ config, children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState();
   const [user, setUser] = useState();
   const [auth0Client, setAuth0] = useState();
@@ -16,6 +16,9 @@ export const Auth0Provider = ({ children, config }) => {
       const auth0FromHook = await createAuth0Client(config);
       setAuth0(auth0FromHook);
 
+      // TODO: once you're authenticated and you refresh the page
+      // the original "code" address is inserted and you don't
+      // get redirected.
       if (window.location.search.includes("code=")) {
         const { appState } = await auth0FromHook.handleRedirectCallback();
         window.history.replaceState(
