@@ -22,7 +22,6 @@ Auth0 requires a bit of configuration, go ahead and add these to a `.env` file i
 ```env
 AUTH0_DOMAIN=p4p8.eu.auth0.com
 AUTH0_CLIENT_ID=b7vN4sVz6yjGrq82ctXJW9NRTvlWzkFU
-AUTH0_AUDIENCE=BILLABLE_API
 AUTH0_KID=MkE1RkVENTc3RjcxRUVGNUE0MTY3NDk2RTBCN0Y2RTA5NDBCQ0UzRg
 ```
 
@@ -45,7 +44,7 @@ This command will eventually move into the `hammer-cli`.
 Run `yarn open` to open your browser on `http://localhost:8910`.
 
 Browse to `http://localhost:8910` to see the web app. Lambda functions run on
-`localhost:8911` but are proxied to `localhost:8910/.netlify/functions/*`.
+`localhost:8911` but are proxied to `localhost:8910/api/functions/*`.
 
 ## Development
 
