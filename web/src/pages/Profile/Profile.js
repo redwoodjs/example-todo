@@ -1,9 +1,7 @@
-import { useAuth0 } from "src/lib/auth0";
+import { useAuth } from "@hammerframework/hammer-web";
 
 const Profile = () => {
-  const { loading, user } = useAuth0();
-
-  console.log(user);
+  const { loading, user } = useAuth();
 
   if (loading || !user) {
     return "Loading...";

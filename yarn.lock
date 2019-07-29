@@ -5870,10 +5870,10 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-content-loader@^4.2.1:
-  version "4.2.1"
-  resolved "https://registry.yarnpkg.com/react-content-loader/-/react-content-loader-4.2.1.tgz#0d355134ed7d0987966abd0f784bc59e76976e91"
-  integrity sha512-XA5irUvZpQAEavfUBo7kc4tdvAbWwVKJolz/+2Pkj/XU7pn78AweAUtn+AxEajN0Srg/mraJ8XMKlUsXOFiknw==
+react-content-loader@^4.2.2:
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/react-content-loader/-/react-content-loader-4.2.2.tgz#8b014eab0f0218888b8f064f0373b41f2203c8be"
+  integrity sha512-8zn2OmjP/BhsW0spc5/nsYFsS3ybqwkoZypFl7PU92Jt1cJAjOo8Y7kfo/+ja4c/88UNLBTLfMcnlE+4Diq/5w==
 
 react-dom@^16.8.6:
   version "16.8.6"

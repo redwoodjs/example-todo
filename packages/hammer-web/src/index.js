@@ -1,21 +1,7 @@
-import React from "react";
-import gql from "graphql-tag";
-import {
-  Provider as RealProvider,
-  createClient as realCreateClient
-} from "urql";
+export { default as HammerProvider, useAuth } from "./HammerProvider";
 
-export { useMutation, useQuery } from "urql";
+export { gql } from "graphql-tag";
 export { default as Query } from "./graphql/Query";
-export { gql };
+export { GraphQLProvider, createGraphQLClient } from "./graphql";
 
-const DEFAULT_CLIENT_CONFIG = {
-  url: `${__HAMMER__.apiProxyPath}/graphql`
-};
-
-export const createClient = config =>
-  realCreateClient({ ...DEFAULT_CLIENT_CONFIG, ...config });
-
-export const GraphQLProvider = ({ client = createClient(), ...rest }) => {
-  return <RealProvider value={client} {...rest} />;
-};
+export { BrowserRouter, Switch, AnonRoute, AuthRoute } from "./Router";

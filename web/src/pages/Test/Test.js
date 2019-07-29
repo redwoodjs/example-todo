@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { useAuth0 } from "src/lib/auth0";
+import { useAuth } from "@hammerframework/hammer-web";
 
 const ExternalApi = () => {
   const [showResult, setShowResult] = useState(false);
   const [apiMessage, setApiMessage] = useState("");
-  const { getTokenSilently } = useAuth0();
+  const { getTokenSilently } = useAuth();
 
   const callApi = async () => {
     try {
