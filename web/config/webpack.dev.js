@@ -2,7 +2,7 @@
 const path = require("path");
 const merge = require("webpack-merge");
 const Dotenv = require("dotenv-webpack");
-const { getHammerConfig } = require("@hammerframework/hammer-api");
+const { getHammerConfig } = require("@hammerframework/hammer-core");
 const escapeRegExp = require("lodash.escaperegexp");
 
 const common = require("./webpack.common.js");

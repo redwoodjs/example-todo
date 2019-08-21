@@ -72,6 +72,7 @@ and place it under `web/src/components/MyShinyComponent`
 There are a bunch of packages in this repository that will eventually be published
 under `@hammerframework`:
 
+- `@hammerframework/hammer-core`
 - `@hammerframework/hammer-api`
 - `@hammerframework/hammer-web`
 - `@hammerframework/hammer-dev-server`

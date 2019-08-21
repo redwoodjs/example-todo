@@ -20,7 +20,7 @@ import bodyParser from "body-parser";
 import qs from "qs";
 import args from "args";
 import requireDir from "require-dir";
-import { getHammerConfig } from "@hammerframework/hammer-api";
+import { getHammerConfig } from "@hammerframework/hammer-core";
 
 const hammerConfig = getHammerConfig();
 

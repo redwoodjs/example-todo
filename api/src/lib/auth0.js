@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import jwksClient from "jwks-rsa";
 import dotenv from "dotenv";
 import fetch from "node-fetch";
-import { getHammerBaseDir } from "@hammerframework/hammer-api";
+import { getHammerBaseDir } from "@hammerframework/hammer-core";
 
 import { user } from "src/services";
 
