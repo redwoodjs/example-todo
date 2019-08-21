@@ -1,4 +1,5 @@
 {
+  "name": "billable",
   "private": true,
   "workspaces": [
     "api",
@@ -14,6 +15,7 @@
     "@babel/preset-env": "^7.5.0",
     "@babel/preset-react": "^7.0.0",
     "core-js": "^3.1.4",
+    "lerna": "^3.16.4",
     "typescript": "^3.5.2"
   },
   "dependencies": {
@@ -25,7 +27,7 @@
     "open": "open http://localhost:8910",
     "dev:api": "yarn workspace api dev",
     "dev:web": "yarn workspace web dev",
-    "build:hammer": "yarn workspace @hammerframework/hammer-api build && yarn workspace @hammerframework/hammer-web build && yarn workspace @hammerframework/hammer-auth-auth0 build",
-    "build:hammer:watch": "yarn workspace @hammerframework/hammer-api build:watch && yarn workspace @hammerframework/hammer-web build:watch && yarn workspace @hammerframework/hammer-auth-auth0 build:watch"
+    "build:hammer": "yarn lerna run build",
+    "build:hammer:watch": "yarn lerna run --parallel build:watch"
   }
 }
