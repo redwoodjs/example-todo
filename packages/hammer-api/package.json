@@ -9,6 +9,7 @@
   "types": "./dist/main.d.ts",
   "license": "MIT",
   "dependencies": {
+    "@hammerframework/hammer-core": "0.0.0",
     "@babel/register": "^7.4.4",
     "apollo-server-lambda": "^2.6.7",
     "findup-sync": "^3.0.0",
