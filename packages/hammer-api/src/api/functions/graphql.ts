@@ -2,8 +2,7 @@ import path from "path";
 import requireDir from "require-dir";
 import { queryType, makeSchema } from "nexus";
 import { ApolloServer } from "apollo-server-lambda";
-
-import { getHammerConfig } from "src/core";
+import { getHammerConfig } from "@hammerframework/hammer-core";
 
 require("@babel/register")({
   rootMode: "upward",

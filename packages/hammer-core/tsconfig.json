@@ -2,12 +2,11 @@
   "compilerOptions": {
     "target": "esnext",
     "moduleResolution": "node",
-    "module": "esnext",
     "strict": true,
     "esModuleInterop": true,
-    "baseUrl": "./",
+    "baseUrl": ".",
     "paths": {
-      "src/*": ["./src/*"]
+      "src/*": ["src/*"]
     },
     "declaration": true,
     "declarationDir": "./dist"

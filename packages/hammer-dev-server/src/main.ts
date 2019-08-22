@@ -20,12 +20,12 @@ import bodyParser from "body-parser";
 import qs from "qs";
 import args from "args";
 import requireDir from "require-dir";
-import { getHammerConfig } from "@hammerframework/hammer-api";
+import { getHammerConfig } from "@hammerframework/hammer-core";
 
 const hammerConfig = getHammerConfig();
 
 // We automatically transpile the serverless functions that are imported
-// TODO: Conver the babel config to a configurable argument.
+// for some reason the src path isn't working. they just cannot be resolved.
 require("@babel/register")({
   extends: path.join(hammerConfig.baseDir, "api/.babelrc.js"),
   only: [path.join(hammerConfig.baseDir, "api")],
