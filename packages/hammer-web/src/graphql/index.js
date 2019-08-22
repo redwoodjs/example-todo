@@ -6,7 +6,7 @@ const DEFAULT_CLIENT_CONFIG = {
 };
 
 export const createGraphQLClient = config => {
-  new ApolloClient({ ...DEFAULT_CLIENT_CONFIG, ...config });
+  return new ApolloClient({ ...DEFAULT_CLIENT_CONFIG, ...config });
 };
 
 export const GraphQLProvider = ({

@@ -15,10 +15,8 @@ export const GraphQLProvider = props => {
       const token = await getTokenSilently();
       setClient(
         createGraphQLClient({
-          fetchOptions: {
-            headers: {
-              Authorization: `Bearer ${token}`
-            }
+          headers: {
+            Authorization: `Bearer ${token}`
           }
         })
       );
