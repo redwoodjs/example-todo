@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Query } from "@hammerframework/hammer-web";
 import { Box, Flex } from "src/lib/primitives";
 
 import {
@@ -45,6 +44,7 @@ const Page = () => {
   return (
     <>
       <AppBar />
+
       <Box
         mx="auto"
         css={`

@@ -1,15 +1,17 @@
-import * as urql from "urql";
+import ApolloClient from "apollo-boost";
+import { ApolloProvider } from "@apollo/react-hooks";
 
 const DEFAULT_CLIENT_CONFIG = {
-  url: `${__HAMMER__.apiProxyPath}/graphql`
+  uri: `${__HAMMER__.apiProxyPath}/graphql`
 };
 
-export const createGraphQLClient = config =>
-  urql.createClient({ ...DEFAULT_CLIENT_CONFIG, ...config });
+export const createGraphQLClient = config => {
+  return new ApolloClient({ ...DEFAULT_CLIENT_CONFIG, ...config });
+};
 
 export const GraphQLProvider = ({
   client = createGraphQLClient(),
   ...rest
 }) => {
-  return <urql.Provider value={client} {...rest} />;
+  return <ApolloProvider client={client} {...rest} />;
 };

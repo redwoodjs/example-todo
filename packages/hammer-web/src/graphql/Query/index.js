@@ -1,5 +1,5 @@
 import React from "react";
-import { Query } from "urql";
+import { Query } from "@apollo/react-components";
 
 import Skeleton from "./subcomponents/Skeleton";
 
@@ -25,7 +25,7 @@ export default ({ children, component: Component, ...rest }) => {
 
   return (
     <Query query={query} {...rest}>
-      {({ fetching: loading, error, data, executeQuery: refetch }) => {
+      {({ loading, error, data, refetch }) => {
         if (loading) {
           if (typeof skeleton !== "undefined") {
             return <Skeleton {...skeleton} />;
