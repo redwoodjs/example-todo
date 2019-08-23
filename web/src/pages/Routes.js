@@ -5,17 +5,13 @@ import {
   AuthRoute
 } from "@hammerframework/hammer-web";
 
-import InvoicePage from "./InvoicePage";
-import Profile from "./Profile";
-import Test from "./Test";
+import HomePage from "./HomePage";
 
 const Routes = () => {
   return (
     <BrowserRouter>
       <Switch>
-        <AnonRoute path="/" exact component={InvoicePage} />
-        <AuthRoute path="/profile" component={Profile} />
-        <AuthRoute path="/test" component={Test} />
+        <AnonRoute path="/" exact component={HomePage} />
       </Switch>
     </BrowserRouter>
   );

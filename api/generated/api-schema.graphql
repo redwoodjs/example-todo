@@ -17,12 +17,12 @@ type HammerPackages {
 }
 
 type Query {
-  currentUser: User
   hammer: Hammer!
   help: String!
+  todos: [Todo!]
 }
 
-type User {
-  email: String!
+type Todo {
+  body: String!
   id: Int!
 }

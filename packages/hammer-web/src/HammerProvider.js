@@ -16,11 +16,9 @@ const HammerProvider = ({ auth = {}, theme = {}, children }) => {
   USE_AUTH = auth.useAuth;
 
   return (
-    <AuthProvider>
-      <GraphQLProvider>
-        <ThemeProvider theme={theme}>{children}</ThemeProvider>
-      </GraphQLProvider>
-    </AuthProvider>
+    <GraphQLProvider>
+      <ThemeProvider theme={theme}>{children}</ThemeProvider>
+    </GraphQLProvider>
   );
 };
 
