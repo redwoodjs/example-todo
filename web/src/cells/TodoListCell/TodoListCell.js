@@ -1,6 +1,4 @@
-import gql from "graphql-tag";
-import { useQuery } from "@apollo/react-hooks";
-
+import { gql, useQuery, useMutation } from "@hammerframework/hammer-web";
 import TodoList from "src/components/TodoList";
 
 const TODOS = gql`
@@ -14,7 +12,10 @@ const TODOS = gql`
 
 const TodoListCell = () => {
   const { loading, data } = useQuery(TODOS);
-  return <TodoList todos={data} />;
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+  return <TodoList todos={data.todos} />;
 };
 
 export default TodoListCell;
