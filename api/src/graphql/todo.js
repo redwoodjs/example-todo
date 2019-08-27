@@ -2,6 +2,7 @@ import {
   extendType,
   intArg,
   objectType,
+  queryField,
   mutationField,
   stringArg
 } from "nexus";
@@ -14,16 +15,12 @@ export const Todo = objectType({
   }
 });
 
-export const Query = extendType({
-  type: "Query",
-  definition: t => {
-    t.list.field("todos", {
-      type: "Todo",
-      nullable: true,
-      resolve(_root, _args, { photon }) {
-        return photon.todos.findMany();
-      }
-    });
+export const todos = queryField("todos", {
+  type: "Todo",
+  list: true,
+  nullable: true,
+  resolve(_root, _args, { photon }) {
+    return photon.todos.findMany();
   }
 });
 
