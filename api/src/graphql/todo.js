@@ -1,4 +1,10 @@
-import { extendType, intArg, objectType } from "nexus";
+import {
+  extendType,
+  intArg,
+  objectType,
+  mutationField,
+  stringArg
+} from "nexus";
 
 export const Todo = objectType({
   name: "Todo",
@@ -8,16 +14,23 @@ export const Todo = objectType({
   }
 });
 
-export default extendType({
+export const Query = extendType({
   type: "Query",
   definition: t => {
     t.list.field("todos", {
       type: "Todo",
       nullable: true,
       resolve(_root, _args, { photon }) {
-        // photon.todos.create({ data: { body: "numero uno" } });
         return photon.todos.findMany();
       }
     });
+  }
+});
+
+export const createTodo = mutationField("createTodo", {
+  type: "Todo",
+  args: { body: stringArg({ required: true }) },
+  resolve(_root, args, { photon }) {
+    return photon.todos.create({ data: { body: args.body } });
   }
 });

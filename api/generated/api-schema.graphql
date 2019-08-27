@@ -16,6 +16,10 @@ type HammerPackages {
   webSize: String!
 }
 
+type Mutation {
+  createTodo(body: String!): Todo!
+}
+
 type Query {
   hammer: Hammer!
   help: String!
