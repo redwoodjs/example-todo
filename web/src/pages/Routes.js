@@ -1,9 +1,4 @@
-import {
-  BrowserRouter,
-  Switch,
-  AnonRoute,
-  AuthRoute
-} from "@hammerframework/hammer-web";
+import { BrowserRouter, Switch, AnonRoute } from "@hammerframework/hammer-web";
 
 import HomePage from "./HomePage";
 
