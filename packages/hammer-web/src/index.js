@@ -6,3 +6,4 @@ export { GraphQLProvider, createGraphQLClient } from "./graphql";
 export { useQuery, useMutation } from "@apollo/react-hooks";
 
 export { BrowserRouter, Switch, AnonRoute, AuthRoute } from "./Router";
+// export { api } from "./API.js";
