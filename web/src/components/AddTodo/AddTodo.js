@@ -2,6 +2,15 @@ import { useState } from "react";
 import gql from "graphql-tag";
 import { useMutation } from "@apollo/react-hooks";
 
+const TODOS = gql`
+  {
+    todos {
+      id
+      body
+    }
+  }
+`;
+
 const ADD_TODO = gql`
   mutation CreateTodo($body: String!) {
     createTodo(body: $body) {
@@ -13,11 +22,19 @@ const ADD_TODO = gql`
 
 const AddTodo = () => {
   const [todoText, setTodoText] = useState("");
-  const [addTodo, { data }] = useMutation(ADD_TODO);
+  const [addTodo, { data }] = useMutation(ADD_TODO, {
+    update: (cache, { data: { createTodo } }) => {
+      const { todos } = cache.readQuery({ query: TODOS });
+      cache.writeQuery({
+        query: TODOS,
+        data: { todos: todos.concat([createTodo]) }
+      });
+    }
+  });
 
   const handleSubmit = event => {
-    console.log(todoText);
     addTodo({ variables: { body: todoText } });
+    setTodoText("");
     event.preventDefault();
   };
 
