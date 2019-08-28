@@ -1,17 +1,9 @@
-import { gql, useQuery, useMutation } from "@hammerframework/hammer-web";
+import { useQuery } from "@hammerframework/hammer-web";
+import api from "src/api";
 import TodoList from "src/components/TodoList";
 
-const TODOS = gql`
-  {
-    todos {
-      id
-      body
-    }
-  }
-`;
-
 const TodoListCell = () => {
-  const { loading, data } = useQuery(TODOS);
+  const { loading, data } = useQuery(api.todo.GET_ALL_TODOS);
   if (loading) {
     return <div>Loading...</div>;
   }
