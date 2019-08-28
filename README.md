@@ -1,4 +1,4 @@
-# Billable
+# Todo
 
 This is an example Hammer app. In order to figure out what Hammer should be
 like, we're first developing a simple app with the technology stack we want and
@@ -15,14 +15,6 @@ this in the root directory:
 
 ```terminal
 yarn install
-```
-
-Auth0 requires a bit of configuration, go ahead and add these to a `.env` file in the root.
-
-```env
-AUTH0_DOMAIN=billable.auth0.com
-AUTH0_CLIENT_ID=UZBvyAL2iduyaJQj3hoSvQITYN1QASSv
-AUTH0_AUDIENCE=https://billable.me/api
 ```
 
 Generate a database:
