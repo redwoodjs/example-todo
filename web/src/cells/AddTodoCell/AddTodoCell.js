@@ -15,6 +15,7 @@ const ADD_TODO = gql`
   mutation CreateTodo($body: String!) {
     createTodo(body: $body) {
       id
+      __typename
       body
     }
   }
@@ -32,7 +33,13 @@ const AddTodoCell = () => {
   });
 
   const submitTodo = body => {
-    addTodo({ variables: { body } });
+    addTodo({
+      variables: { body },
+      optimisticResponse: {
+        __typename: "Mutation",
+        createTodo: { __typename: "Todo", id: 0, body }
+      }
+    });
   };
 
   return <AddTodo submitTodo={submitTodo} />;
