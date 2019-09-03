@@ -4,19 +4,8 @@ import Check from "src/components/Check";
 
 const TodoItem = ({ id, body, status, updateTodo }) => {
   const onUpdate = () => {
-    if (status === "off") {
-      updateTodo({ variables: { id, status: "on" } });
-    } else {
-      updateTodo({ variables: { id, status: "off" } });
-    }
-  };
-
-  const renderBody = () => {
-    if (status === "on") {
-      return <s>{body}</s>;
-    } else {
-      return body;
-    }
+    const newStatus = status === "off" ? "on" : "off";
+    updateTodo({ variables: { id, status: newStatus } });
   };
 
   return (
@@ -24,7 +13,7 @@ const TodoItem = ({ id, body, status, updateTodo }) => {
       <SC.Target onClick={onUpdate}>
         <Check type={status} />
       </SC.Target>
-      <SC.Body>{renderBody()}</SC.Body>
+      <SC.Body>{status === "on" ? <s>{body}</s> : body}</SC.Body>
     </SC.Item>
   );
 };
