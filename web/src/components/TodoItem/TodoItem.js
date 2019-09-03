@@ -11,12 +11,20 @@ const TodoItem = ({ id, body, status, updateTodo }) => {
     }
   };
 
+  const renderBody = () => {
+    if (status === "on") {
+      return <s>{body}</s>;
+    } else {
+      return body;
+    }
+  };
+
   return (
     <SC.Item>
       <SC.Target onClick={onUpdate}>
         <Check type={status} />
       </SC.Target>
-      <SC.Body>{body}</SC.Body>
+      <SC.Body>{renderBody()}</SC.Body>
     </SC.Item>
   );
 };
