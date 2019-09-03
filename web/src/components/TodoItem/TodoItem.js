@@ -2,10 +2,10 @@ import styled from "styled-components";
 
 import Check from "src/components/Check";
 
-const TodoItem = ({ id, body }) => {
+const TodoItem = ({ id, body, status }) => {
   return (
     <SC.Item>
-      <Check type="off" />
+      <Check type={status} />
       <SC.Body>{body}</SC.Body>
     </SC.Item>
   );

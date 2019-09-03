@@ -12,6 +12,7 @@ export const Todo = objectType({
   definition(t) {
     t.int("id");
     t.string("body");
+    t.string("status");
   }
 });
 

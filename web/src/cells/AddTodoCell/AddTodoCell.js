@@ -18,7 +18,7 @@ const AddTodoCell = () => {
       variables: { body },
       optimisticResponse: {
         __typename: "Mutation",
-        createTodo: { __typename: "Todo", id: 0, body }
+        createTodo: { __typename: "Todo", id: 0, body, status: "loading" }
       }
     });
   };

@@ -5,6 +5,7 @@ export const GET_ALL_TODOS = gql`
     todos {
       id
       body
+      status
     }
   }
 `;
@@ -15,6 +16,7 @@ export const ADD_TODO = gql`
       id
       __typename
       body
+      status
     }
   }
 `;

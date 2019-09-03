@@ -29,4 +29,5 @@ type Query {
 type Todo {
   body: String!
   id: Int!
+  status: String!
 }

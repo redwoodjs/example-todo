@@ -1,0 +1,18 @@
+{
+  "version": "0.0.158",
+  "steps": [
+    {
+      "stepType": "CreateField",
+      "model": "Todo",
+      "name": "status",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "required",
+      "isUnique": false,
+      "default": {
+        "String": "off"
+      }
+    }
+  ]
+}
