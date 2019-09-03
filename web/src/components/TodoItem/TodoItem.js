@@ -2,10 +2,20 @@ import styled from "styled-components";
 
 import Check from "src/components/Check";
 
-const TodoItem = ({ id, body, status }) => {
+const TodoItem = ({ id, body, status, updateTodo }) => {
+  const onUpdate = () => {
+    if (status === "off") {
+      updateTodo({ variables: { id, status: "on" } });
+    } else {
+      updateTodo({ variables: { id, status: "off" } });
+    }
+  };
+
   return (
     <SC.Item>
-      <Check type={status} />
+      <SC.Target onClick={onUpdate}>
+        <Check type={status} />
+      </SC.Target>
       <SC.Body>{body}</SC.Body>
     </SC.Item>
   );
@@ -16,6 +26,9 @@ SC.Item = styled.li`
   display: flex;
   align-items: center;
   list-style: none;
+`;
+SC.Target = styled.div`
+  cursor: pointer;
 `;
 SC.Body = styled.div`
   list-style: none;

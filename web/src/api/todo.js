@@ -20,3 +20,14 @@ export const ADD_TODO = gql`
     }
   }
 `;
+
+export const UPDATE_TODO = gql`
+  mutation UpdateTodo($id: Int!, $body: String, $status: String) {
+    updateTodo(id: $id, body: $body, status: $status) {
+      id
+      __typename
+      body
+      status
+    }
+  }
+`;

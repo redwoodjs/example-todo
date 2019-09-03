@@ -32,3 +32,21 @@ export const createTodo = mutationField("createTodo", {
     return photon.todos.create({ data: { body: args.body } });
   }
 });
+
+export const updateTodo = mutationField("updateTodo", {
+  type: "Todo",
+  args: {
+    id: intArg({ required: true }),
+    body: stringArg(),
+    status: stringArg()
+  },
+  resolve(_root, { id, ...args }, { photon }) {
+    Object.keys(args).forEach(
+      key => args[key] === undefined && delete args[key]
+    );
+    return photon.todos.update({
+      data: { ...args },
+      where: { id }
+    });
+  }
+});
