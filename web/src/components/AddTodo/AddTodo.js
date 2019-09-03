@@ -26,7 +26,7 @@ const AddTodo = ({ submitTodo }) => {
           placeholder="Memorize the dictionary"
           onChange={handleChange}
         />
-        <input type="submit" value="Add" />
+        <SC.Button type="submit" value="Add Item" />
       </SC.Body>
     </SC.Form>
   );
@@ -47,17 +47,27 @@ SC.Input = styled.input`
   font-size: 18px;
   font-family: "Inconsolata", monospace;
   padding: 10px 0;
+  width: 75%;
 
   ::placeholder {
     color: #e1e1e1;
   }
 `;
-SC.Icon = styled.div`
-  border-radius: 100px;
-  border: 2px solid #8000ff;
-  width: 20px;
-  height: 20px;
-  margin-right: 15px;
+SC.Button = styled.input`
+  float: right;
+  margin-top: 5px;
+  border-radius: 6px;
+  background-color #8000ff;
+  padding: 5px 15px;
+  color: white;
+  border: 0;
+  font-size: 18px;
+  font-family: "Inconsolata", monospace;
+
+  :hover {
+    background-color: black;
+    cursor: pointer;
+  }
 `;
 
 export default AddTodo;
