@@ -6,6 +6,7 @@
     "@babel/runtime": "^7.5.1",
     "@hammerframework/hammer-auth-auth0": "0.0.0",
     "@hammerframework/hammer-web": "0.0.0",
+    "babel-plugin-inline-react-svg": "^1.1.0",
     "immer": "^3.1.3",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
