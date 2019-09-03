@@ -1,9 +1,7 @@
+import TodoItem from "src/components/TodoItem";
+
 const TodoList = props => {
-  const list = props.todos.map(todo => (
-    <li key={todo.id}>
-      {todo.id}: {todo.body}
-    </li>
-  ));
+  const list = props.todos.map(todo => <TodoItem {...todo} />);
 
   return <ul>{list}</ul>;
 };
