@@ -1,13 +1,13 @@
 import { useMutation } from "@hammerframework/hammer-web";
-import api from "src/api";
+import { ADD_TODO, GET_ALL_TODOS } from "src/api/todo";
 import AddTodo from "src/components/AddTodo";
 
 const AddTodoCell = () => {
-  const [addTodo, { data }] = useMutation(api.todo.ADD_TODO, {
+  const [addTodo, { data }] = useMutation(ADD_TODO, {
     update: (cache, { data: { createTodo } }) => {
-      const { todos } = cache.readQuery({ query: api.todo.GET_ALL_TODOS });
+      const { todos } = cache.readQuery({ query: GET_ALL_TODOS });
       cache.writeQuery({
-        query: api.todo.GET_ALL_TODOS,
+        query: GET_ALL_TODOS,
         data: { todos: todos.concat([createTodo]) }
       });
     }
