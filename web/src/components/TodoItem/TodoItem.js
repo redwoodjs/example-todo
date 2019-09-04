@@ -5,7 +5,13 @@ import Check from "src/components/Check";
 const TodoItem = ({ id, body, status, updateTodo }) => {
   const onUpdate = () => {
     const newStatus = status === "off" ? "on" : "off";
-    updateTodo({ variables: { id, status: newStatus } });
+    updateTodo({
+      variables: { id, status: newStatus },
+      optimisticResponse: {
+        __typename: "Mutation",
+        updateTodo: { __typename: "Todo", id, body, status: "loading" }
+      }
+    });
   };
 
   return (
