@@ -41,12 +41,15 @@ export const updateTodo = mutationField("updateTodo", {
     status: stringArg()
   },
   resolve(_root, { id, ...args }, { photon }) {
-    Object.keys(args).forEach(
-      key => args[key] === undefined && delete args[key]
-    );
     return photon.todos.update({
-      data: { ...args },
+      data: { ...permit(args, ["body", "status"]) },
       where: { id }
     });
   }
 });
+
+function permit(obj, keys) {
+  return keys
+    .map(k => (k in obj ? { [k]: obj[k] } : {}))
+    .reduce((res, o) => Object.assign(res, o), {});
+}
