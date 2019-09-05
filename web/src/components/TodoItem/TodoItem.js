@@ -2,16 +2,10 @@ import styled from "styled-components";
 
 import Check from "src/components/Check";
 
-const TodoItem = ({ id, body, status, updateTodo }) => {
+const TodoItem = ({ id, body, status, onClickCheck }) => {
   const onUpdate = () => {
     const newStatus = status === "off" ? "on" : "off";
-    updateTodo({
-      variables: { id, status: newStatus },
-      optimisticResponse: {
-        __typename: "Mutation",
-        todoUpdate: { __typename: "Todo", id, body, status: "loading" }
-      }
-    });
+    onClickCheck(id, newStatus);
   };
 
   return (

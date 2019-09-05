@@ -33,23 +33,30 @@ export const todoCreate = mutationField("todoCreate", {
   }
 });
 
-export const todoUpdate = mutationField("todoUpdate", {
+export const todoCheck = mutationField("todoCheck", {
   type: "Todo",
   args: {
     id: intArg({ required: true }),
-    body: stringArg(),
     status: stringArg()
   },
-  resolve(_root, { id, ...args }, { photon }) {
+  resolve(_root, { id, status }, { photon }) {
     return photon.todos.update({
-      data: { ...permit(args, ["body", "status"]) },
+      data: { status },
       where: { id }
     });
   }
 });
 
-function permit(obj, keys) {
-  return keys
-    .map(k => (k in obj ? { [k]: obj[k] } : {}))
-    .reduce((res, o) => Object.assign(res, o), {});
-}
+export const todoRename = mutationField("todoRename", {
+  type: "Todo",
+  args: {
+    id: intArg({ required: true }),
+    body: stringArg()
+  },
+  resolve(_root, { id, body }, { photon }) {
+    return photon.todos.update({
+      data: { body },
+      where: { id }
+    });
+  }
+});

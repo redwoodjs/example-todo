@@ -21,13 +21,22 @@ export const TODO_CREATE = gql`
   }
 `;
 
-export const TODO_UPDATE = gql`
-  mutation TodoUpdate($id: Int!, $body: String, $status: String) {
-    todoUpdate(id: $id, body: $body, status: $status) {
+export const TODO_CHECK = gql`
+  mutation TodoCheck($id: Int!, $status: String) {
+    todoCheck(id: $id, status: $status) {
+      id
+      __typename
+      status
+    }
+  }
+`;
+
+export const TODO_RENAME = gql`
+  mutation TodoRename($id: Int!, $body: String) {
+    todoRename(id: $id, body: $body) {
       id
       __typename
       body
-      status
     }
   }
 `;
