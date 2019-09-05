@@ -3,14 +3,14 @@ import styled from "styled-components";
 import Check from "src/components/Check";
 
 const TodoItem = ({ id, body, status, onClickCheck }) => {
-  const onUpdate = () => {
+  const handleCheck = () => {
     const newStatus = status === "off" ? "on" : "off";
     onClickCheck(id, newStatus);
   };
 
   return (
     <SC.Item>
-      <SC.Target onClick={onUpdate}>
+      <SC.Target onClick={handleCheck}>
         <Check type={status} />
       </SC.Target>
       <SC.Body>{status === "on" ? <s>{body}</s> : body}</SC.Body>
