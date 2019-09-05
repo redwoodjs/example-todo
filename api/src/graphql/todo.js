@@ -25,7 +25,7 @@ export const todos = queryField("todos", {
   }
 });
 
-export const createTodo = mutationField("createTodo", {
+export const todoCreate = mutationField("todoCreate", {
   type: "Todo",
   args: { body: stringArg({ required: true }) },
   resolve(_root, args, { photon }) {
@@ -33,7 +33,7 @@ export const createTodo = mutationField("createTodo", {
   }
 });
 
-export const updateTodo = mutationField("updateTodo", {
+export const todoUpdate = mutationField("todoUpdate", {
   type: "Todo",
   args: {
     id: intArg({ required: true }),

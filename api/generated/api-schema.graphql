@@ -17,8 +17,8 @@ type HammerPackages {
 }
 
 type Mutation {
-  createTodo(body: String!): Todo!
-  updateTodo(body: String, id: Int!, status: String): Todo!
+  todoCreate(body: String!): Todo!
+  todoUpdate(body: String, id: Int!, status: String): Todo!
 }
 
 type Query {

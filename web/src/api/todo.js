@@ -1,6 +1,6 @@
 import gql from "graphql-tag";
 
-export const GET_ALL_TODOS = gql`
+export const TODOS = gql`
   {
     todos {
       id
@@ -10,9 +10,9 @@ export const GET_ALL_TODOS = gql`
   }
 `;
 
-export const ADD_TODO = gql`
-  mutation CreateTodo($body: String!) {
-    createTodo(body: $body) {
+export const TODO_CREATE = gql`
+  mutation TodoCreate($body: String!) {
+    todoCreate(body: $body) {
       id
       __typename
       body
@@ -21,9 +21,9 @@ export const ADD_TODO = gql`
   }
 `;
 
-export const UPDATE_TODO = gql`
-  mutation UpdateTodo($id: Int!, $body: String, $status: String) {
-    updateTodo(id: $id, body: $body, status: $status) {
+export const TODO_UPDATE = gql`
+  mutation TodoUpdate($id: Int!, $body: String, $status: String) {
+    todoUpdate(id: $id, body: $body, status: $status) {
       id
       __typename
       body

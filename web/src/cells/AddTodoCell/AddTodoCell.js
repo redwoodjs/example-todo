@@ -1,24 +1,24 @@
 import { useMutation } from "@hammerframework/hammer-web";
-import { ADD_TODO, GET_ALL_TODOS } from "src/api/todo";
+import { TODO_CREATE, TODOS } from "src/api/todo";
 import AddTodo from "src/components/AddTodo";
 
 const AddTodoCell = () => {
-  const [addTodo, { data }] = useMutation(ADD_TODO, {
-    update: (cache, { data: { createTodo } }) => {
-      const { todos } = cache.readQuery({ query: GET_ALL_TODOS });
+  const [todoCreate, { data }] = useMutation(TODO_CREATE, {
+    update: (cache, { data: { todoCreate } }) => {
+      const { todos } = cache.readQuery({ query: TODOS });
       cache.writeQuery({
-        query: GET_ALL_TODOS,
-        data: { todos: todos.concat([createTodo]) }
+        query: TODOS,
+        data: { todos: todos.concat([todoCreate]) }
       });
     }
   });
 
   const submitTodo = body => {
-    addTodo({
+    todoCreate({
       variables: { body },
       optimisticResponse: {
         __typename: "Mutation",
-        createTodo: { __typename: "Todo", id: 0, body, status: "loading" }
+        todoCreate: { __typename: "Todo", id: 0, body, status: "loading" }
       }
     });
   };

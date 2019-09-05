@@ -9,7 +9,7 @@ const TodoItem = ({ id, body, status, updateTodo }) => {
       variables: { id, status: newStatus },
       optimisticResponse: {
         __typename: "Mutation",
-        updateTodo: { __typename: "Todo", id, body, status: "loading" }
+        todoUpdate: { __typename: "Todo", id, body, status: "loading" }
       }
     });
   };
