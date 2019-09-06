@@ -3,8 +3,8 @@ const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const DirectoryNamedWebpackPlugin = require("directory-named-webpack-plugin");
-const Dotenv = require("dotenv-webpack");
 const { getHammerConfig } = require("@hammerframework/hammer-core");
+const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 
 const hammerConfig = getHammerConfig();
 
@@ -23,7 +23,10 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       "__HAMMER__.apiProxyPath": JSON.stringify(hammerConfig.web.apiProxyPath)
-    })
+    }),
+    new FaviconsWebpackPlugin(
+      path.join(hammerConfig.baseDir, "web/src/favicon.png")
+    )
   ],
   module: {
     rules: [
