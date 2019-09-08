@@ -23,13 +23,16 @@
     "@babel/preset-typescript": "^7.3.3",
     "@hammerframework/hammer-cli": "^0.0.0-alpha.5"
   },
+  "eslintConfig": {
+    "extends": "@hammerframework/eslint-config-hammer"
+  },
   "scripts": {
     "dev": "yarn build:hammer && (yarn dev:api & yarn dev:web)",
     "open": "open http://localhost:8910",
     "dev:api": "yarn workspace api dev",
     "dev:web": "yarn workspace web dev",
     "build:hammer": "yarn lerna run build",
-    "build:hammer:watch": "yarn lerna run --parallel build:watch"
+    "build:hammer:watch": "yarn lerna run --parallel build:watch",
     "lint": "yarn eslint 'web/src/**/*.js' 'api/src/**/*.js'",
     "lint:fix": "yarn eslint --fix 'web/src/**/*.js' 'api/src/**/*.js'"
   }
