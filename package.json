@@ -14,6 +14,7 @@
     "@babel/plugin-proposal-export-default-from": "^7.5.2",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
+    "@hammerframework/eslint-config-hammer": "^0.0.1-alpha.8",
     "core-js": "^3.2.1",
     "lerna": "^3.16.4",
     "typescript": "^3.5.3"
@@ -29,5 +30,7 @@
     "dev:web": "yarn workspace web dev",
     "build:hammer": "yarn lerna run build",
     "build:hammer:watch": "yarn lerna run --parallel build:watch"
+    "lint": "yarn eslint 'web/src/**/*.js' 'api/src/**/*.js'",
+    "lint:fix": "yarn eslint --fix 'web/src/**/*.js' 'api/src/**/*.js'"
   }
 }
