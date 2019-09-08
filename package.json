@@ -1,10 +1,9 @@
 {
-  "name": "billable",
+  "name": "todo",
   "private": true,
   "workspaces": [
     "api",
-    "web",
-    "packages/*"
+    "web"
   ],
   "devDependencies": {
     "@babel/cli": "^7.5.5",
@@ -14,25 +13,19 @@
     "@babel/plugin-proposal-export-default-from": "^7.5.2",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
-    "@hammerframework/eslint-config-hammer": "^0.0.1-alpha.8",
     "core-js": "^3.2.1",
-    "lerna": "^3.16.4",
-    "typescript": "^3.5.3"
-  },
-  "dependencies": {
-    "@babel/preset-typescript": "^7.3.3",
-    "@hammerframework/hammer-cli": "^0.0.0-alpha.5"
+    "@hammerframework/eslint-config-hammer": "^0.0.1-alpha.8"
   },
   "eslintConfig": {
     "extends": "@hammerframework/eslint-config-hammer"
   },
   "scripts": {
-    "dev": "yarn build:hammer && (yarn dev:api & yarn dev:web)",
+    "dev": "yarn dev:api & yarn dev:web",
     "open": "open http://localhost:8910",
     "dev:api": "yarn workspace api dev",
     "dev:web": "yarn workspace web dev",
-    "build:hammer": "yarn lerna run build",
-    "build:hammer:watch": "yarn lerna run --parallel build:watch",
+    "db:save": "yarn workspace api prisma2 lift save",
+    "db:up": "yarn workspace api prisma2 lift up && yarn workspace api prisma2 generate",
     "lint": "yarn eslint 'web/src/**/*.js' 'api/src/**/*.js'",
     "lint:fix": "yarn eslint --fix 'web/src/**/*.js' 'api/src/**/*.js'"
   }

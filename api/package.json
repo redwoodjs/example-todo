@@ -1,21 +1,17 @@
 {
   "private": true,
   "name": "api",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "dependencies": {
-    "@hammerframework/hammer-api": "0.0.0",
-    "dotenv": "^8.0.0",
-    "graphql": "^14.3.1",
-    "jsonwebtoken": "^8.5.1",
-    "jwks-rsa": "^1.5.1",
+    "@hammerframework/hammer-api": "^0.0.1-alpha.8",
     "nexus": "^0.11.7",
     "prisma2": "^2.0.0-preview-2"
   },
   "scripts": {
-    "generate": "yarn prisma2 generate",
-    "dev": "yarn generate && yarn workspace @hammerframework/hammer-dev-server dev"
+    "dev": "yarn hammer-dev-server"
   },
   "devDependencies": {
-    "babel-plugin-module-resolver": "^3.2.0"
+    "babel-plugin-module-resolver": "^3.2.0",
+    "@hammerframework/hammer-dev-server": "^0.0.1-alpha.8"
   }
 }
