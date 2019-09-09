@@ -20,9 +20,7 @@ yarn install
 Generate a database:
 
 ```terminal
-cd api
-yarn prisma2 lift up
-cd ..
+yarn db:up
 ```
 
 ### Fire it up
@@ -47,28 +45,8 @@ We use Prisma's Lift (Migrations) and PhotonJS (ORM).
 To create a development database:
 
 ```terminal
-cd api
-yarn prisma2 lift up
+yarn db:up
 ```
 
 Will read the schema definition in `api/prisma/schema.prisma` and
 generate a sqlite database in `api/prisma/dev.sqlite`
-
-### Generate a component
-
-`yarn hammer generate component MyShinyComponent` will create a component
-and place it under `web/src/components/MyShinyComponent`
-
-### Transpiling packages
-
-There are a bunch of packages in this repository that will eventually be published
-under `@hammerframework`:
-
-- `@hammerframework/hammer-core`
-- `@hammerframework/hammer-api`
-- `@hammerframework/hammer-web`
-- `@hammerframework/hammer-dev-server`
-
-Keeping them in this repository facilitates rapid development. The packages are
-transpiled, so if you've changed something you need to run `yarn build:hammer:watch`
-in a seperate terminal.

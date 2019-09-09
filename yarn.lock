@@ -893,10 +893,10 @@
     findup-sync "^3.0.0"
     toml "^3.0.0"
 
-"@hammerframework/hammer-dev-server@^0.0.1-alpha.8":
-  version "0.0.1-alpha.8"
-  resolved "https://registry.yarnpkg.com/@hammerframework/hammer-dev-server/-/hammer-dev-server-0.0.1-alpha.8.tgz#19f9313644fd84f2aaf20dae15ed0138f38eba8f"
-  integrity sha512-rEIQv725DWFoUk0Aot4uwPiAQJPWnOsYr6w4ovNbpV3sikvAYSe6VdsHSR1LM2lzGKbPVCAbd8QuDlxKulAUTA==
+"@hammerframework/hammer-dev-server@0.0.1-alpha.8.1":
+  version "0.0.1-alpha.8.1"
+  resolved "https://registry.yarnpkg.com/@hammerframework/hammer-dev-server/-/hammer-dev-server-0.0.1-alpha.8.1.tgz#bcdb470b1da1a104bca03e5331ab55b4988f38d1"
+  integrity sha512-e1FWvwcharq/C0ohAiPqQPENxDj7EC3BY5nMKylLzS3aezQ/Yf4gur2H0DWhsXT+ocnRw/JcLjAL8mnqzUvIXg==
   dependencies:
     "@babel/register" "^7.5.5"
     "@hammerframework/hammer-core" "^0.0.1-alpha.8"
