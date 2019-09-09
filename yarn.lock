@@ -6613,10 +6613,10 @@ pretty-error@^2.0.2:
     renderkid "^2.0.1"
     utila "~0.4"
 
-prisma2@^2.0.0-preview-2:
-  version "2.0.0-preview-9.1"
-  resolved "https://registry.yarnpkg.com/prisma2/-/prisma2-2.0.0-preview-9.1.tgz#b87359de0854a26ebee506bc92c35cfd53355bcd"
-  integrity sha512-nSlPBmmdi7CrFJ+HtumJJak9XepYNfAAd4ZMSB6tbVhIlyXwzzwOVNRyzKQrFXeRalv/hkXnItzU7+A5bT4BYQ==
+prisma2@^2.0.0-preview-10:
+  version "2.0.0-preview-10"
+  resolved "https://registry.yarnpkg.com/prisma2/-/prisma2-2.0.0-preview-10.tgz#8baec075715b8cc197be9b39d4070aa2e901fde0"
+  integrity sha512-i+JVR1C4FFfclD1XCcQrPjaXwHXg6mTUkJnfuJaM20IUhTOQzFAIU6KWlcYAh8kzUzrZsieZuut/HKRCBtpzKQ==
 
 private@^0.1.6:
   version "0.1.8"

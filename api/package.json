@@ -5,7 +5,7 @@
   "dependencies": {
     "@hammerframework/hammer-api": "^0.0.1-alpha.8",
     "nexus": "^0.11.7",
-    "prisma2": "^2.0.0-preview-2"
+    "prisma2": "^2.0.0-preview-10"
   },
   "scripts": {
     "dev": "yarn hammer-dev-server"
