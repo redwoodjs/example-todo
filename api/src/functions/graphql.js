@@ -1,14 +1,12 @@
-import { graphQLServerlessFunction } from "@hammerframework/hammer-api";
-import { getPhoton } from "src/lib/photon";
+import { graphQLServerlessFunction } from '@hammerframework/hammer-api'
+import { getPhoton } from 'src/lib/photon'
 
-const createHandler = async event => {
-  const photon = await getPhoton();
-  const server = graphQLServerlessFunction({
-    photon
-  });
-  return server.createHandler();
-};
+const server = graphQLServerlessFunction({
+  context: async () => {
+    return {
+      photon: await getPhoton(),
+    }
+  },
+})
 
-export const handler = (event, context, callback) => {
-  createHandler(event).then(handler => handler(event, context, callback));
-};
+export const handler = server.createHandler()
