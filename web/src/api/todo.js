@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import gql from 'graphql-tag'
 
 export const TODOS = gql`
   {
@@ -8,7 +8,7 @@ export const TODOS = gql`
       status
     }
   }
-`;
+`
 
 export const TODO_CREATE = gql`
   mutation TodoCreate($body: String!) {
@@ -19,7 +19,7 @@ export const TODO_CREATE = gql`
       status
     }
   }
-`;
+`
 
 export const TODO_CHECK = gql`
   mutation TodoCheck($id: Int!, $status: String) {
@@ -29,7 +29,7 @@ export const TODO_CHECK = gql`
       status
     }
   }
-`;
+`
 
 export const TODO_RENAME = gql`
   mutation TodoRename($id: Int!, $body: String) {
@@ -39,4 +39,4 @@ export const TODO_RENAME = gql`
       body
     }
   }
-`;
+`

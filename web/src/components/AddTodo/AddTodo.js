@@ -1,20 +1,20 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
-import { useState } from "react";
-import Check from "../Check/Check";
+import { useState } from 'react'
+import Check from '../Check/Check'
 
 const AddTodo = ({ submitTodo }) => {
-  const [todoText, setTodoText] = useState("");
+  const [todoText, setTodoText] = useState('')
 
-  const handleSubmit = event => {
-    submitTodo(todoText);
-    setTodoText("");
-    event.preventDefault();
-  };
+  const handleSubmit = (event) => {
+    submitTodo(todoText)
+    setTodoText('')
+    event.preventDefault()
+  }
 
-  const handleChange = event => {
-    setTodoText(event.target.value);
-  };
+  const handleChange = (event) => {
+    setTodoText(event.target.value)
+  }
 
   return (
     <SC.Form onSubmit={handleSubmit}>
@@ -29,19 +29,19 @@ const AddTodo = ({ submitTodo }) => {
         <SC.Button type="submit" value="Add Item" />
       </SC.Body>
     </SC.Form>
-  );
-};
+  )
+}
 
-const SC = {};
+const SC = {}
 SC.Form = styled.form`
   display: flex;
   align-items: center;
-`;
+`
 SC.Body = styled.div`
   border-top: 1px solid #efefef;
   border-bottom: 1px solid #efefef;
   width: 100%;
-`;
+`
 SC.Input = styled.input`
   border: none;
   font-size: 18px;
@@ -52,7 +52,7 @@ SC.Input = styled.input`
   ::placeholder {
     color: #e1e1e1;
   }
-`;
+`
 SC.Button = styled.input`
   float: right;
   margin-top: 5px;
@@ -68,6 +68,6 @@ SC.Button = styled.input`
     background-color: black;
     cursor: pointer;
   }
-`;
+`
 
-export default AddTodo;
+export default AddTodo

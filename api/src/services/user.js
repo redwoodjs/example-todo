@@ -1,11 +1,11 @@
-import { getPhoton } from "src/lib/photon";
+import { getPhoton } from 'src/lib/photon'
 
 export const findOrCreate = async ({ email }) => {
-  const photon = await getPhoton();
+  const photon = await getPhoton()
 
   return await photon.users.upsert({
     where: { email },
     update: { email },
-    create: { email }
-  });
-};
+    create: { email },
+  })
+}

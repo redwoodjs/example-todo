@@ -1,6 +1,6 @@
-import { BrowserRouter, Switch, Route } from '@hammerframework/hammer-web';
+import { BrowserRouter, Switch, Route } from '@hammerframework/hammer-web'
 
-import HomePage from './HomePage';
+import HomePage from './HomePage'
 
 const Routes = () => {
   return (
@@ -10,6 +10,6 @@ const Routes = () => {
       </Switch>
     </BrowserRouter>
   )
-};
+}
 
 export default Routes
