@@ -20,6 +20,7 @@ module.exports = {
         }
       }
     ],
-    "babel-plugin-styled-components"
+    "babel-plugin-styled-components",
+    "babel-plugin-inline-react-svg"
   ]
 };
