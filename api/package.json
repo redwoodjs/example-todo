@@ -7,11 +7,10 @@
     "nexus": "^0.11.7",
     "prisma2": "^2.0.0-preview-10"
   },
+  "devDependencies": {
+    "@hammerframework/hammer-dev-server": "^0.0.1-alpha.9"
+  },
   "scripts": {
     "dev": "yarn hammer-dev-server"
-  },
-  "devDependencies": {
-    "babel-plugin-module-resolver": "^3.2.0",
-    "@hammerframework/hammer-dev-server": "0.0.1-alpha.8.1"
   }
 }
