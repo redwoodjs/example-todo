@@ -1,27 +1,25 @@
-const path = require("path");
-
 module.exports = {
   extends: "../babel.config.js",
   presets: [
     [
       "@babel/preset-env",
       {
-        targets: {
-          node: "8.10.0"
-        },
-        useBuiltIns: "entry",
+        targets: "> 0.25%, not dead",
+        useBuiltIns: "usage",
         corejs: 3
       }
     ]
   ],
   plugins: [
+    "@babel/plugin-transform-runtime",
     [
       "babel-plugin-module-resolver",
       {
         alias: {
-          src: path.join(__dirname, "src")
+          src: "./src"
         }
       }
-    ]
+    ],
+    "babel-plugin-styled-components"
   ]
 };
