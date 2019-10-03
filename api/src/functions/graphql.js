@@ -1,12 +1,13 @@
 import { graphQLServerlessFunction } from '@hammerframework/hammer-api'
-import { getPhoton } from 'src/lib/photon'
+import { Photon } from '@generated/photon'
+
+import * as todo from 'src/graphql/todo'
 
 const server = graphQLServerlessFunction({
-  context: async () => {
-    return {
-      photon: await getPhoton(),
-    }
+  context: {
+    photon: new Photon(),
   },
+  schemaTypes: [todo]
 })
 
 export const handler = server.createHandler()
