@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-
 import Check from 'src/components/Check'
 
 const TodoItem = ({ id, body, status, onClickCheck }) => {

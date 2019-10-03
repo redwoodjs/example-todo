@@ -1,6 +1,7 @@
 import { useQuery, useMutation } from '@hammerframework/hammer-web'
-import { TODO_CHECK, TODOS } from 'src/api/todo'
 import TodoList from 'src/components/TodoList'
+
+import { TODO_CHECK, TODOS } from 'src/api/todo'
 
 const TodoListCell = () => {
   const [todoCheck] = useMutation(TODO_CHECK)

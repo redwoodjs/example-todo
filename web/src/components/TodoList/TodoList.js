@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-
 import TodoItem from 'src/components/TodoItem'
 
 const TodoList = ({ todos, onClickCheck }) => {

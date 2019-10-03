@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-
 import { useState } from 'react'
+
 import Check from '../Check/Check'
 
 const AddTodo = ({ submitTodo }) => {
@@ -45,7 +45,7 @@ SC.Body = styled.div`
 SC.Input = styled.input`
   border: none;
   font-size: 18px;
-  font-family: "Inconsolata", monospace;
+  font-family: 'Inconsolata', monospace;
   padding: 10px 0;
   width: 75%;
 

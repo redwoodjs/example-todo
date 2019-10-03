@@ -7,7 +7,7 @@ const server = graphQLServerlessFunction({
   context: {
     photon: new Photon(),
   },
-  schemaTypes: [todo]
+  schemaTypes: [todo],
 })
 
 export const handler = server.createHandler()
