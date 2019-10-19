@@ -1,6 +1,7 @@
 import { useMutation } from '@hammerframework/hammer-web'
-import { TODO_CREATE, TODOS } from 'src/api/todo'
 import AddTodo from 'src/components/AddTodo'
+
+import { TODO_CREATE, TODOS } from 'src/api/todo'
 
 const AddTodoCell = () => {
   const [todoCreate] = useMutation(TODO_CREATE, {

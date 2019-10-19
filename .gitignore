@@ -7,6 +7,7 @@ yarn-error.log
 
 api/prisma/dev.sqlite
 api/generated/*
-
-web/generated
+packages/photon/runtime
+packages/photon/index.js
+packages/photon/index.d.ts
 

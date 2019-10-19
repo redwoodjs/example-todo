@@ -1,8 +1,9 @@
 /* eslint-disable import/no-extraneous-dependencies */
-const merge = require("webpack-merge");
+const merge = require('webpack-merge')
 
-const common = require("./webpack.common.js");
+const webpackConfig = require('./webpack.common.js')
+const WEBPACK_MODE = 'production'
 
-module.exports = merge(common, {
-  mode: "production"
-});
+module.exports = merge(webpackConfig(WEBPACK_MODE), {
+  mode: WEBPACK_MODE,
+})
