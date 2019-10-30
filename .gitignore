@@ -6,7 +6,6 @@ yarn-error.log
 .DS_Store
 
 api/prisma/dev.sqlite
-api/generated/*
 packages/photon/runtime
 packages/photon/index.js
 packages/photon/index.d.ts
