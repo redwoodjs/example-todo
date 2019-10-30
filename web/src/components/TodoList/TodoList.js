@@ -1,9 +1,28 @@
 import styled from 'styled-components'
 import TodoItem from 'src/components/TodoItem'
+import { useMutation } from '@hammerframework/hammer-web'
 
-const TodoList = ({ todos, onClickCheck }) => {
+import { TODO_CHECK, TODOS } from 'src/api/todo'
+
+export const query = TODOS
+
+export const Loader = () => <div>Loading...</div>
+
+const TodoList = ({ todos }) => {
+  const [todoCheck] = useMutation(TODO_CHECK)
+
+  const handleCheckClick = (id, status) => {
+    todoCheck({
+      variables: { id, status },
+      optimisticResponse: {
+        __typename: 'Mutation',
+        todoCheck: { __typename: 'Todo', id, status: 'loading' },
+      },
+    })
+  }
+
   const list = todos.map((todo) => (
-    <TodoItem key={todo.id} {...todo} onClickCheck={onClickCheck} />
+    <TodoItem key={todo.id} {...todo} onClickCheck={handleCheckClick} />
   ))
 
   return <SC.List>{list}</SC.List>
