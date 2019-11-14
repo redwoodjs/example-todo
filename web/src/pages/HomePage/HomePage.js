@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import AddTodoCell from 'src/cells/AddTodoCell'
+import AddTodoCell from 'src/components/AddTodoCell'
 
 import TodoList from 'src/components/TodoList'
 
