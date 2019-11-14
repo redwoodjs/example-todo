@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import { useState } from 'react'
-
-import Check from '../Check/Check'
+import Check from 'src/components/Check'
 
 const AddTodo = ({ submitTodo }) => {
   const [todoText, setTodoText] = useState('')
