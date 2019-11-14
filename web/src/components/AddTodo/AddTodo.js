@@ -57,12 +57,12 @@ SC.Button = styled.input`
   float: right;
   margin-top: 5px;
   border-radius: 6px;
-  background-color #8000ff;
+  background-color: #8000ff;
   padding: 5px 15px;
   color: white;
   border: 0;
   font-size: 18px;
-  font-family: "Inconsolata", monospace;
+  font-family: 'Inconsolata', monospace;
 
   :hover {
     background-color: black;
