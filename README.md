@@ -17,11 +17,13 @@ this in the root directory:
 yarn install
 ```
 
-Generate a database:
+Set up the database:
 
 ```terminal
 yarn db:up
 ```
+
+When prompted, select "Yes" to create the SQLite database on disk.
 
 ### Fire it up
 
