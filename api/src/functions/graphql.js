@@ -1,13 +1,18 @@
 import { Photon } from '@generated/photon'
-import { server } from '@hammerframework/hammer-api'
+import { ApolloServer, makeExecutableSchema } from '@hammerframework/hammer-api'
 
 import * as todo from 'src/graphql/todo'
 
+const schema = makeExecutableSchema({
+  typeDefs: [todo.schema],
+  resolvers: [todo.resolvers],
+})
+
 const photon = new Photon()
 
-export const handler = server({
+export const handler = new ApolloServer({
+  schema,
   context: {
     photon,
   },
-  types: [todo],
 }).createHandler()

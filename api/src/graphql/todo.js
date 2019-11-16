@@ -1,51 +1,42 @@
-import { intArg, objectType, queryField, mutationField, stringArg } from 'nexus'
+export const schema = `
+  type Todo {
+    id: ID!
+    body: String!
+    status: String!
+  }
 
-import { todos } from 'src/services/todos'
+  type Query {
+    todos: [Todo]
+  }
 
-export const Todo = objectType({
-  name: 'Todo',
-  definition(t) {
-    t.int('id')
-    t.string('body')
-    t.string('status')
-  },
-})
+  type Mutation {
+    todoCreate(body: String!): Todo
+    todoCheck(id: ID!, status: String!): Todo
+    todoRename(id: ID!, body: String!): Todo
+  }
+`
 
-export const todosQuery = queryField('todos', {
-  type: 'Todo',
-  list: true,
-  nullable: true,
-  resolve(_root, _args) {
-    return todos.all()
+export const resolvers = {
+  Query: {
+    todos: (_root, _args, { photon }) => {
+      return photon.todos.findMany()
+    },
   },
-})
-
-export const todoCreate = mutationField('todoCreate', {
-  type: 'Todo',
-  args: { body: stringArg({ required: true }) },
-  resolve(_root, args) {
-    return todos.create(args.body)
+  Mutation: {
+    todoCreate: (_root, args, { photon }) => {
+      return photon.todos.create({ data: { body: args.body } })
+    },
+    todoCheck: (_root, { id, status }, { photon }) => {
+      return photon.todos.update({
+        data: { status },
+        where: { id },
+      })
+    },
+    todoRename: (_root, { id, body }, { photon }) => {
+      return photon.todos.update({
+        data: { body },
+        where: { id },
+      })
+    },
   },
-})
-
-export const todoCheck = mutationField('todoCheck', {
-  type: 'Todo',
-  args: {
-    id: intArg({ required: true }),
-    status: stringArg(),
-  },
-  resolve(_root, { id, status }) {
-    return todos.changeStatus(id, status)
-  },
-})
-
-export const todoRename = mutationField('todoRename', {
-  type: 'Todo',
-  args: {
-    id: intArg({ required: true }),
-    body: stringArg(),
-  },
-  resolve(_root, { id, body }) {
-    return todos.rename(id, body)
-  },
-})
+}
