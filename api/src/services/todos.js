@@ -16,13 +16,13 @@ export const todos = {
     return photon.todos.create({ data: { body: body } })
   },
 
-  // Change the status of a todo.
+  // Update the status of a todo.
   //
   // id     - The id of the todo.
   // status - The new status. One of 'on', 'off', 'loading'.
   //
   // Returns the updated Todo object.
-  changeStatus: (id, status) => {
+  updateStatus: (id, status) => {
     return photon.todos.update({
       data: { status },
       where: { id },

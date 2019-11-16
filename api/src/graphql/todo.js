@@ -12,9 +12,9 @@ export const schema = `
   }
 
   type Mutation {
-    todoCreate(body: String!): Todo
-    todoCheck(id: Int!, status: String!): Todo
-    todoRename(id: Int!, body: String!): Todo
+    createTodo(body: String!): Todo
+    updateTodoStatus(id: Int!, status: String!): Todo
+    renameTodo(id: Int!, body: String!): Todo
   }
 `
 
@@ -25,13 +25,13 @@ export const resolvers = {
     },
   },
   Mutation: {
-    todoCreate: (_root, args) => {
+    createTodo: (_root, args) => {
       return todos.create(args.body)
     },
-    todoCheck: (_root, { id, status }) => {
-      return todos.changeStatus(id, status)
+    updateTodoStatus: (_root, { id, status }) => {
+      return todos.updateStatus(id, status)
     },
-    todoRename: (_root, { id, body }) => {
+    renameTodo: (_root, { id, body }) => {
       return todos.rename(id, body)
     },
   },

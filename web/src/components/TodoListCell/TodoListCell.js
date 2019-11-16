@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import TodoItem from 'src/components/TodoItem'
 import { useMutation } from '@hammerframework/hammer-web'
 
-const TODOS = gql`
+export const query = gql`
   {
     todos {
       id
@@ -11,10 +11,9 @@ const TODOS = gql`
     }
   }
 `
-
-const TODO_CHECK = gql`
-  mutation TodoCheck($id: Int!, $status: String!) {
-    todoCheck(id: $id, status: $status) {
+const UPDATE_TODO_STATUS = gql`
+  mutation TodoListCell_CheckTodo($id: Int!, $status: String!) {
+    updateTodoStatus(id: $id, status: $status) {
       id
       __typename
       status
@@ -22,19 +21,17 @@ const TODO_CHECK = gql`
   }
 `
 
-export const query = TODOS
-
 export const Loader = () => <div>Loading...</div>
 
 const TodoList = ({ todos }) => {
-  const [todoCheck] = useMutation(TODO_CHECK)
+  const [updateTodoStatus] = useMutation(UPDATE_TODO_STATUS)
 
   const handleCheckClick = (id, status) => {
-    todoCheck({
+    updateTodoStatus({
       variables: { id, status },
       optimisticResponse: {
         __typename: 'Mutation',
-        todoCheck: { __typename: 'Todo', id, status: 'loading' },
+        updateTodoStatus: { __typename: 'Todo', id, status: 'loading' },
       },
     })
   }
