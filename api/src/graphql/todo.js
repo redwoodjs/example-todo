@@ -1,6 +1,8 @@
+import { todos } from 'src/services/todos'
+
 export const schema = `
   type Todo {
-    id: ID!
+    id: Int!
     body: String!
     status: String!
   }
@@ -11,32 +13,26 @@ export const schema = `
 
   type Mutation {
     todoCreate(body: String!): Todo
-    todoCheck(id: ID!, status: String!): Todo
-    todoRename(id: ID!, body: String!): Todo
+    todoCheck(id: Int!, status: String!): Todo
+    todoRename(id: Int!, body: String!): Todo
   }
 `
 
 export const resolvers = {
   Query: {
-    todos: (_root, _args, { photon }) => {
-      return photon.todos.findMany()
+    todos: () => {
+      return todos.all()
     },
   },
   Mutation: {
-    todoCreate: (_root, args, { photon }) => {
-      return photon.todos.create({ data: { body: args.body } })
+    todoCreate: (_root, args) => {
+      return todos.create(args.body)
     },
-    todoCheck: (_root, { id, status }, { photon }) => {
-      return photon.todos.update({
-        data: { status },
-        where: { id },
-      })
+    todoCheck: (_root, { id, status }) => {
+      return todos.changeStatus(id, status)
     },
-    todoRename: (_root, { id, body }, { photon }) => {
-      return photon.todos.update({
-        data: { body },
-        where: { id },
-      })
+    todoRename: (_root, { id, body }) => {
+      return todos.rename(id, body)
     },
   },
 }

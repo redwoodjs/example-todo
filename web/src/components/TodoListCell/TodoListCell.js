@@ -13,7 +13,7 @@ const TODOS = gql`
 `
 
 const TODO_CHECK = gql`
-  mutation TodoCheck($id: Int!, $status: String) {
+  mutation TodoCheck($id: Int!, $status: String!) {
     todoCheck(id: $id, status: $status) {
       id
       __typename
