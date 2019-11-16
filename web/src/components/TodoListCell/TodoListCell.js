@@ -2,6 +2,59 @@ import styled from 'styled-components'
 import TodoItem from 'src/components/TodoItem'
 import { useMutation } from '@hammerframework/hammer-web'
 
+const hql = (statement) => {
+  let ast = gql(statement)
+  ast.definitions[0].name = {
+    kind: 'Name',
+    value: 'TodoListCell_updateTodoStatus',
+  }
+  ast.definitions[0].variableDefinitions = [
+    {
+      kind: 'VariableDefinition',
+      variable: {
+        kind: 'Variable',
+        name: {
+          kind: 'Name',
+          value: 'id',
+        },
+      },
+      type: {
+        kind: 'NonNullType',
+        type: {
+          kind: 'NamedType',
+          name: {
+            kind: 'Name',
+            value: 'Int',
+          },
+        },
+      },
+      directives: [],
+    },
+    {
+      kind: 'VariableDefinition',
+      variable: {
+        kind: 'Variable',
+        name: {
+          kind: 'Name',
+          value: 'status',
+        },
+      },
+      type: {
+        kind: 'NonNullType',
+        type: {
+          kind: 'NamedType',
+          name: {
+            kind: 'Name',
+            value: 'String',
+          },
+        },
+      },
+      directives: [],
+    },
+  ]
+  return ast
+}
+
 export const query = gql`
   {
     todos {
@@ -11,11 +64,10 @@ export const query = gql`
     }
   }
 `
-const UPDATE_TODO_STATUS = gql`
-  mutation TodoListCell_CheckTodo($id: Int!, $status: String!) {
+const UPDATE_TODO_STATUS = hql`
+  mutation {
     updateTodoStatus(id: $id, status: $status) {
       id
-      __typename
       status
     }
   }
