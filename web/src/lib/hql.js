@@ -538,18 +538,26 @@ const mutationsMap = mapMutations()
 
 export const hql = (statement) => {
   let ast = gql(statement)
+  // console.log(gql(statement + '{ todos { id } }'))
+  console.log(ast)
 
-  if (ast.definitions[0].name !== undefined) {
-    return ast
+  let mutationCount = 1
+
+  const definitionMod = (def) => {
+    if (def.name === undefined && def.operation === 'mutation') {
+      const mutationName = def.selectionSet.selections[0].name.value
+
+      def.name = {
+        kind: 'Name',
+        value: `Mutation${mutationCount}`,
+      }
+      def.variableDefinitions = mutationsMap[mutationName]
+
+      mutationCount += 1
+    }
   }
 
-  const mutationName = ast.definitions[0].selectionSet.selections[0].name.value
-
-  ast.definitions[0].name = {
-    kind: 'Name',
-    value: 'Blah',
-  }
-  ast.definitions[0].variableDefinitions = mutationsMap[mutationName]
+  ast.definitions.forEach(definitionMod)
 
   return ast
 }
