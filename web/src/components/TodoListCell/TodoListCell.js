@@ -4,7 +4,7 @@ import { useMutation } from '@hammerframework/hammer-web'
 
 import { hql } from 'src/lib/hql'
 
-export const query = gql`
+export const query = hql`
   {
     todos {
       id
