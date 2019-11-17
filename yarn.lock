@@ -893,16 +893,19 @@
   resolved "https://registry.yarnpkg.com/@emotion/unitless/-/unitless-0.7.4.tgz#a87b4b04e5ae14a88d48ebef15015f6b7d1f5677"
   integrity sha512-kBa+cDHOR9jpRJ+kcGMsysrls0leukrm68DmFQoMIWQcXdr2cZvyvypWuGYT7U+9kAExUE7+T7r6G3C3A6L8MQ==
 
-"@hammerframework/api@0.0.1-alpha.13.1":
-  version "0.0.1-alpha.13.1"
-  resolved "https://registry.yarnpkg.com/@hammerframework/api/-/api-0.0.1-alpha.13.1.tgz#44949941232da183afa6a26494f6308728a0b154"
-  integrity sha512-hDM0PhQmXfT9Fwifgg780EmmvFgjQFwPEEpOcONU+XNieu+lT9YW0+JjbA2OYg32C6lP4QTKlz4F3weLxfwfjQ==
+"@hammerframework/api@0.0.1-alpha.13.2":
+  version "0.0.1-alpha.13.2"
+  resolved "https://registry.yarnpkg.com/@hammerframework/api/-/api-0.0.1-alpha.13.2.tgz#d0db6053cd45242cd2a31605c4d7e7d795b65784"
+  integrity sha512-KT+ucYAlQ8/lT2SvsaNoriwWB5zrN4fzWvgEV57uFgDBqW6DQSLMpoS8KTFUXI79FOvNnOd5f/J4qxxHaDLfMQ==
   dependencies:
     "@hammerframework/hammer-core" "^0.0.1-alpha.12.5"
+    "@types/graphql-iso-date" "^3.3.3"
     "@types/lodash.merge" "^4.6.6"
     apollo-server-lambda "2.9.9"
     core-js "3.4.1"
     graphql "^14.5.8"
+    graphql-iso-date "^3.6.1"
+    graphql-tools "4.0.6"
     lodash.merge "^4.6.2"
 
 "@hammerframework/eslint-config-hammer@0.0.1-alpha.12":
@@ -1386,6 +1389,13 @@
     "@types/events" "*"
     "@types/minimatch" "*"
     "@types/node" "*"
+
+"@types/graphql-iso-date@^3.3.3":
+  version "3.3.3"
+  resolved "https://registry.yarnpkg.com/@types/graphql-iso-date/-/graphql-iso-date-3.3.3.tgz#a368aa7370512a9cc87a5035c3701949ed7db9e2"
+  integrity sha512-lchvlAox/yqk2Rcrgqh+uvwc1UC9i1hap+0tqQqyYYcAica6Uw2D4mUkCNcw+WeZ8dvSS5QdtIlJuDYUf4nLXQ==
+  dependencies:
+    graphql "^14.5.3"
 
 "@types/graphql-upload@^8.0.0":
   version "8.0.3"
@@ -4594,12 +4604,17 @@ graphql-extensions@^0.10.4:
     apollo-server-env "^2.4.3"
     apollo-server-types "^0.2.5"
 
+graphql-iso-date@^3.6.1:
+  version "3.6.1"
+  resolved "https://registry.yarnpkg.com/graphql-iso-date/-/graphql-iso-date-3.6.1.tgz#bd2d0dc886e0f954cbbbc496bbf1d480b57ffa96"
+  integrity sha512-AwFGIuYMJQXOEAgRlJlFL4H1ncFM8n8XmoVDTNypNOZyQ8LFDG2ppMFlsS862BSTCDcSUfHp8PD3/uJhv7t59Q==
+
 graphql-tag@^2.4.2, graphql-tag@^2.9.2:
   version "2.10.1"
   resolved "https://registry.yarnpkg.com/graphql-tag/-/graphql-tag-2.10.1.tgz#10aa41f1cd8fae5373eaf11f1f67260a3cad5e02"
   integrity sha512-jApXqWBzNXQ8jYa/HLkZJaVw9jgwNqZkywa2zfFn16Iv1Zb7ELNHkJaXHR7Quvd5SIGsy6Ny7SUKATgnu05uEg==
 
-graphql-tools@^4.0.0:
+graphql-tools@4.0.6, graphql-tools@^4.0.0:
   version "4.0.6"
   resolved "https://registry.yarnpkg.com/graphql-tools/-/graphql-tools-4.0.6.tgz#0e729e73db05ade3df10a2f92511be544972a844"
   integrity sha512-jHLQw8x3xmSNRBCsaZqelXXsFfUSUSktSCUP8KYHiX1Z9qEuwcMpAf+FkdBzk8aTAFqOlPdNZ3OI4DKKqGKUqg==
