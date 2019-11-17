@@ -538,6 +538,11 @@ const mutationsMap = mapMutations()
 
 export const hql = (statement) => {
   let ast = gql(statement)
+
+  if (ast.definitions[0].name !== undefined) {
+    return ast
+  }
+
   const mutationName = ast.definitions[0].selectionSet.selections[0].name.value
 
   ast.definitions[0].name = {
