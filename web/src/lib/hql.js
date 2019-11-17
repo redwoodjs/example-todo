@@ -510,6 +510,9 @@ const data = {
   },
 }
 
+// Extract and return the essential data from the SDL argument AST.
+//
+// arg - The AST subtree representing an SDL mutation's argument.
 const extract = (arg) => {
   return {
     kind: 'VariableDefinition',
@@ -526,6 +529,10 @@ const extract = (arg) => {
   }
 }
 
+// Find all the mutations in the SDL and create a mapping where the key is the
+// String mutation name and the value is a map. In that map, the key is the
+// String name of one of the mutation's arguments and the value is the extracted
+// AST representing that argument.
 const mapMutations = () => {
   let map = {}
   const mutations = data.definitions.filter((x) => x.name.value === 'Mutation')
@@ -539,13 +546,23 @@ const mapMutations = () => {
   return map
 }
 
+// Run the mapper once at top level so we can use it for all future hql calls.
 const mutationsMap = mapMutations()
 
+// A version of gql that can accept mutations that have no name or argument
+// list. If you elide that information, we can auto-generate it for you from the
+// body of mutation statement.
 export const hql = (statement) => {
+  // Parse the GraphQL statement to get an AST.
   let ast = gql(statement)
 
   let mutationCount = 1
 
+  // Modify the definition if it is both unnamed and a mutation.
+  //
+  // def - The definition object.
+  //
+  // Returns nothing, as it modifies the AST object in-place.
   const definitionMod = (def) => {
     if (def.name === undefined && def.operation === 'mutation') {
       let varDefs = []
@@ -559,10 +576,13 @@ export const hql = (statement) => {
         })
       })
 
+      // Generate a name for this definition
       def.name = {
         kind: 'Name',
         value: `Mutation${mutationCount}`,
       }
+
+      // Set the definition variables to those we calculated
       def.variableDefinitions = varDefs
 
       mutationCount += 1
