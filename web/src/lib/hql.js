@@ -519,7 +519,8 @@ const extract = (arg) => {
       kind: 'Variable',
       name: {
         kind: 'Name',
-        value: arg.name.value,
+        // value property will be named according to the mutation argument
+        // value: ^^^
       },
     },
   }
@@ -528,8 +529,12 @@ const extract = (arg) => {
 const mapMutations = () => {
   let map = {}
   const mutations = data.definitions.filter((x) => x.name.value === 'Mutation')
-  mutations[0].fields.forEach((x) => {
-    map[x.name.value] = x.arguments.map((x) => extract(x))
+  mutations[0].fields.forEach((field) => {
+    let argMap = {}
+    field.arguments.forEach((arg) => {
+      argMap[arg.name.value] = extract(arg)
+    })
+    map[field.name.value] = argMap
   })
   return map
 }
@@ -538,20 +543,27 @@ const mutationsMap = mapMutations()
 
 export const hql = (statement) => {
   let ast = gql(statement)
-  // console.log(gql(statement + '{ todos { id } }'))
-  console.log(ast)
 
   let mutationCount = 1
 
   const definitionMod = (def) => {
     if (def.name === undefined && def.operation === 'mutation') {
-      const mutationName = def.selectionSet.selections[0].name.value
+      let varDefs = []
+      def.selectionSet.selections.forEach((selection) => {
+        const mutationName = selection.name.value
+        selection.arguments.forEach((arg) => {
+          const anonVarDef = mutationsMap[mutationName][arg.name.value]
+          let namedVarDef = JSON.parse(JSON.stringify(anonVarDef))
+          namedVarDef.variable.name.value = arg.value.name.value
+          varDefs.push(namedVarDef)
+        })
+      })
 
       def.name = {
         kind: 'Name',
         value: `Mutation${mutationCount}`,
       }
-      def.variableDefinitions = mutationsMap[mutationName]
+      def.variableDefinitions = varDefs
 
       mutationCount += 1
     }
