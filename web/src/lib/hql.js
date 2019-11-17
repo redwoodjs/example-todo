@@ -534,17 +534,17 @@ const mapMutations = () => {
   return map
 }
 
+const mutationsMap = mapMutations()
+
 export const hql = (statement) => {
   let ast = gql(statement)
-
-  const map = mapMutations()
   const mutationName = ast.definitions[0].selectionSet.selections[0].name.value
 
   ast.definitions[0].name = {
     kind: 'Name',
     value: 'Blah',
   }
-  ast.definitions[0].variableDefinitions = map[mutationName]
+  ast.definitions[0].variableDefinitions = mutationsMap[mutationName]
 
   return ast
 }
