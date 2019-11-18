@@ -2,7 +2,9 @@ import styled from 'styled-components'
 import TodoItem from 'src/components/TodoItem'
 import { useMutation } from '@hammerframework/hammer-web'
 
-export const query = gql`
+import { hql } from 'src/lib/hql'
+
+export const query = hql`
   {
     todos {
       id
@@ -11,11 +13,10 @@ export const query = gql`
     }
   }
 `
-const UPDATE_TODO_STATUS = gql`
-  mutation TodoListCell_CheckTodo($id: Int!, $status: String!) {
+const UPDATE_TODO_STATUS = hql`
+  mutation {
     updateTodoStatus(id: $id, status: $status) {
       id
-      __typename
       status
     }
   }
