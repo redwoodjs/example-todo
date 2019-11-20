@@ -73,7 +73,7 @@ module.exports = (webpackEnv) => {
       new webpack.ProvidePlugin({
         React: 'react',
         PropTypes: 'prop-types',
-        gql: ['@hammerframework/hammer-web', 'gql'],
+        gql: ['@hammerframework/web', 'gql'],
       }),
       new webpack.DefinePlugin({
         '__HAMMER__.apiProxyPath': JSON.stringify(

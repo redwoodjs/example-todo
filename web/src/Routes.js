@@ -1,4 +1,4 @@
-import { BrowserRouter, Switch, Route } from '@hammerframework/hammer-web'
+import { BrowserRouter, Switch, Route } from '@hammerframework/web'
 import HomePage from 'src/pages/HomePage'
 
 const Routes = () => {

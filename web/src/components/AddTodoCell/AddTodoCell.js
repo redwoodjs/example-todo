@@ -1,7 +1,7 @@
-import { useMutation } from '@hammerframework/hammer-web'
+import { useMutation } from '@hammerframework/web'
 import AddTodo from 'src/components/AddTodo'
 
-import { query as TODOS } from 'src/components/TodoListCell'
+import { QUERY as TODOS } from 'src/components/TodoListCell'
 
 const CREATE_TODO = gql`
   mutation AddTodoCell_CreateTodo($body: String!) {
