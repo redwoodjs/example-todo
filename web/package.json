@@ -3,9 +3,7 @@
   "name": "web",
   "version": "0.0.0",
   "dependencies": {
-    "@babel/runtime": "^7.5.1",
-    "@hammerframework/hammer-web": "0.0.1-alpha.12.4",
-    "immer": "^3.1.3",
+    "@hammerframework/web": "0.0.1-alpha.13.1",
     "prop-types": "^15.7.2",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
@@ -14,8 +12,7 @@
   },
   "devDependencies": {
     "@hammerframework/hammer-core": "^0.0.1-alpha.12",
-    "babel-plugin-inline-react-svg": "^1.1.0",
-    "webpack-requiredir": "^0.2.1"
+    "babel-plugin-inline-react-svg": "^1.1.0"
   },
   "scripts": {
     "dev": "webpack-dev-server --config config/webpack.dev.js",
