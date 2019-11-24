@@ -63,10 +63,10 @@ module.exports = (webpackEnv) => {
         publicPath: true,
       }),
       isEnvProduction &&
-      new MiniCssExtractPlugin({
-        filename: '[name].[contenthash:8].css',
-        chunkFilename: '[name].[contenthash:8].css',
-      }),
+        new MiniCssExtractPlugin({
+          filename: '[name].[contenthash:8].css',
+          chunkFilename: '[name].[contenthash:8].css',
+        }),
       new HtmlWebpackPlugin({
         template: './src/index.html',
       }),
@@ -79,6 +79,10 @@ module.exports = (webpackEnv) => {
         '__HAMMER__.apiProxyPath': JSON.stringify(
           hammerConfig.web.apiProxyPath
         ),
+        __filename: webpack.DefinePlugin.runtimeValue((runtimeValue) => {
+          // absolute path of imported file
+          return JSON.stringify(runtimeValue.module.resource)
+        }),
       }),
       new FaviconsWebpackPlugin(
         path.join(hammerConfig.baseDir, 'web/src/favicon.png')
@@ -121,7 +125,7 @@ module.exports = (webpackEnv) => {
             },
             {
               test: /\.svg$/,
-              loader: 'svg-inline-loader'
+              loader: 'svg-inline-loader',
             },
             ...getStyleLoaders(),
             {
