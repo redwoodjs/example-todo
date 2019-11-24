@@ -1,6 +1,7 @@
-import { withCell } from '@hammerframework/hammer-web'
+import { withCell } from '@hammerframework/web'
 
-import * as Component from './TodoListCell'
+import * as cell from './TodoListCell'
 
-export const query = Component.query
-export default withCell(Component)
+export const QUERY = cell.QUERY
+
+export default withCell(cell)

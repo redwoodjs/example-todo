@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 import TodoItem from 'src/components/TodoItem'
-import { useMutation } from '@hammerframework/hammer-web'
+import { useMutation } from '@hammerframework/web'
 
-export const query = gql`
+export const QUERY = gql`
   {
     todos {
       id
@@ -21,9 +21,9 @@ const UPDATE_TODO_STATUS = gql`
   }
 `
 
-export const Loader = () => <div>Loading...</div>
+export const Loading = () => <div>Loading...</div>
 
-const TodoList = ({ todos }) => {
+export const Success = ({ todos }) => {
   const [updateTodoStatus] = useMutation(UPDATE_TODO_STATUS)
 
   const handleCheckClick = (id, status) => {
@@ -47,5 +47,3 @@ const SC = {}
 SC.List = styled.ul`
   padding: 0;
 `
-
-export default TodoList
