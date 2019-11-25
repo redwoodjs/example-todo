@@ -8,7 +8,7 @@
   },
   "devDependencies": {
     "prisma2": "2.0.0-preview014",
-    "@hammerframework/hammer-dev-server": "^0.0.1-alpha.12"
+    "@hammerframework/hammer-dev-server": "^0.0.1-alpha.12.5"
   },
   "scripts": {
     "dev": "yarn hammer-dev-server",
