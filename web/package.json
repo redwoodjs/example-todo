@@ -11,11 +11,11 @@
     "styled-components": "^4.4.0"
   },
   "devDependencies": {
-    "@hammerframework/hammer-core": "^0.0.1-alpha.12",
-    "babel-plugin-inline-react-svg": "^1.1.0"
+    "@hammerframework/hammer-core": "^0.0.1-alpha.12.5",
+    "@hammerframework/scripts": "0.0.1-alpha.13"
   },
   "scripts": {
-    "dev": "webpack-dev-server --config config/webpack.dev.js",
+    "dev": "webpack-dev-server --config ./config/webpack.dev.js",
     "build": "webpack --config config/webpack.prod.js"
   }
 }
