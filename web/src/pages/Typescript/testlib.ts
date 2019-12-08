@@ -1,0 +1,1 @@
+export const testFunc = (name: string): string => `Hey ${name}`
