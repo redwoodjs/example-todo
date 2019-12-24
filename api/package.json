@@ -3,11 +3,11 @@
   "name": "api",
   "version": "0.0.0",
   "dependencies": {
-    "@generated/photon": "0.0.0-generated",
-    "@hammerframework/api": "0.0.1-alpha.13.2"
+    "@prisma/photon": "2.0.0-preview018.2",
+    "@hammerframework/api": "^0.0.1-alpha.13.3"
   },
   "devDependencies": {
-    "prisma2": "2.0.0-preview014",
+    "prisma2": "2.0.0-preview018.2",
     "@hammerframework/hammer-dev-server": "^0.0.1-alpha.12.5"
   },
   "scripts": {

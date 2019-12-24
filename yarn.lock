@@ -924,10 +924,10 @@
   resolved "https://registry.yarnpkg.com/@emotion/unitless/-/unitless-0.7.4.tgz#a87b4b04e5ae14a88d48ebef15015f6b7d1f5677"
   integrity sha512-kBa+cDHOR9jpRJ+kcGMsysrls0leukrm68DmFQoMIWQcXdr2cZvyvypWuGYT7U+9kAExUE7+T7r6G3C3A6L8MQ==
 
-"@hammerframework/api@0.0.1-alpha.13.2":
-  version "0.0.1-alpha.13.2"
-  resolved "https://registry.yarnpkg.com/@hammerframework/api/-/api-0.0.1-alpha.13.2.tgz#d0db6053cd45242cd2a31605c4d7e7d795b65784"
-  integrity sha512-KT+ucYAlQ8/lT2SvsaNoriwWB5zrN4fzWvgEV57uFgDBqW6DQSLMpoS8KTFUXI79FOvNnOd5f/J4qxxHaDLfMQ==
+"@hammerframework/api@^0.0.1-alpha.13.3":
+  version "0.0.1-alpha.13.3"
+  resolved "https://registry.yarnpkg.com/@hammerframework/api/-/api-0.0.1-alpha.13.3.tgz#a89bd8189276af989b992aece31ebda26f326298"
+  integrity sha512-Qn/GTTZfV6/wWGD/aIwxGG4SENSW0bGTdH/SUfXeas8jmmGGhYkUA8cPl9MQuc+9wW5CN5fKKT5/ZLk9bHMl0Q==
   dependencies:
     "@hammerframework/hammer-core" "^0.0.1-alpha.12.5"
     "@types/graphql-iso-date" "^3.3.3"
@@ -980,6 +980,11 @@
     express-logging "^1.1.1"
     qs "^6.7.0"
     require-dir "^1.2.0"
+
+"@hammerframework/router@0.0.1-alpha.13":
+  version "0.0.1-alpha.13"
+  resolved "https://registry.yarnpkg.com/@hammerframework/router/-/router-0.0.1-alpha.13.tgz#f7ec29d74d60c06fdb1e3658d620ad51e17c4062"
+  integrity sha512-TlnvPMqRr/ZTtGTc4gy/J6FRnO2vHdfbJBnV5pfCl7UpLc66nwp5YAGj5aOF74mfKzxx/nw97ImJyy0WmioOxA==
 
 "@hammerframework/scripts@0.0.1-alpha.13":
   version "0.0.1-alpha.13"
@@ -1287,6 +1292,11 @@
   integrity sha512-7H9RFVU+Li2XmEko0GGyzy7m7JjSc7qa+m8l3fUzYg2GtwASApjKF/LSG2AUQCUmDKFLdfIEVjxvKvZUJFEmpw==
   dependencies:
     core-js "^2.5.7"
+
+"@prisma/photon@2.0.0-preview018.2":
+  version "2.0.0-preview018.2"
+  resolved "https://registry.yarnpkg.com/@prisma/photon/-/photon-2.0.0-preview018.2.tgz#d731c12e4f895e84ba9f55eec26767ef9d70bea6"
+  integrity sha512-gOpm8kgOdSW8p6KeqsEnDa84vpxIdEu0BzNj+3t379Li1gnLBQ22SamIfI1i2dXFr8eg42U76PLQBrHX4W8zfw==
 
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"
@@ -6844,10 +6854,10 @@ pretty-error@^2.0.2:
     renderkid "^2.0.1"
     utila "~0.4"
 
-prisma2@2.0.0-preview014:
-  version "2.0.0-preview014"
-  resolved "https://registry.yarnpkg.com/prisma2/-/prisma2-2.0.0-preview014.tgz#4ab92914112bb77e4a07c7c44d33e23dac98a8af"
-  integrity sha512-3VTaU83AgTz8/wq3Z+98CyhCW2cVfJEWARom6WpaCmHICv80bnVcjoEFsCly7jU8iHJU+EU8ryY8iver/msFCg==
+prisma2@2.0.0-preview018.2:
+  version "2.0.0-preview018.2"
+  resolved "https://registry.yarnpkg.com/prisma2/-/prisma2-2.0.0-preview018.2.tgz#404a56d3d4be95f4e19819e9bea43efaebf2b34e"
+  integrity sha512-/0ulQKc4dCk37AGvVq8KlLRPqwv4AnuCTf/vjDaMBh1yfeaIP4ZHtAsujz53jsv1VIJs4fClKq/hTyyGWAPZLQ==
 
 private@^0.1.6:
   version "0.1.8"
