@@ -1,5 +1,5 @@
 datasource sqlite {
-  url      = "file:dev.sqlite"
+  url      = "file:./dev.sqlite"
   provider = "sqlite"
 }
 
@@ -11,7 +11,7 @@ generator photonjs {
 // migrations for them.
 
 model Todo {
-  id     Int    @id
+  id     Int    @id @default(autoincrement())
   body   String @unique
   status String @default("off")
 }
