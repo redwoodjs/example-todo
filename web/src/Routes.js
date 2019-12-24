@@ -1,5 +1,5 @@
+import { Router, Route } from '@hammerframework/router'
 import HomePage from 'src/pages/HomePage'
-import { Router, Route } from 'src/lib/HammerRouter'
 import NotFoundPage from 'src/pages/NotFoundPage'
 
 const Routes = () => {

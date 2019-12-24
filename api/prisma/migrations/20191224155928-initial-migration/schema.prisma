@@ -1,5 +1,5 @@
 datasource sqlite {
-  url      = "file:dev.sqlite"
+  url = "***"
   provider = "sqlite"
 }
 
@@ -7,8 +7,11 @@ generator photonjs {
   provider = "photonjs"
 }
 
+// Define your own models here and run yarn db:save to create
+// migrations for them.
+
 model Todo {
-  id     Int    @id
+  id     Int    @id @default(autoincrement())
   body   String @unique
   status String @default("off")
 }
