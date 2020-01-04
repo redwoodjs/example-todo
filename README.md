@@ -1,10 +1,10 @@
 # Todo
 
-This is an example Hammer app. In order to figure out what Hammer should be
+This is an example Redwood app. In order to figure out what Redwood should be
 like, we're first developing a simple app with the technology stack we want and
 seeing how it feels. Eventually, the things we learn here will be codified in
-the Hammer "architectural style" and a set of command line tools will help
-generate various things you need during a Hammer development cycle.
+the Redwood "architectural style" and a set of command line tools will help
+generate various things you need during a Redwood development cycle.
 
 ## Getting Started
 
@@ -31,7 +31,7 @@ When prompted, select "Yes" to create the SQLite database on disk.
 yarn dev
 ```
 
-This command will eventually move into the `hammer-cli`.
+This command will eventually move into the `redwood-cli`.
 
 Run `yarn open` to open your browser on `http://localhost:8910`.
 
