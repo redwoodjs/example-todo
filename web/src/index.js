@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom'
-import { HammerProvider } from '@hammerframework/web'
+import { RedwoodProvider } from '@redwoodjs/web'
 import FatalErrorPage from 'src/pages/FatalErrorPage'
 import FatalErrorBoundary from 'src/lib/FatalErrorBoundary'
 
@@ -9,9 +9,9 @@ import './index.css'
 
 ReactDOM.render(
   <FatalErrorBoundary page={FatalErrorPage}>
-    <HammerProvider>
+    <RedwoodProvider>
       <Routes />
-    </HammerProvider>
+    </RedwoodProvider>
   </FatalErrorBoundary>,
   document.getElementById('hammer-app')
 )

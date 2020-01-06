@@ -1,13 +1,12 @@
-import { Router, Route } from '@hammerframework/router'
+import { Router, Route } from '@redwoodjs/router'
 import HomePage from 'src/pages/HomePage'
 import NotFoundPage from 'src/pages/NotFoundPage'
 
 const Routes = () => {
   return (
     <Router>
-      <Route path="/" page={HomePage} />
-
-      <Route notfound page={NotFoundPage} />
+        <Route path="/" page={HomePage} />
+          <Route notfound page={NotFoundPage} />
     </Router>
   )
 }
