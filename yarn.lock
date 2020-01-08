@@ -1305,10 +1305,10 @@
   dependencies:
     core-js "3.6.0"
 
-"@redwoodjs/scripts@0.0.1-alpha.16":
-  version "0.0.1-alpha.16"
-  resolved "https://registry.yarnpkg.com/@redwoodjs/scripts/-/scripts-0.0.1-alpha.16.tgz#a05c5ecb613627f8acdd4b3be69eb9439e1017ca"
-  integrity sha512-M2owE2RQlHkdQ++fSFtzT7340maoEQOk8nyCbW9hDi4H+1nfNf2R6cQWmr3kOXoQIW1bqxSotNBUNBVwDlwfAQ==
+"@redwoodjs/scripts@0.0.1-alpha.16.1":
+  version "0.0.1-alpha.16.1"
+  resolved "https://registry.yarnpkg.com/@redwoodjs/scripts/-/scripts-0.0.1-alpha.16.1.tgz#4f1fd9cdf8a51c2f24f2c0c21f557f4900f4326a"
+  integrity sha512-IzbZqg2uTNcElKsl5VT/2T5fTBOoz8TCASUSedxMSwrRjxubvh9hG2W2RtFjrokw2Rq+B9H25Wox5j6zpbTIlg==
   dependencies:
     "@babel/cli" "^7.7.4"
     "@babel/core" "^7.7.4"
@@ -1346,10 +1346,10 @@
     webpack-dev-server "^3.9.0"
     webpack-merge "^4.2.2"
 
-"@redwoodjs/web@0.0.1-alpha.16":
-  version "0.0.1-alpha.16"
-  resolved "https://registry.yarnpkg.com/@redwoodjs/web/-/web-0.0.1-alpha.16.tgz#627102f0a791fb7991883f0e6bd48c00ae054390"
-  integrity sha512-KP9oH/YT0kEpLX+KziuGJjhLaMMJceKw//IMYt/v4EBa9zllRncaCe8BNy42A3YFjpBajv1u9IWnqU/U0tMFJg==
+"@redwoodjs/web@0.0.1-alpha.16.1":
+  version "0.0.1-alpha.16.1"
+  resolved "https://registry.yarnpkg.com/@redwoodjs/web/-/web-0.0.1-alpha.16.1.tgz#a8356647239939de93a9c27717aa510d805a0658"
+  integrity sha512-K+JIgULCkIN7THwiIb0R/k/F0sQ4IAn4tgb8guvkfWDKzj5TCbMQfjWcBOFY64fQOQX6p71f6h2rRfifprrwxQ==
   dependencies:
     "@apollo/react-components" "^3.1.3"
     "@apollo/react-hooks" "^3.1.3"
