@@ -1279,10 +1279,10 @@
     qs "^6.7.0"
     require-dir "^1.2.0"
 
-"@redwoodjs/eslint-config@0.0.1-alpha.16":
-  version "0.0.1-alpha.16"
-  resolved "https://registry.yarnpkg.com/@redwoodjs/eslint-config/-/eslint-config-0.0.1-alpha.16.tgz#c10e5d96491e36b9a169dce3a265aa7c0e3a156d"
-  integrity sha512-LqssG0BZDY1DULDeGqG9+XYff5ptZ3cOrm0H3JTB1wwHUGfJcP4YveJdhQzyt/7fVHxe8ydPC1jWVi5U57F6Xg==
+"@redwoodjs/eslint-config@0.0.1-alpha.16.2":
+  version "0.0.1-alpha.16.2"
+  resolved "https://registry.yarnpkg.com/@redwoodjs/eslint-config/-/eslint-config-0.0.1-alpha.16.2.tgz#c3c0c147b2dec7dd2cac669493c47fc996089094"
+  integrity sha512-2MWRCe2VkCWg23uFzpQsxwmGTeLbvwuh9cNmEnZA26n75nTDhj8zv7HAVZILWFwVNOMu5QuhWnuQiQC2gbZfig==
   dependencies:
     "@typescript-eslint/eslint-plugin" "^2.14.0"
     "@typescript-eslint/parser" "^2.14.0"
@@ -1305,10 +1305,10 @@
   dependencies:
     core-js "3.6.0"
 
-"@redwoodjs/scripts@0.0.1-alpha.16.1":
-  version "0.0.1-alpha.16.1"
-  resolved "https://registry.yarnpkg.com/@redwoodjs/scripts/-/scripts-0.0.1-alpha.16.1.tgz#4f1fd9cdf8a51c2f24f2c0c21f557f4900f4326a"
-  integrity sha512-IzbZqg2uTNcElKsl5VT/2T5fTBOoz8TCASUSedxMSwrRjxubvh9hG2W2RtFjrokw2Rq+B9H25Wox5j6zpbTIlg==
+"@redwoodjs/scripts@0.0.1-alpha.16.2":
+  version "0.0.1-alpha.16.2"
+  resolved "https://registry.yarnpkg.com/@redwoodjs/scripts/-/scripts-0.0.1-alpha.16.2.tgz#e4c114632e5469ac8fa0716517dffca47bafacd7"
+  integrity sha512-PY/HkiKsnAQl5cwG3ah+KWq9PuUF+z6GWwhbgkvQH1AAp8XsJ+zfOPMA41c2XycGMYo0Y/Eflzy+9kA9IO7q6A==
   dependencies:
     "@babel/cli" "^7.7.4"
     "@babel/core" "^7.7.4"
@@ -1346,10 +1346,10 @@
     webpack-dev-server "^3.9.0"
     webpack-merge "^4.2.2"
 
-"@redwoodjs/web@0.0.1-alpha.16.1":
-  version "0.0.1-alpha.16.1"
-  resolved "https://registry.yarnpkg.com/@redwoodjs/web/-/web-0.0.1-alpha.16.1.tgz#a8356647239939de93a9c27717aa510d805a0658"
-  integrity sha512-K+JIgULCkIN7THwiIb0R/k/F0sQ4IAn4tgb8guvkfWDKzj5TCbMQfjWcBOFY64fQOQX6p71f6h2rRfifprrwxQ==
+"@redwoodjs/web@0.0.1-alpha.16.2":
+  version "0.0.1-alpha.16.2"
+  resolved "https://registry.yarnpkg.com/@redwoodjs/web/-/web-0.0.1-alpha.16.2.tgz#8ba050b2bca5f2a66f1ced1764bb9deba47527b3"
+  integrity sha512-R5JQJkl+EtI5tONpbymH+zjJBFD7rN1tqe/WR5o6TJY4MVa/ZlJLXG14fQnbnUdTETzbAu5RZ70sJqTX0Y07pQ==
   dependencies:
     "@apollo/react-components" "^3.1.3"
     "@apollo/react-hooks" "^3.1.3"
