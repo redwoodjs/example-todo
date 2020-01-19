@@ -1,72 +1,39 @@
-import styled from 'styled-components'
-import { useState } from 'react'
-import Check from 'src/components/Check'
+import { useMutation } from '@redwoodjs/web'
+import AddTodoControl from 'src/components/AddTodoControl'
+import { QUERY as TODOS } from 'src/components/TodoListCell'
 
-const AddTodo = ({ submitTodo }) => {
-  const [todoText, setTodoText] = useState('')
+const CREATE_TODO = gql`
+  mutation AddTodoCell_CreateTodo($body: String!) {
+    createTodo(body: $body) {
+      id
+      __typename
+      body
+      status
+    }
+  }
+`
+const AddTodo = () => {
+  const [createTodo] = useMutation(CREATE_TODO, {
+    update: (cache, { data: { createTodo } }) => {
+      const { todos } = cache.readQuery({ query: TODOS })
+      cache.writeQuery({
+        query: TODOS,
+        data: { todos: todos.concat([createTodo]) },
+      })
+    },
+  })
 
-  const handleSubmit = (event) => {
-    submitTodo(todoText)
-    setTodoText('')
-    event.preventDefault()
+  const submitTodo = (body) => {
+    createTodo({
+      variables: { body },
+      optimisticResponse: {
+        __typename: 'Mutation',
+        createTodo: { __typename: 'Todo', id: 0, body, status: 'loading' },
+      },
+    })
   }
 
-  const handleChange = (event) => {
-    setTodoText(event.target.value)
-  }
-
-  return (
-    <SC.Form onSubmit={handleSubmit}>
-      <Check type="plus" />
-      <SC.Body>
-        <SC.Input
-          type="text"
-          value={todoText}
-          placeholder="Memorize the dictionary"
-          onChange={handleChange}
-        />
-        <SC.Button type="submit" value="Add Item" />
-      </SC.Body>
-    </SC.Form>
-  )
+  return <AddTodoControl submitTodo={submitTodo} />
 }
-
-const SC = {}
-SC.Form = styled.form`
-  display: flex;
-  align-items: center;
-`
-SC.Body = styled.div`
-  border-top: 1px solid #efefef;
-  border-bottom: 1px solid #efefef;
-  width: 100%;
-`
-SC.Input = styled.input`
-  border: none;
-  font-size: 18px;
-  font-family: 'Inconsolata', monospace;
-  padding: 10px 0;
-  width: 75%;
-
-  ::placeholder {
-    color: #e1e1e1;
-  }
-`
-SC.Button = styled.input`
-  float: right;
-  margin-top: 5px;
-  border-radius: 6px;
-  background-color: #8000ff;
-  padding: 5px 15px;
-  color: white;
-  border: 0;
-  font-size: 18px;
-  font-family: 'Inconsolata', monospace;
-
-  :hover {
-    background-color: black;
-    cursor: pointer;
-  }
-`
 
 export default AddTodo

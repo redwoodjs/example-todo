@@ -1,13 +1,12 @@
 import styled from 'styled-components'
-import AddTodoCell from 'src/components/AddTodoCell'
-
-import TodoListCell from 'src/components/TodoListCell'
+import AddTodoCell from 'src/components/AddTodo'
+import TodoList from 'src/components/TodoListCell'
 
 const HomePage = () => {
   return (
     <SC.Wrapper>
       <SC.Title>Todo List</SC.Title>
-      <TodoListCell />
+      <TodoList />
       <AddTodoCell />
     </SC.Wrapper>
   )
