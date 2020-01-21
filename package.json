@@ -1,16 +1,16 @@
 {
   "name": "example-todo",
   "private": true,
-  "version": "0.0.1-alpha.18.0.1",
+  "version": "0.0.1-alpha.19",
   "workspaces": [
     "api",
     "web",
     "packages/**"
   ],
   "devDependencies": {
-    "@redwoodjs/scripts": "0.0.1-alpha.18.0.1",
-    "@redwoodjs/core": "0.0.1-alpha.18.0.1",
-    "@redwoodjs/eslint-config": "0.0.1-alpha.18.0.1"
+    "@redwoodjs/scripts": "^0.0.1-alpha.19",
+    "@redwoodjs/core": "^0.0.1-alpha.19",
+    "@redwoodjs/eslint-config": "^0.0.1-alpha.19"
   },
   "eslintConfig": {
     "extends": "@redwoodjs/eslint-config"
