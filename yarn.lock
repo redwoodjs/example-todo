@@ -1136,10 +1136,10 @@
   resolved "https://registry.yarnpkg.com/@redwoodjs/eslint-plugin-redwood/-/eslint-plugin-redwood-0.0.1-alpha.19.tgz#db0158b0e8cd609be966234f33cf433f5cadd899"
   integrity sha512-9LnaX3UyN6RLRyTwwx2rEiKw1hn3RcxihYCR14kN9dY++S2p6+16iiQyc6Uh9Hluwhd4tRVABZKJOQb/CnYB/w==
 
-"@redwoodjs/router@^0.0.1-alpha.19":
-  version "0.0.1-alpha.19"
-  resolved "https://registry.yarnpkg.com/@redwoodjs/router/-/router-0.0.1-alpha.19.tgz#720c63d7bcefbb111a62ad01c039b4ed2c7c0f0b"
-  integrity sha512-XERqaZ7GPhJ9akweJsTJyLY7dCPM4CzXtDnwhUrEtMR+Aypu68x3uNDXYCwXrZIdUCXYt49Yf6u2oy/Ul4VBGQ==
+"@redwoodjs/router@^0.0.1-alpha.19.0.2":
+  version "0.0.1-alpha.19.0.2"
+  resolved "https://registry.yarnpkg.com/@redwoodjs/router/-/router-0.0.1-alpha.19.0.2.tgz#e6e0b801fbdf5515b384c1398b15c1de27695620"
+  integrity sha512-K/5pOvmxhxXxkQE4ZjWQ6OoS9c4vfWcI4W9L5Sv12swYDGIqNj/v/BNbzg9DOU8ksvVh9JvZRYAodUvAy2X96w==
   dependencies:
     core-js "3.6.0"
 

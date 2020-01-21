@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "dependencies": {
     "@redwoodjs/web": "^0.0.1-alpha.19.0.1",
-    "@redwoodjs/router": "^0.0.1-alpha.19",
+    "@redwoodjs/router": "^0.0.1-alpha.19.0.2",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
