@@ -1,7 +1,6 @@
 import ReactDOM from 'react-dom'
-import { RedwoodProvider } from '@redwoodjs/web'
+import { RedwoodProvider, FatalErrorBoundary } from '@redwoodjs/web'
 import FatalErrorPage from 'src/pages/FatalErrorPage'
-import FatalErrorBoundary from 'src/lib/FatalErrorBoundary'
 
 import Routes from './Routes'
 
