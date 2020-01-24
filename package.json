@@ -8,8 +8,8 @@
     "packages/**"
   ],
   "devDependencies": {
-    "@redwoodjs/scripts": "^0.0.1-alpha.19",
-    "@redwoodjs/core": "^0.0.1-alpha.19",
+    "@redwoodjs/scripts": "^0.0.1-alpha.21",
+    "@redwoodjs/core": "^0.0.1-alpha.21",
     "@redwoodjs/eslint-config": "^0.0.1-alpha.19"
   },
   "eslintConfig": {
