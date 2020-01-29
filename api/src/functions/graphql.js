@@ -1,9 +1,12 @@
-import { server, makeMergedSchema } from '@redwoodjs/api'
+import importAll from '@redwoodjs/core/dist/importAll.macro'
+import { server, makeMergedSchema, makeServices } from '@redwoodjs/api'
 
-import * as todo from 'src/graphql/todo'
-
-const schema = makeMergedSchema([todo])
+const schemas = importAll('api', 'graphql')
+const services = importAll('api', 'services')
 
 export const handler = server({
-  schema,
+  schema: makeMergedSchema({
+    schemas,
+    services: makeServices({ services }),
+  }),
 }).createHandler()

@@ -4,11 +4,11 @@
   "version": "0.0.0",
   "dependencies": {
     "@prisma/photon": "2.0.0-preview019",
-    "@redwoodjs/api": "^0.0.1-alpha.21"
+    "@redwoodjs/api": "^0.0.1-alpha.22"
   },
   "devDependencies": {
     "prisma2": "2.0.0-preview019",
-    "@redwoodjs/dev-server": "^0.0.1-alpha.21"
+    "@redwoodjs/dev-server": "^0.0.1-alpha.22"
   },
   "scripts": {
     "dev": "yarn dev-server",
