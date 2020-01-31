@@ -13,9 +13,5 @@
   },
   "devDependencies": {
     "@redwoodjs/scripts": "^0.0.1-alpha.22"
-  },
-  "scripts": {
-    "dev": "webpack-dev-server --config ./config/webpack.dev.js",
-    "build": "webpack --config config/webpack.prod.js"
   }
 }

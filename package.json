@@ -1,11 +1,8 @@
 {
-  "name": "example-todo",
   "private": true,
-  "version": "0.0.1-alpha.19",
   "workspaces": [
     "api",
-    "web",
-    "packages/**"
+    "web"
   ],
   "devDependencies": {
     "@redwoodjs/cli":"^0.0.1-alpha.22",
@@ -15,15 +12,5 @@
   },
   "eslintConfig": {
     "extends": "@redwoodjs/eslint-config"
-  },
-  "scripts": {
-    "dev": "yarn dev:api & yarn dev:web",
-    "open": "open http://localhost:8910",
-    "dev:api": "yarn workspace api dev",
-    "dev:web": "yarn workspace web dev",
-    "db:up": "yarn workspace api db:up",
-    "db:save": "yarn workspace api db:save",
-    "lint": "yarn eslint 'web/src/**/*.js' 'api/src/**/*.js'",
-    "lint:fix": "yarn eslint --fix 'web/src/**/*.js' 'api/src/**/*.js'"
   }
 }
