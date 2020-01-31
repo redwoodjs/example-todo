@@ -1,19 +1,19 @@
 import { PrismaClient } from '@prisma/client'
 
-const photon = new PrismaClient()
+const prisma = new PrismaClient()
 
-export const todos = () => photon.todo.findMany()
+export const todos = () => prisma.todo.findMany()
 
-export const createTodo = ({ body }) => photon.todo.create({ data: { body } })
+export const createTodo = ({ body }) => prisma.todo.create({ data: { body } })
 
 export const updateTodoStatus = ({ id, status }) =>
-  photon.todo.update({
+  prisma.todo.update({
     data: { status },
     where: { id },
   })
 
 export const renameTodo = ({ id, body }) =>
-  photon.todo.update({
+  prisma.todo.update({
     data: { body },
     where: { id },
   })
