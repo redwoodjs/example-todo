@@ -3,8 +3,8 @@
   "name": "web",
   "version": "0.0.0",
   "dependencies": {
-    "@redwoodjs/web": "^0.0.1-alpha.22",
-    "@redwoodjs/router": "^0.0.1-alpha.22",
+    "@redwoodjs/web": "^0.0.1-alpha.23",
+    "@redwoodjs/router": "^0.0.1-alpha.23",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
@@ -12,6 +12,6 @@
     "styled-components": "^5.0.0"
   },
   "devDependencies": {
-    "@redwoodjs/scripts": "^0.0.1-alpha.22"
+    "@redwoodjs/scripts": "^0.0.1-alpha.23"
   }
 }

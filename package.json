@@ -5,10 +5,10 @@
     "web"
   ],
   "devDependencies": {
-    "@redwoodjs/cli":"^0.0.1-alpha.22",
-    "@redwoodjs/scripts": "^0.0.1-alpha.22",
-    "@redwoodjs/core": "^0.0.1-alpha.22.0.1",
-    "@redwoodjs/eslint-config": "^0.0.1-alpha.22"
+    "@redwoodjs/cli":"^0.0.1-alpha.23",
+    "@redwoodjs/scripts": "^0.0.1-alpha.23",
+    "@redwoodjs/core": "^0.0.1-alpha.23",
+    "@redwoodjs/eslint-config": "^0.0.1-alpha.23"
   },
   "eslintConfig": {
     "extends": "@redwoodjs/eslint-config"
