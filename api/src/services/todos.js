@@ -1,31 +1,19 @@
-import { Photon } from '@prisma/photon'
+import { PrismaClient } from '@prisma/client'
 
-const photon = new Photon()
+const photon = new PrismaClient()
 
-export const todos = () => photon.todos.findMany()
+export const todos = () => photon.todo.findMany()
 
-// Create a new todo.
-//
-// body - The String body text.
-//
-// Returns a Todo object.
-export const createTodo = ({ body }) =>
-  photon.todos.create({ data: { body: body } })
+export const createTodo = ({ body }) => photon.todo.create({ data: { body } })
 
-// Update the status of a todo.
-//
-// id     - The id of the todo.
-// status - The new status. One of 'on', 'off', 'loading'.
-//
-// Returns the updated Todo object.
 export const updateTodoStatus = ({ id, status }) =>
-  photon.todos.update({
+  photon.todo.update({
     data: { status },
     where: { id },
   })
 
 export const renameTodo = ({ id, body }) =>
-  photon.todos.update({
+  photon.todo.update({
     data: { body },
     where: { id },
   })
