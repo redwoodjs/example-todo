@@ -20,7 +20,7 @@ yarn install
 Set up the database:
 
 ```terminal
-yarn db:up
+yarn redwood db up
 ```
 
 When prompted, select "Yes" to create the SQLite database on disk.
@@ -28,12 +28,12 @@ When prompted, select "Yes" to create the SQLite database on disk.
 ### Fire it up
 
 ```terminal
-yarn dev
+yarn redwood dev
 ```
 
 This command will eventually move into the `redwood-cli`.
 
-Run `yarn open` to open your browser on `http://localhost:8910`.
+Run `yarn redwood open` to open your browser on `http://localhost:8910`.
 
 Browse to `http://localhost:8910` to see the web app. Lambda functions run on
 `localhost:8911` but are proxied to `localhost:8910/api/functions/*`.
@@ -47,7 +47,7 @@ We use Prisma's Lift (Migrations) and PhotonJS (ORM).
 To create a development database:
 
 ```terminal
-yarn db:up
+yarn redwood db up
 ```
 
 Will read the schema definition in `api/prisma/schema.prisma` and
