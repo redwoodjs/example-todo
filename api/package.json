@@ -7,7 +7,7 @@
     "@redwoodjs/api": "^0.0.1-alpha.22"
   },
   "devDependencies": {
-    "prisma2": "2.0.0-preview019",
+    "prisma2": "2.0.0-preview021",
     "@redwoodjs/dev-server": "^0.0.1-alpha.22"
   },
   "scripts": {
