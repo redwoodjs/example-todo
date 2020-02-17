@@ -1,10 +1,12 @@
 # Todo
 
-This is an example Redwood app. In order to figure out what Redwood should be
-like, we're first developing a simple app with the technology stack we want and
-seeing how it feels. Eventually, the things we learn here will be codified in
-the Redwood "architectural style" and a set of command line tools will help
-generate various things you need during a Redwood development cycle.
+This is an example Redwood app, implementing a very minimal todo application.
+Features you can see in action here:
+
+- Redwood Cells (see TodoListCell.js).
+- Optimistic GraphQL response with Apollo (see AddTodo.js).
+- SVG loader (see Check.js)
+- StyledComponents usage (and stylistic approach)
 
 ## Getting Started
 
@@ -14,16 +16,15 @@ We use Yarn as our package manager. To get the dependencies installed, just do
 this in the root directory:
 
 ```terminal
-yarn install
+yarn
 ```
 
-Set up the database:
+Set up the database and generate the database client:
 
 ```terminal
-yarn redwood db up
+yarn redwood db migrate up
+yarn redwood db generate
 ```
-
-When prompted, select "Yes" to create the SQLite database on disk.
 
 ### Fire it up
 
@@ -31,24 +32,7 @@ When prompted, select "Yes" to create the SQLite database on disk.
 yarn redwood dev
 ```
 
-This command will eventually move into the `redwood-cli`.
-
 Run `yarn redwood open` to open your browser on `http://localhost:8910`.
 
 Browse to `http://localhost:8910` to see the web app. Lambda functions run on
-`localhost:8911` but are proxied to `localhost:8910/api/functions/*`.
-
-## Development
-
-### Database
-
-We use Prisma's Lift (Migrations) and PhotonJS (ORM).
-
-To create a development database:
-
-```terminal
-yarn redwood db up
-```
-
-Will read the schema definition in `api/prisma/schema.prisma` and
-generate a sqlite database in `api/prisma/dev.sqlite`
+`localhost:8911` but are proxied via `localhost:8910/api/functions/*`.
