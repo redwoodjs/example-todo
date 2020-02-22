@@ -1,7 +1,3 @@
-import { PrismaClient } from '@prisma/client'
-
-const db = new PrismaClient()
-
 export const todos = () => db.todo.findMany()
 
 export const createTodo = ({ body }) => db.todo.create({ data: { body } })

@@ -1,4 +1,4 @@
-export const schema = `
+export const schema = gql`
   type Todo {
     id: Int!
     body: String!

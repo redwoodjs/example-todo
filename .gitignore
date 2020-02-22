@@ -4,6 +4,7 @@ yarn-error.log
 .docz
 .env
 .DS_Store
+.wip
 
 api/prisma/dev.sqlite
 packages/photon/runtime
