@@ -23,7 +23,6 @@ Set up the database and generate the database client:
 
 ```terminal
 yarn redwood db up
-yarn redwood db generate
 ```
 
 ### Fire it up
@@ -32,7 +31,7 @@ yarn redwood db generate
 yarn redwood dev
 ```
 
-Run `yarn redwood open` to open your browser on `http://localhost:8910`.
+Browse to `http://localhost:8910` (or run `yarn redwood open`) to see the web app.
 
-Browse to `http://localhost:8910` to see the web app. Lambda functions run on
+Lambda functions run on
 `localhost:8911` but are proxied via `localhost:8910/api/functions/*`.
