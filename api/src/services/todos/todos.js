@@ -1,3 +1,5 @@
+import { db } from 'src/lib/db'
+
 export const todos = () => db.todo.findMany()
 
 export const createTodo = ({ body }) => db.todo.create({ data: { body } })
