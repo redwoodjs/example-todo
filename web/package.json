@@ -3,11 +3,12 @@
   "name": "web",
   "version": "0.0.0",
   "dependencies": {
-    "@redwoodjs/web": "^0.6.0",
-    "@redwoodjs/router": "^0.6.0",
+    "@redwoodjs/web": "0.6.1-canary.42",
+    "@redwoodjs/router": "0.6.1-canary.42",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "styled-components": "^5.1.0"
+    "styled-components": "^5.1.0",
+    "react-is": "^16.8.0"
   }
 }
