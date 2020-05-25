@@ -5,7 +5,7 @@ import { QUERY as TODOS } from 'src/components/TodoListCell'
 // Note that `__typename` is required here in order for optimistic responses to
 // function properly.
 const CREATE_TODO = gql`
-  mutation AddTodoCell_CreateTodo($body: String!) {
+  mutation AddTodo_CreateTodo($body: String!) {
     createTodo(body: $body) {
       id
       __typename
