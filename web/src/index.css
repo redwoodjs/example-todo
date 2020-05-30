@@ -5,8 +5,7 @@
 }
 
 html {
-  font-size: 62.5%;
-  font-family: "Inconsolata", monospace;
+  font-family: 'Inconsolata', monospace;
 }
 
-@import url("https://fonts.googleapis.com/css?family=Inconsolata:400,700");
+@import url('https://fonts.googleapis.com/css?family=Inconsolata:400,700');
