@@ -16,7 +16,7 @@ const CREATE_TODO = gql`
 `
 const AddTodo = () => {
   const [createTodo] = useMutation(CREATE_TODO, {
-    // An example of updating Apollo's cache. This will trigger a re-rended of any
+    // An example of updating Apollo's cache. This will trigger a re-render of any
     // affected components, so we don't need to do anything but update the cache.
     update: (cache, { data: { createTodo } }) => {
       const { todos } = cache.readQuery({ query: TODOS })
