@@ -43,6 +43,10 @@ export const Success = ({ todos }) => {
   return <SC.List>{list}</SC.List>
 }
 
+export const beforeQuery = (props) => ({
+  variables: props,
+})
+
 const SC = {}
 SC.List = styled.ul`
   padding: 0;
