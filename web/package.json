@@ -3,8 +3,9 @@
   "name": "web",
   "version": "0.0.0",
   "dependencies": {
-    "@redwoodjs/router": "0.19.0",
-    "@redwoodjs/web": "0.19.0",
+    "@redwoodjs/forms": "^0.19.5-canary.24",
+    "@redwoodjs/router": "^0.19.5-canary.24",
+    "@redwoodjs/web": "^0.19.5-canary.24",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
