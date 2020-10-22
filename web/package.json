@@ -10,6 +10,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-is": "^16.8.0",
-    "styled-components": "^5.1.0"
+    "styled-components": "^5.1.0",
+    "urql": "^1.10.1"
   }
 }

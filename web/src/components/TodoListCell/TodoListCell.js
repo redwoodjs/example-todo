@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 import TodoItem from 'src/components/TodoItem'
-import { useMutation } from '@redwoodjs/web'
+import { useQuery, useMutation } from 'urql'
 
-export const QUERY = gql`
+const query = gql`
   {
     todos {
       id
@@ -11,41 +11,49 @@ export const QUERY = gql`
     }
   }
 `
+
 const UPDATE_TODO_STATUS = gql`
   mutation TodoListCell_CheckTodo($id: Int!, $status: String!) {
     updateTodoStatus(id: $id, status: $status) {
       id
-      __typename
       status
     }
   }
 `
 
-export const Loading = () => <div>Loading...</div>
+//export const Loading = () => <div>Loading...</div>
 
-export const Success = ({ todos }) => {
-  const [updateTodoStatus] = useMutation(UPDATE_TODO_STATUS)
+export default ({ todos }) => {
+  const [updateTodoResult, updateTodoStatus] = useMutation(UPDATE_TODO_STATUS)
+
+  const [res] = useQuery({
+    query,
+  })
 
   const handleCheckClick = (id, status) => {
-    updateTodoStatus({
-      variables: { id, status },
-      optimisticResponse: {
-        __typename: 'Mutation',
-        updateTodoStatus: { __typename: 'Todo', id, status: 'loading' },
-      },
-    })
+    updateTodoStatus(
+      { id, status }
+      // optimisticResponse: {
+      //   __typename: 'Mutation',
+      //   updateTodoStatus: { __typename: 'Todo', id, status: 'loading' },
+      // },
+    )
   }
 
-  const list = todos.map((todo) => (
+  if (res.fetching) {
+    return 'Loading...'
+  }
+
+  const list = res.data.todos.map((todo) => (
     <TodoItem key={todo.id} {...todo} onClickCheck={handleCheckClick} />
   ))
 
   return <SC.List>{list}</SC.List>
 }
 
-export const beforeQuery = (props) => ({
-  variables: props,
-})
+// export const beforeQuery = (props) => ({
+//   variables: props,
+// })
 
 const SC = {}
 SC.List = styled.ul`
