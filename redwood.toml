@@ -3,7 +3,8 @@
   apiProxyPath = "/api/functions"
 
 [api]
-  port = 8911  
+  port = 8911
+  schemaPath = "./api/db/schema.prisma"
   [api.paths]
   functions = './api/src/functions'
   graphql = './api/src/graphql'

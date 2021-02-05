@@ -8,6 +8,7 @@ yarn-error.log
 .redwood
 
 api/prisma/dev.sqlite
+api/db/dev.sqlite
 packages/photon/runtime
 packages/photon/index.js
 packages/photon/index.d.ts
