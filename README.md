@@ -22,7 +22,7 @@ yarn
 Set up the database and generate the database client:
 
 ```terminal
-yarn redwood db up
+yarn redwood prisma migrate dev
 ```
 
 ### Fire it up
