@@ -1,16 +1,24 @@
 {
-  "private": true,
   "name": "web",
   "version": "0.0.0",
+  "private": true,
+  "browserslist": {
+    "development": [
+      "last 1 version"
+    ],
+    "production": [
+      "defaults",
+      "not IE 11",
+      "not IE_Mob 11"
+    ]
+  },
   "dependencies": {
-    "@redwoodjs/auth": "0.28.3",
-    "@redwoodjs/forms": "0.28.3",
-    "@redwoodjs/router": "0.28.3",
-    "@redwoodjs/web": "0.28.3",
+    "@redwoodjs/forms": "^0.28.3",
+    "@redwoodjs/router": "^0.28.3",
+    "@redwoodjs/web": "^0.28.3",
     "prop-types": "^15.7.2",
-    "react": "17.0.1",
-    "react-dom": "17.0.1",
-    "react-is": "^16.8.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
     "styled-components": "^5.1.0"
   }
 }
