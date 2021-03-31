@@ -3,7 +3,7 @@ import TodoItem from 'src/components/TodoItem'
 import { useMutation } from '@redwoodjs/web'
 
 export const QUERY = gql`
-  {
+  query TODOS {
     todos {
       id
       body
