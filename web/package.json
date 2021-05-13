@@ -13,9 +13,10 @@
     ]
   },
   "dependencies": {
-    "@redwoodjs/forms": "^0.28.3",
-    "@redwoodjs/router": "^0.28.3",
-    "@redwoodjs/web": "^0.28.3",
+    "@redwoodjs/auth": "^0.32.1-canary.8",
+    "@redwoodjs/forms": "^0.32.1-canary.8",
+    "@redwoodjs/router": "^0.32.1-canary.8",
+    "@redwoodjs/web": "^0.32.1-canary.8",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
