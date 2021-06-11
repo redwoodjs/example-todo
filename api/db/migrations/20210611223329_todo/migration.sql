@@ -4,6 +4,3 @@ CREATE TABLE "Todo" (
     "body" TEXT NOT NULL,
     "status" TEXT NOT NULL DEFAULT 'off'
 );
-
--- CreateIndex
-CREATE UNIQUE INDEX "Todo.body_unique" ON "Todo"("body");
