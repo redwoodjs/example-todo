@@ -1,6 +1,5 @@
 import { useMutation } from '@redwoodjs/web'
 import AddTodoControl from 'src/components/AddTodoControl'
-import { QUERY as TODOS } from 'src/components/TodoListCell'
 
 // Note that `__typename` is required here in order for optimistic responses to
 // function properly.
@@ -18,11 +17,14 @@ const AddTodo = () => {
   const [createTodo] = useMutation(CREATE_TODO, {
     // An example of updating Apollo's cache. This will trigger a re-render of any
     // affected components, so we don't need to do anything but update the cache.
-    update: (cache, { data: { createTodo } }) => {
-      const { todos } = cache.readQuery({ query: TODOS })
-      cache.writeQuery({
-        query: TODOS,
-        data: { todos: todos.concat([createTodo]) },
+    update: (cache, mutationResult) => {
+      cache.modify({
+        fields: {
+          todos: (existing, { toReference }) => [
+            ...existing,
+            toReference(mutationResult.data.createTodo),
+          ],
+        },
       })
     },
   })
