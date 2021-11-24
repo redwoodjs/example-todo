@@ -2,39 +2,57 @@ import { useMutation } from '@redwoodjs/web'
 import AddTodoControl from 'src/components/AddTodoControl'
 import { QUERY as TODOS } from 'src/components/TodoListCell'
 
-// Note that `__typename` is required here in order for optimistic responses to
-// function properly.
 const CREATE_TODO = gql`
   mutation AddTodo_CreateTodo($body: String!) {
     createTodo(body: $body) {
       id
-      __typename
       body
       status
     }
   }
 `
+
 const AddTodo = () => {
   const [createTodo] = useMutation(CREATE_TODO, {
-    // An example of updating Apollo's cache. This will trigger a re-render of any
-    // affected components, so we don't need to do anything but update the cache.
-    update: (cache, { data: { createTodo } }) => {
-      const { todos } = cache.readQuery({ query: TODOS })
-      cache.writeQuery({
-        query: TODOS,
-        data: { todos: todos.concat([createTodo]) },
-      })
+    /**
+     * An example of updating Apollo Client's cache after a mutation.
+     *
+     * Although the new todo itself is cached automatically,
+     * it's not automatically added to the list field (TODOS) that it should be referenced in.
+     *
+     * @see {@link https://www.apollographql.com/docs/react/data/mutations/#updating-the-cache-directly}
+     *
+     * Here we're using Apollo Client v3.5's new `updateQuery` API to do so in a streamlined way.
+     *
+     * @see {@link https://www.apollographql.com/docs/react/caching/cache-interaction/#combining-reads-and-writes}
+     */
+    update(cache, { data: { createTodo } }) {
+      cache.updateQuery({ query: TODOS }, (data) => ({
+        todos: [...data.todos, createTodo],
+      }))
     },
   })
 
   const submitTodo = (body) => {
-    // An example of providing an optimistic response to a GraphQL mutation. Note
-    // that `__typename` is required for each object in order to make this work.
     createTodo({
       variables: { body },
+      /**
+       * We know what the result of our mutation will probably look like.
+       * Using `optimisticResponse`, we can update the UI "optimistically".
+       *
+       * @see {@link https://www.apollographql.com/docs/react/performance/optimistic-ui/}
+       *
+       * The id we provide is a dummy value.
+       *
+       * @see {@link https://www.apollographql.com/docs/react/performance/optimistic-ui/#example-adding-a-new-object-to-a-list}
+       */
       optimisticResponse: {
-        __typename: 'Mutation',
-        createTodo: { __typename: 'Todo', id: 0, body, status: 'loading' },
+        createTodo: {
+          id: 'temp',
+          __typename: 'Todo',
+          body,
+          status: 'loading',
+        },
       },
     })
   }
