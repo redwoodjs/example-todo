@@ -1,4 +1,4 @@
-import { db } from '$api/src/lib/db'
+import { db } from 'api/src/lib/db'
 
 export default async () => {
   try {
@@ -18,7 +18,7 @@ export default async () => {
       // { name: 'bob', email: 'bob@example.com' },
     ]
     console.log(
-      "\nUsing the default './scripts/seed.js' template\nEdit the file to add seed data\n"
+      "\nUsing the default './scripts/seed.{js,ts}' template\nEdit the file to add seed data\n"
     )
 
     // Note: if using PostgreSQL, using `createMany` to insert multiple records is much faster
@@ -27,11 +27,8 @@ export default async () => {
       //
       // Change to match your data model and seeding needs
       //
-      data.map(async (userExample) => {
-        const record = await db.userExample.create({
-          data: { name: userExample.name, email: userExample.email },
-        })
-
+      data.map(async (data) => {
+        const record = await db.userExample.create({ data })
         console.log(record)
       })
     )

@@ -1,14 +1,19 @@
 import styled from 'styled-components'
+import { MetaTags } from '@redwoodjs/web'
 import AddTodo from 'src/components/AddTodo'
 import TodoListCell from 'src/components/TodoListCell'
 
 const HomePage = () => {
   return (
-    <SC.Wrapper>
-      <SC.Title>Todo List</SC.Title>
-      <TodoListCell />
-      <AddTodo />
-    </SC.Wrapper>
+    <>
+      <MetaTags title="Todos" description="Your list of todo items" />
+
+      <SC.Wrapper>
+        <SC.Title>Todo List</SC.Title>
+        <TodoListCell />
+        <AddTodo />
+      </SC.Wrapper>
+    </>
   )
 }
 

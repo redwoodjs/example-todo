@@ -4,12 +4,10 @@
 .netlify
 .redwood
 dev.db*
-dev.db-journal
 dist
 dist-babel
 node_modules
 yarn-error.log
 web/public/mockServiceWorker.js
-types
 web/types/graphql.d.ts
 api/types/graphql.d.ts

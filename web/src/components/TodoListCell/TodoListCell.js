@@ -23,6 +23,10 @@ const UPDATE_TODO_STATUS = gql`
 
 export const Loading = () => <div>Loading...</div>
 
+export const Empty = () => <div></div>
+
+export const Failure = () => <div>Oh no</div>
+
 export const Success = ({ todos }) => {
   const [updateTodoStatus] = useMutation(UPDATE_TODO_STATUS)
 
